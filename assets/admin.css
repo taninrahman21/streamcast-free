@@ -1,0 +1,25 @@
+.stp_shortcode_box_after_title {
+  display: flex;
+  background: #fff;
+  padding: 5px 15px;
+  align-items: center;
+  gap: 15px;
+  border-radius: 3px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
+.stp_shortcode_box_after_title label {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.stp_shortcode_box_after_title .shortcode_area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stp_shortcode_box_after_title .shortcode_area svg {
+    cursor: pointer;
+}
