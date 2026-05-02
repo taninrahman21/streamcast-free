@@ -26,8 +26,6 @@ const Edit = (props) => {
 
   const id = `streamcast-${clientId}`;
 
-  const isPremium = scbIsPipeChecker;
-
   let urlToFetch = "";
   let urlToFetchIceCast = "";
 
@@ -48,6 +46,7 @@ const Edit = (props) => {
       const formData = new FormData();
       formData.append("action", "my_user_vote");
       formData.append("url", urlToFetch);
+      formData.append("nonce", window.myScriptData.nonce);
 
       // Fetch data from the server
       const response = await fetch(`${window.myScriptData.ajaxUrl}`, {
@@ -148,13 +147,8 @@ const Edit = (props) => {
 
   return (
     <>
-      <Settings
-        attributes={attributes}
-        setAttributes={setAttributes}
-        isPremium={isPremium}
-      />
-      <div {...useBlockProps()} id={id} style={{ position: "relative" }}>
-        {/* {!isSelected && <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}></div>} */}
+      <Settings attributes={attributes} setAttributes={setAttributes} />
+      <div {...useBlockProps()} id={id} style={{ position: "relative" }}> 
         <Style attributes={attributes} id={id} />
 
         {renderPlayer(playerType, attributes, id, fetchedStationName)}

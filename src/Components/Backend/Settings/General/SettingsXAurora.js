@@ -7,11 +7,9 @@ import { BtnGroup, InlineDetailMediaUpload } from '../../../../../../bpl-tools/C
 import { playerTypeOptions } from '../../../../utils/options';
 import { playerTypeSwitch } from '../../../../utils/functions';
 
-const SettingsXAurora = ({ setAttributes, attributes, premiumProps }) => {
-    const { radioPlayer, radioStyles } = attributes;
-    const { echoStream } = radioStyles;
-    const { streamURL, playerPosition, stationName, welcomeMessage, fetchNameFromUrl, playerType, artWork } = radioPlayer;
-    const { shareUrl } = echoStream;
+const SettingsXAurora = ({ setAttributes, attributes }) => {
+    const { radioPlayer } = attributes;
+    const { streamURL, stationName, welcomeMessage, fetchNameFromUrl, playerType } = radioPlayer; 
 
     return (
         <>
@@ -46,31 +44,7 @@ const SettingsXAurora = ({ setAttributes, attributes, premiumProps }) => {
                 label={__("Artist/FM Name*", "streamcast")}
                 value={welcomeMessage}
                 onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "welcomeMessage") })}
-            />
-
-            {/* <BControlPro
-                className="mt10"
-                label={__('Upload Art Work Image', 'streamcast')}
-                value={artWork}
-                types={['image']}
-                onChange={value => setAttributes({ radioPlayer: updateData(radioPlayer, value, "artWork") })}
-                placeholder={__('Upload ArtWork Image', 'streamcast')}
-                Component={InlineDetailMediaUpload}
-                {...premiumProps}
-            /> */}
-
-            {/* <p className='mt10'>Player Position</p>
-            <BControlPro
-                value={playerPosition}
-                options={[
-                    { label: "Left", value: "left" },
-                    { label: "Center", value: "center" },
-                    { label: "Right", value: "right" }
-                ]}
-                onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "playerPosition") })}
-                Component={BtnGroup}
-                {...premiumProps}
-            /> */}
+            /> 
         </>
     )
 }

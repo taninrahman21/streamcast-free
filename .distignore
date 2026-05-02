@@ -1,0 +1,17 @@
+.git/
+.gitignore
+.eslintrc.json
+.DS_Store
+node_modules/
+src/
+package.json
+package-lock.json
+webpack.config.js
+gulpfile.js
+Archive/
+*.zip
+todo.txt
+fs-config.json
+empty.js
+bundled/
+zip/

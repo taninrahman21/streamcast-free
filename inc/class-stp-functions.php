@@ -1,9 +1,7 @@
 <?php
 namespace STP;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Functions {
 	public static function get_meta( $id, $key, $default = null ) {

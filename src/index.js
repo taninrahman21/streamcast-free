@@ -1,5 +1,7 @@
 import { registerBlockType } from '@wordpress/blocks';
 
+/* StreamCast - Source code available at https://github.com/taninrahman21/streamcast-free */
+import './style.scss';
 import './editor.scss';
 import metadata from './block.json';
 import Edit from './Components/Backend/Edit';

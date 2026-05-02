@@ -11,15 +11,9 @@ import { BBlocksAds } from "../../../../../bpl-tools/Components";
 import GeneralTab from "./General/GeneralTab";
 import Style from "./Style/Style";
 
-const Settings = ({ attributes, setAttributes, isPremium }) => {
-  const [isProModalOpen, setIsProModalOpen] = useState(false);
+const Settings = ({ attributes, setAttributes }) => { 
   const { radioPlayer } = attributes;
-  const { playerType } = radioPlayer;
-
-  const premiumProps = {
-    isPremium,
-    setIsProModalOpen,
-  };
+  const { playerType } = radioPlayer; 
 
   return (
     <>
@@ -39,16 +33,14 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
                 {tab.name === "general" && (
                   <GeneralTab
                     attributes={attributes}
-                    setAttributes={setAttributes}
-                    premiumProps={premiumProps}
+                    setAttributes={setAttributes} 
                   />
                 )}
 
                 {tab.name === "style" && (
                   <Style
                     attributes={attributes}
-                    setAttributes={setAttributes}
-                    premiumProps={premiumProps}
+                    setAttributes={setAttributes} 
                   />
                 )}
               </>
@@ -61,64 +53,10 @@ const Settings = ({ attributes, setAttributes, isPremium }) => {
           playerType !== "wooden" && (
             <General
               attributes={attributes}
-              setAttributes={setAttributes}
-              premiumProps={premiumProps}
+              setAttributes={setAttributes} 
             />
           )}
-      </InspectorControls>
-
-      <AboutProModal
-        isProModalOpen={isProModalOpen}
-        setIsProModalOpen={setIsProModalOpen}
-        link={`/wp-admin/edit.php?post_type=streamcast&page=streamcast#/pricing`}
-      >
-        <li>
-          &emsp;<strong>{__("Customized Radio Player: ", "streamcast")}</strong>
-          {__("Customize You Player with some awesome options", "streamcast")}
-        </li>
-        <li>
-          &emsp;<strong>{__("85+ Radio Skins: ", "streamcast")}</strong>
-          {__(
-            "Enhance your player using 85+ radio player skins.",
-            "streamcast"
-          )}
-        </li>
-        <li>
-          &emsp;<strong>{__("Extensive Compatibility: ", "streamcast")}</strong>
-          {__(
-            "Works great with Shoutcast, Icecast, and other compatible streaming servers.",
-            "streamcast"
-          )}
-        </li>
-        <li>
-          &emsp;<strong>{__("ShortCode Powered: ", "streamcast")}</strong>
-          {__(
-            "This plugin creates ShortCode for Each radio. So that you can play radio anywhere without coding.",
-            "streamcast"
-          )}
-        </li>
-        <li>
-          &emsp;
-          <strong>
-            {__("Fetch Stream Title From Stream URL: ", "streamcast")}
-          </strong>
-          {__(
-            "Collect Stream Name or Title or Artist Name from you streaming name.",
-            "streamcast"
-          )}
-        </li>
-        <li>
-          &emsp;<strong>{__("Player Positioning: ", "streamcast")}</strong>
-          {__("Alignment your player like left, center , right.", "streamcast")}
-        </li>
-        <li>
-          &emsp;<strong>{__("Upload Image: ", "streamcast")}</strong>
-          {__(
-            "Set image for player background, player poster or art image.",
-            "streamcast"
-          )}
-        </li>
-      </AboutProModal>
+      </InspectorControls> 
     </>
   );
 };

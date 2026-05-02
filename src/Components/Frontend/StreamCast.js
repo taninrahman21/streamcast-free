@@ -42,6 +42,7 @@ const StreamCast = ({ attributes, id }) => {
       const formData = new FormData();
       formData.append("action", "my_user_vote");
       formData.append("url", urlToFetch);
+      formData.append("nonce", window.myScriptData.nonce);
 
       // Fetch data from the server
       const response = await fetch(`${window.myScriptData.ajaxUrl}`, {

@@ -1,17 +1,12 @@
-import { RangeControl, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { SelectControl, TextControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
-import React from 'react'
-import { BControlPro } from '../../../../../../bpl-tools/ProControls';
-import { updateData } from '../../../../../../bpl-tools/utils/functions';
-import { BtnGroup, InlineDetailMediaUpload } from '../../../../../../bpl-tools/Components';
+import { updateData } from '../../../../../../bpl-tools/utils/functions'; 
 import { playerTypeOptions } from '../../../../utils/options';
 import { playerTypeSwitch } from '../../../../utils/functions';
 
-const SettingsXWooden = ({ setAttributes, attributes, premiumProps }) => {
-    const { radioPlayer, radioStyles } = attributes;
-    const { echoStream } = radioStyles;
-    const { streamURL, playerPosition, stationName, welcomeMessage, fetchNameFromUrl, playerType } = radioPlayer;
-    const { blur, bgImg, shareUrl } = echoStream;
+const SettingsXWooden = ({ setAttributes, attributes }) => {
+    const { radioPlayer } = attributes; 
+    const { streamURL, stationName, welcomeMessage, fetchNameFromUrl, playerType } = radioPlayer; 
 
     return (
         <>
@@ -40,18 +35,7 @@ const SettingsXWooden = ({ setAttributes, attributes, premiumProps }) => {
                 onChange={(e) => setAttributes({ radioPlayer: updateData(radioPlayer, e, "fetchNameFromUrl") })}
                 help="If name can't access then will use the given station name"
             />
-            {/* <p className='mt10'>Player Position</p>
-            <BControlPro
-                value={playerPosition}
-                options={[
-                    { label: "Left", value: "left" },
-                    { label: "Center", value: "center" },
-                    { label: "Right", value: "right" }
-                ]}
-                onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "playerPosition") })}
-                Component={BtnGroup}
-                {...premiumProps}
-            /> */}
+           
 
         </>
     )

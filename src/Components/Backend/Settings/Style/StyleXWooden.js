@@ -5,7 +5,7 @@ import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
 import { ColorControl, Typography } from '../../../../../../bpl-tools/Components';
 import { tabController, updateData } from '../../../../../../bpl-tools/utils/functions';
 
-const StyleXWooden = ({ attributes, setAttributes, premiumProps }) => {
+const StyleXWooden = ({ attributes, setAttributes }) => {
     const { radioStyles } = attributes;
     const { playerWidth, contentColor, stationName, timeStamp, backgroundColor } = radioStyles;
 

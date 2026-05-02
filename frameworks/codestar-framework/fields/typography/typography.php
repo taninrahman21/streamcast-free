@@ -351,7 +351,7 @@ if ( ! class_exists( 'CSF_Field_typography' ) ) {
 
         CSF::include_plugin_file( 'fields/typography/google-fonts.php' );
 
-        wp_enqueue_script( 'csf-webfontloader', 'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js', array( 'csf' ), '1.6.28', true );
+        wp_enqueue_script( 'csf-webfontloader', CSF::include_plugin_url( 'assets/vendor/webfontloader/1.6.28/webfontloader.min.js' ), array( 'csf' ), '1.6.28', true );
 
         $webfonts = array();
 

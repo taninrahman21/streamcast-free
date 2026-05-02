@@ -21,5 +21,26 @@
 }
 
 .stp_shortcode_box_after_title .shortcode_area svg {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+/* Desing upgrade menu */
+.fs-submenu-item.streamcast.pricing.upgrade-mode {
+  background: #146ef5;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  padding: 6px 40px 6px 15px;
+}
+
+
+.button.button-bplugins {
+  background: #146ef5;
+  color: #fff;
+}
+
+.button.button-bplugins:active,
+.button.button-bplugins:focus {
+  background: #0b50b8;
+  color: #fff;
 }

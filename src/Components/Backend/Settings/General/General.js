@@ -8,7 +8,7 @@ import { playerTypeSwitch, skinSwitch } from '../../../../utils/functions';
 import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
 
-const General = ({ attributes, setAttributes, premiumProps }) => {
+const General = ({ attributes, setAttributes }) => {
     const { radioPlayer, radioStyles } = attributes;
     const { backgroundColor, playerWidth } = radioStyles;
     const { playerType, streamURL, playerPosition, stationName, welcomeMessage, autoPlay, initialVolume, artWork, showTime, skin, fetchNameFromUrl } = radioPlayer;
@@ -99,41 +99,7 @@ const General = ({ attributes, setAttributes, premiumProps }) => {
                                 })
                             }
                         />
-                    }
-
-                    {/* <BControlPro
-                        className='mt20'
-                        label='Auto Play'
-                        checked={autoPlay}
-                        onChange={(e) => setAttributes({ radioPlayer: updateData(radioPlayer, e, "autoPlay") })}
-                        Component={ToggleControl}
-                        {...premiumProps}
-                    /> */}
-
-                    {/* <BControlPro
-                        className='mt20'
-                        label='Initial Volume'
-                        value={initialVolume}
-                        onChange={(value) => setAttributes({ radioPlayer: updateData(radioPlayer, value, "initialVolume") })}
-                        max={100}
-                        min={0}
-                        step={1}
-                        Component={RangeControl}
-                        {...premiumProps}
-                    /> */}
-
-                    {/* <p className='mt10'>Player Position</p>
-                    <BControlPro
-                        value={playerPosition}
-                        options={[
-                            { label: "Left", value: "left" },
-                            { label: "Center", value: "center" },
-                            { label: "Right", value: "right" }
-                        ]}
-                        onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "playerPosition") })}
-                        Component={BtnGroup}
-                        {...premiumProps}
-                    /> */}
+                    }             
                 </>
             }
 
@@ -163,60 +129,7 @@ const General = ({ attributes, setAttributes, premiumProps }) => {
                         label={__("Welcome Message*", "streamcast")}
                         value={welcomeMessage}
                         onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "welcomeMessage") })}
-                    />
-
-
-                    {/* <BControlPro
-                        label={__("Background Color", "streamcast")}
-                        value={backgroundColor}
-                        onChange={val => setAttributes({ radioStyles: updateData(radioStyles, val, "backgroundColor") })}
-                        defaultColor="#f09f8b"
-                        Component={ColorControl}
-                        {...premiumProps}
-                    /> */}
-
-                    {/* <BControlPro
-                        className="mt10"
-                        label={__('Upload Art Work Image', 'streamcast')}
-                        value={artWork}
-                        types={['image']}
-                        onChange={value => setAttributes({ radioPlayer: updateData(radioPlayer, value, "artWork") })}
-                        placeholder={__('Upload Art Work Image', 'streamcast')}
-                        Component={InlineDetailMediaUpload}
-                        {...premiumProps}
-                    /> */}
-
-                    {/* <BControlPro
-                        className='mt10'
-                        label='Auto Play'
-                        checked={autoPlay}
-                        onChange={(e) => setAttributes({ radioPlayer: updateData(radioPlayer, e, "autoPlay") })}
-                        Component={ToggleControl}
-                        {...premiumProps}
-                    /> */}
-{/* 
-                    <BControlPro
-                        className='mt10'
-                        label='Show Time'
-                        checked={showTime}
-                        onChange={(e) => setAttributes({ radioPlayer: updateData(radioPlayer, e, "showTime") })}
-                        Component={ToggleControl}
-                        {...premiumProps}
-                    /> */}
-
-                    {/* <p className='mt10'>Player Position</p>
-                    <BControlPro
-                        value={playerPosition}
-                        options={[
-                            { label: "Left", value: "left" },
-                            { label: "Center", value: "center" },
-                            { label: "Right", value: "right" }
-                        ]}
-                        onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "playerPosition") })}
-                        Component={BtnGroup}
-                        {...premiumProps}
-                    /> */}
-
+                    /> 
                 </>
             }
 

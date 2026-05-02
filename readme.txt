@@ -2,9 +2,9 @@
 Contributors: bplugins, taninrahman, shehabulislam, freemius
 Tags: live stream, icecast, shoutcast, radio player, audio player
 Donate link: https://www.buymeacoffee.com/abuhayat
-Requires at least: 6.6+
+Requires at least: 6.2
 Tested up to: 6.9
-Stable tag: 2.3.9
+Stable tag: 2.4.0
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -230,6 +230,67 @@ It works with all page builders that support shortcodes.
 = Where do I report security bugs found in this plugin? =
 Please report security bugs found in the source code of the StreamCast plugin through the [Patchstack Vulnerability Disclosure Program](https://patchstack.com/database/vdp/9e5fb205-6f66-453b-bdaa-c7c587b83810). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
 
+== Source Code ==
+
+The full unminified source code is available at the following public repository:
+https://github.com/taninrahman21/streamcast-free
+
+Build tool: npm
+Build steps:
+1. npm install
+2. npm run build
+
+== External Services ==
+
+This plugin connects to the following external services to provide enhanced functionality:
+
+1. **Muses Radio Player API** (muses.org)
+   - Used for: Fetching player skins and sending anonymous usage statistics
+   - Data sent: Player configuration and anonymous listener data (legacy player reports)
+   - Loaded on: Pages where the radio player block or shortcode is displayed
+   - Terms: https://www.muses.org/terms | Privacy Policy: https://www.muses.org/privacy
+
+2. **Muses Legacy Player API** (www.muses.org/ws/legacyPlayer)
+   - Used for: Reporting player status for compatibility with older Muses systems
+   - Data sent: Encrypted JSON with player settings and version info
+   - Loaded on: Pages where the radio player is active
+   - Terms: https://www.muses.org/terms | Privacy Policy: https://www.muses.org/privacy
+
+3. **Plyr Video Player Assets** (Local)
+   - Used for: Localized SVG icons and blank video assets for the Plyr player
+   - Data sent: None (Assets are bundled locally)
+   - Loaded on: Pages using the shortcode or block
+   - Terms: https://plyr.io/ | Privacy Policy: https://plyr.io/
+
+4. **YouTube Data API** (googleapis.com)
+   - Used for: Fetching video/stream metadata (title) by video ID
+   - Data sent: YouTube video ID and API key
+   - Loaded on: Pages where a YouTube stream source is configured
+   - Terms: https://policies.google.com/terms | Privacy: https://policies.google.com/privacy
+
+5. **Google IMA SDK** (imasdk.googleapis.com)
+   - Used for: Loading video ad support (VAST/VMAP ads)
+   - Data sent: Standard ad request data
+   - Loaded on: Pages
+   - Terms: https://policies.google.com/terms | Privacy: https://policies.google.com/privacy
+
+6. **Vimeo API** (vimeo.com)
+   - Used for: Fetching Vimeo video metadata
+   - Data sent: Vimeo video ID
+   - Loaded on: Pages where a Vimeo stream source is configured
+   - Terms: https://vimeo.com/terms | Privacy: https://vimeo.com/privacy
+
+7. **AniView Ad Server** (go.aniview.com)
+   - Used for: Serving VAST video ads
+   - Data sent: Standard VAST ad request parameters
+   - Loaded on: Pages where AniView ads are enabled
+   - Terms: https://www.aniview.com/terms-of-service/ | Privacy Policy: https://www.aniview.com/privacy-policy/
+
+8. **bPlugins Templates** (templates.bplugins.com)
+   - Used for: Loading default radio station artwork and player skins
+   - Data sent: Asset request (no personal data)
+   - Loaded on: Admin dashboard and player initialization
+   - Terms: https://bplugins.com/terms-of-service/ | Privacy Policy: https://bplugins.com/privacy-policy/
 ---
 
 == Screenshots ==
@@ -245,6 +306,16 @@ Please report security bugs found in the source code of the StreamCast plugin th
 ---
 
 == Changelog ==
+
+= 2.4.0 - 2 May 2026 =
+* Compliance: Removed all trialware/feature-gating logic to ensure full functionality for all users.
+* Compliance: Localized third-party assets (WebFontLoader, FontAwesome, Plyr, Muses) to eliminate remote CDN dependencies.
+* Privacy: Removed unconditional Google Analytics tracking from the player script.
+* Compliance: Standardized internationalization (i18n) by migrating all text domains to 'streamcast'.
+* Security: Enhanced output escaping and data sanitization in shortcodes and Gutenberg blocks.
+* Enhancement: Added explicit "External Services" and "Source Code" documentation in readme.txt.
+* Fix: Updated shortcode attributes to correctly honor user-provided stream URLs and background colors.
+* Maintenance: Updated compatibility tags and improved code adherence to WordPress.org standards.
 
 = 2.3.9 - 23 February 2026 =
 * **Update:** Redesigned the dashboard with a modern and improved user interface, replacing the previous outdated layout.

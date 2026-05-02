@@ -1,3 +1,4 @@
+/* StreamCast - Source code available at https://github.com/taninrahman21/streamcast-free */
 import { createRoot } from 'react-dom/client';
 
 import './style.scss';

@@ -8,10 +8,10 @@ import { tabController, updateData } from '../../../../../../bpl-tools/utils/fun
 import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 
 
-const StyleXEchoStreamXAurora = ({ attributes, setAttributes, premiumProps }) => {
+const StyleXEchoStreamXAurora = ({ attributes, setAttributes }) => {
     const { radioStyles, radioPlayer } = attributes;
     const { playerType } = radioPlayer;
-    const { playerWidth, contentColor, stationName, artistFmName, backgroundColor, playBtnColor } = radioStyles;
+    const { playerWidth, contentColor, backgroundColor } = radioStyles;
 
 
     return <>

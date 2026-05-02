@@ -9,22 +9,22 @@ import SettingsXWooden from './SettingsXWooden';
 
 
 // Component For Ultimate and AuroraPlay Radio General Settings
-const GeneralTab = ({ attributes, setAttributes, premiumProps }) => {
+const GeneralTab = ({ attributes, setAttributes }) => {
     const { radioPlayer } = attributes;
     const { playerType } = radioPlayer;
     return <>
         <PanelBody className='bPlPanelBody' title={__("Player", "stream")}>
             {
-                playerType === "ultimate" && <GeneralXUltimate attributes={attributes} setAttributes={setAttributes} premiumProps={premiumProps} />
+                playerType === "ultimate" && <GeneralXUltimate attributes={attributes} setAttributes={setAttributes} />
             }
             {
-                playerType === "echoStream" && <SettingsXEchoStream attributes={attributes} setAttributes={setAttributes} premiumProps={premiumProps} />
+                playerType === "echoStream" && <SettingsXEchoStream attributes={attributes} setAttributes={setAttributes} />
             }
             {
-                playerType === "auroraPlay" && <SettingsXAurora attributes={attributes} setAttributes={setAttributes} premiumProps={premiumProps} />
+                playerType === "auroraPlay" && <SettingsXAurora attributes={attributes} setAttributes={setAttributes} />
             }
             {
-                playerType === "wooden" && <SettingsXWooden attributes={attributes} setAttributes={setAttributes} premiumProps={premiumProps} />
+                playerType === "wooden" && <SettingsXWooden attributes={attributes} setAttributes={setAttributes} />
             }
         </PanelBody>
     </>

@@ -4,16 +4,18 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (class_exists('CSF')) {
+if (class_exists('CSF')) { 
 	$prefix = 'sc_';
+	$post_type = 'streamcast';  
 
 	// Create a metabox
 	\CSF::createMetabox($prefix, array(
 		'title' => __('Radio Player Configuration', 'streamcast'),
-		'post_type' => 'streamcast',
+		'post_type' => $post_type,
 		'data_type' => 'unserialize',
 		'context' => 'normal',
 	));
+
 
 	\CSF::createSection($prefix, array(
 		'title' => __('Required fields are marked with an * (asterisk)', 'streamcast'),
@@ -299,29 +301,10 @@ if (class_exists('CSF')) {
 			)
 		)
 	));
-	function streamcast_exclude_fields_before_save($data)
-	{
-	
-		$exclude = array(
-			'player_skin',
-			'autoplay',
-			'volume',
-			'artwork',
-			'timeholder',
-			'background',
-			'player_postiion',
-			'custom_css',
-		);
-	
-		foreach ($exclude as $id) {
-			unset($data[$id]);
-		}
-	
-		return $data;
-	}
-	
-	add_filter('csf_sc__save', 'streamcast_exclude_fields_before_save', 10, 1);
+
 }
+
+
 
 
 
