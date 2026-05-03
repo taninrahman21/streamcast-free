@@ -18,7 +18,7 @@ CSF::createShortcoder( $prefix, array(
   //   'description'  => 'CSF Shortcode Block',
   //   'icon'         => 'screenoptions',
   //   'category'     => 'widgets',
-  //   'keywords'     => array( 'shortcode', 'csf', 'insert' ),
+  //   'keywords'     => array( 'shortcode', 'streamcast', 'insert' ),
   //   'placeholder'  => 'Write shortcode here...',
   // )
 ) );

@@ -28,13 +28,13 @@ if ( ! class_exists( 'CSF_Field_datetime' ) ) {
 
       $settings = wp_parse_args( $settings, $defaults );
 
-      echo $this->field_before();
+      echo wp_kses_post( $this->field_before() );
 
       if ( ! empty( $this->field['from_to'] ) ) {
 
         $args = wp_parse_args( $this->field, array(
-          'text_from' => esc_html__( 'From', 'csf' ),
-          'text_to'   => esc_html__( 'To', 'csf' ),
+          'text_from' => esc_html__( 'From', 'streamcast' ),
+          'text_to'   => esc_html__( 'To', 'streamcast' ),
         ) );
 
         $value = wp_parse_args( $this->value, array(
@@ -42,18 +42,18 @@ if ( ! class_exists( 'CSF_Field_datetime' ) ) {
           'to'   => '',
         ) );
 
-        echo '<label class="csf--from">'. esc_attr( $args['text_from'] ) .' <input type="text" name="'. esc_attr( $this->field_name( '[from]' ) ) .'" value="'. esc_attr( $value['from'] ) .'"'. $this->field_attributes() .' data-type="from" /></label>';
-        echo '<label class="csf--to">'. esc_attr( $args['text_to'] ) .' <input type="text" name="'. esc_attr( $this->field_name( '[to]' ) ) .'" value="'. esc_attr( $value['to'] ) .'"'. $this->field_attributes() .' data-type="to" /></label>';
+        echo '<label class="csf--from">'. esc_html( $args['text_from'] ) .' <input type="text" name="'. esc_attr( $this->field_name( '[from]' ) ) .'" value="'. esc_attr( $value['from'] ) .'"'. $this->field_attributes() .' data-type="from" /></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo '<label class="csf--to">'. esc_html( $args['text_to'] ) .' <input type="text" name="'. esc_attr( $this->field_name( '[to]' ) ) .'" value="'. esc_attr( $value['to'] ) .'"'. $this->field_attributes() .' data-type="to" /></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       } else {
 
-        echo '<input type="text" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>';
+        echo '<input type="text" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       }
 
       echo '<div class="csf-datetime-settings" data-settings="'. esc_attr( json_encode( $settings ) ) .'"></div>';
 
-      echo $this->field_after();
+      echo wp_kses_post( $this->field_after() );
 
     }
 

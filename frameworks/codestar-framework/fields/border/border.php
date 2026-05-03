@@ -22,11 +22,11 @@ if ( ! class_exists( 'CSF_Field_border' ) ) {
         'bottom_icon'        => '<i class="fas fa-long-arrow-alt-down"></i>',
         'right_icon'         => '<i class="fas fa-long-arrow-alt-right"></i>',
         'all_icon'           => '<i class="fas fa-arrows-alt"></i>',
-        'top_placeholder'    => esc_html__( 'top', 'csf' ),
-        'right_placeholder'  => esc_html__( 'right', 'csf' ),
-        'bottom_placeholder' => esc_html__( 'bottom', 'csf' ),
-        'left_placeholder'   => esc_html__( 'left', 'csf' ),
-        'all_placeholder'    => esc_html__( 'all', 'csf' ),
+        'top_placeholder'    => esc_html__( 'top', 'streamcast' ),
+        'right_placeholder'  => esc_html__( 'right', 'streamcast' ),
+        'bottom_placeholder' => esc_html__( 'bottom', 'streamcast' ),
+        'left_placeholder'   => esc_html__( 'left', 'streamcast' ),
+        'all_placeholder'    => esc_html__( 'all', 'streamcast' ),
         'top'                => true,
         'left'               => true,
         'bottom'             => true,
@@ -48,22 +48,22 @@ if ( ! class_exists( 'CSF_Field_border' ) ) {
       );
 
       $border_props = array(
-        'solid'     => esc_html__( 'Solid', 'csf' ),
-        'dashed'    => esc_html__( 'Dashed', 'csf' ),
-        'dotted'    => esc_html__( 'Dotted', 'csf' ),
-        'double'    => esc_html__( 'Double', 'csf' ),
-        'inset'     => esc_html__( 'Inset', 'csf' ),
-        'outset'    => esc_html__( 'Outset', 'csf' ),
-        'groove'    => esc_html__( 'Groove', 'csf' ),
-        'ridge'     => esc_html__( 'ridge', 'csf' ),
-        'none'      => esc_html__( 'None', 'csf' )
+        'solid'     => esc_html__( 'Solid', 'streamcast' ),
+        'dashed'    => esc_html__( 'Dashed', 'streamcast' ),
+        'dotted'    => esc_html__( 'Dotted', 'streamcast' ),
+        'double'    => esc_html__( 'Double', 'streamcast' ),
+        'inset'     => esc_html__( 'Inset', 'streamcast' ),
+        'outset'    => esc_html__( 'Outset', 'streamcast' ),
+        'groove'    => esc_html__( 'Groove', 'streamcast' ),
+        'ridge'     => esc_html__( 'ridge', 'streamcast' ),
+        'none'      => esc_html__( 'None', 'streamcast' )
       );
 
       $default_value = ( ! empty( $this->field['default'] ) ) ? wp_parse_args( $this->field['default'], $default_value ) : $default_value;
 
       $value = wp_parse_args( $this->value, $default_value );
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo '<div class="csf--inputs" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
 
@@ -72,8 +72,8 @@ if ( ! class_exists( 'CSF_Field_border' ) ) {
         $placeholder = ( ! empty( $args['all_placeholder'] ) ) ? ' placeholder="'. esc_attr( $args['all_placeholder'] ) .'"' : '';
 
         echo '<div class="csf--input">';
-        echo ( ! empty( $args['all_icon'] ) ) ? '<span class="csf--label csf--icon">'. $args['all_icon'] .'</span>' : '';
-        echo '<input type="number" name="'. esc_attr( $this->field_name( '[all]' ) ) .'" value="'. esc_attr( $value['all'] ) .'"'. $placeholder .' class="csf-input-number csf--is-unit" step="any" />';
+        echo ( ! empty( $args['all_icon'] ) ) ? '<span class="csf--label csf--icon">'. wp_kses_post( $args['all_icon'] ) .'</span>' : '';
+        echo '<input type="number" name="'. esc_attr( $this->field_name( '[all]' ) ) .'" value="'. esc_attr( $value['all'] ) .'"'. $placeholder .' class="csf-input-number csf--is-unit" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo ( ! empty( $args['unit'] ) ) ? '<span class="csf--label csf--unit">'. esc_attr( $args['unit'] ) .'</span>' : '';
         echo '</div>';
 
@@ -94,8 +94,8 @@ if ( ! class_exists( 'CSF_Field_border' ) ) {
           $placeholder = ( ! empty( $args[$property.'_placeholder'] ) ) ? ' placeholder="'. esc_attr( $args[$property.'_placeholder'] ) .'"' : '';
 
           echo '<div class="csf--input">';
-          echo ( ! empty( $args[$property.'_icon'] ) ) ? '<span class="csf--label csf--icon">'. $args[$property.'_icon'] .'</span>' : '';
-          echo '<input type="number" name="'. esc_attr( $this->field_name( '['. $property .']' ) ) .'" value="'. esc_attr( $value[$property] ) .'"'. $placeholder .' class="csf-input-number csf--is-unit" step="any" />';
+          echo ( ! empty( $args[$property.'_icon'] ) ) ? '<span class="csf--label csf--icon">'. wp_kses_post( $args[$property.'_icon'] ) .'</span>' : '';
+          echo '<input type="number" name="'. esc_attr( $this->field_name( '['. $property .']' ) ) .'" value="'. esc_attr( $value[$property] ) .'"'. $placeholder .' class="csf-input-number csf--is-unit" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
           echo ( ! empty( $args['unit'] ) ) ? '<span class="csf--label csf--unit">'. esc_attr( $args['unit'] ) .'</span>' : '';
           echo '</div>';
 
@@ -120,12 +120,12 @@ if ( ! class_exists( 'CSF_Field_border' ) ) {
         $default_color_attr = ( ! empty( $default_value['color'] ) ) ? ' data-default-color="'. esc_attr( $default_value['color'] ) .'"' : '';
         echo '<div class="csf--color">';
         echo '<div class="csf-field-color">';
-        echo '<input type="text" name="'. esc_attr( $this->field_name( '[color]' ) ) .'" value="'. esc_attr( $value['color'] ) .'" class="csf-color"'. $default_color_attr .' />';
+        echo '<input type="text" name="'. esc_attr( $this->field_name( '[color]' ) ) .'" value="'. esc_attr( $value['color'] ) .'" class="csf-color"'. $default_color_attr .' />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '</div>';
         echo '</div>';
       }
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

@@ -166,7 +166,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
       $result = $this->set_options( true );
 
       if ( ! $result ) {
-        wp_send_json_error( array( 'error' => esc_html__( 'Error while saving the changes.', 'csf' ) ) );
+        wp_send_json_error( array( 'error' => esc_html__( 'Error while saving the changes.', 'streamcast' ) ) );
       } else {
         wp_send_json_success( array( 'notice' => $this->notice, 'errors' => $this->errors ) );
       }
@@ -205,7 +205,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
       // XSS ok.
       // No worries, This "POST" requests is sanitizing in the below foreach. see #L337 - #L341
-      $response  = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : $_POST;
+      $response  = ( $ajax && ! empty( $_POST['data'] ) ) ? json_decode( wp_unslash( trim( $_POST['data'] ) ), true ) : $_POST; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 
       // Set variables.
       $data      = array();
@@ -226,7 +226,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
           $import_data  = json_decode( wp_unslash( trim( $response[ 'csf_import_data' ] ) ), true );
           $options      = ( is_array( $import_data ) && ! empty( $import_data ) ) ? $import_data : array();
           $importing    = true;
-          $this->notice = esc_html__( 'Settings successfully imported.', 'csf' );
+          $this->notice = esc_html__( 'Settings successfully imported.', 'streamcast' );
 
         }
 
@@ -238,7 +238,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
             }
           }
 
-          $this->notice = esc_html__( 'Default settings restored.', 'csf' );
+          $this->notice = esc_html__( 'Default settings restored.', 'streamcast' );
 
         } else if ( ! empty( $transient['reset_section'] ) && ! empty( $section_id ) ) {
 
@@ -254,7 +254,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
           $data = wp_parse_args( $data, $this->options );
 
-          $this->notice = esc_html__( 'Default settings restored.', 'csf' );
+          $this->notice = esc_html__( 'Default settings restored.', 'streamcast' );
 
         } else {
 
@@ -325,7 +325,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
         do_action( "csf_{$this->unique}_save_after", $data, $this );
 
         if ( empty( $this->notice ) ) {
-          $this->notice = esc_html__( 'Settings saved.', 'csf' );
+          $this->notice = esc_html__( 'Settings saved.', 'streamcast' );
         }
 
         return true;
@@ -496,7 +496,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
         echo '<div class="csf-header-inner">';
 
           echo '<div class="csf-header-left">';
-          echo '<h1>'. $this->args['framework_title'] .'</h1>';
+          echo '<h1>'. wp_kses_post( $this->args['framework_title'] ) .'</h1>';
           echo '</div>';
 
           echo '<div class="csf-header-right">';
@@ -504,18 +504,18 @@ if ( ! class_exists( 'CSF_Options' ) ) {
             $notice_class = ( ! empty( $this->notice ) ) ? 'csf-form-show' : '';
             $notice_text  = ( ! empty( $this->notice ) ) ? $this->notice : '';
 
-            echo '<div class="csf-form-result csf-form-success '. esc_attr( $notice_class ) .'">'. $notice_text .'</div>';
+            echo '<div class="csf-form-result csf-form-success '. esc_attr( $notice_class ) .'">'. wp_kses_post( $notice_text ) .'</div>';
 
-            echo ( $this->args['show_form_warning'] ) ? '<div class="csf-form-result csf-form-warning">'. esc_html__( 'You have unsaved changes, save your changes!', 'csf' ) .'</div>' : '';
+            echo ( $this->args['show_form_warning'] ) ? '<div class="csf-form-result csf-form-warning">'. esc_html__( 'You have unsaved changes, save your changes!', 'streamcast' ) .'</div>' : '';
 
-            echo ( $has_nav && $this->args['show_all_options'] ) ? '<div class="csf-expand-all" title="'. esc_html__( 'show all settings', 'csf' ) .'"><i class="fas fa-outdent"></i></div>' : '';
+            echo ( $has_nav && $this->args['show_all_options'] ) ? '<div class="csf-expand-all" title="'. esc_html__( 'show all settings', 'streamcast' ) .'"><i class="fas fa-outdent"></i></div>' : '';
 
-            echo ( $this->args['show_search'] ) ? '<div class="csf-search"><input type="text" name="csf-search" placeholder="'. esc_html__( 'Search...', 'csf' ) .'" autocomplete="off" /></div>' : '';
+            echo ( $this->args['show_search'] ) ? '<div class="csf-search"><input type="text" name="csf-search" placeholder="'. esc_html__( 'Search...', 'streamcast' ) .'" autocomplete="off" /></div>' : '';
 
             echo '<div class="csf-buttons">';
-            echo '<input type="submit" name="'. esc_attr( $this->unique ) .'[_nonce][save]" class="button button-primary csf-top-save csf-save'. esc_attr( $ajax_class ) .'" value="'. esc_html__( 'Save', 'csf' ) .'" data-save="'. esc_html__( 'Saving...', 'csf' ) .'">';
-            echo ( $this->args['show_reset_section'] ) ? '<input type="submit" name="csf_transient[reset_section]" class="button button-secondary csf-reset-section csf-confirm" value="'. esc_html__( 'Reset Section', 'csf' ) .'" data-confirm="'. esc_html__( 'Are you sure to reset this section options?', 'csf' ) .'">' : '';
-            echo ( $this->args['show_reset_all'] ) ? '<input type="submit" name="csf_transient[reset]" class="button csf-warning-primary csf-reset-all csf-confirm" value="'. ( ( $this->args['show_reset_section'] ) ? esc_html__( 'Reset All', 'csf' ) : esc_html__( 'Reset', 'csf' ) ) .'" data-confirm="'. esc_html__( 'Are you sure you want to reset all settings to default values?', 'csf' ) .'">' : '';
+            echo '<input type="submit" name="'. esc_attr( $this->unique ) .'[_nonce][save]" class="button button-primary csf-top-save csf-save'. esc_attr( $ajax_class ) .'" value="'. esc_html__( 'Save', 'streamcast' ) .'" data-save="'. esc_html__( 'Saving...', 'streamcast' ) .'">';
+            echo ( $this->args['show_reset_section'] ) ? '<input type="submit" name="csf_transient[reset_section]" class="button button-secondary csf-reset-section csf-confirm" value="'. esc_html__( 'Reset Section', 'streamcast' ) .'" data-confirm="'. esc_html__( 'Are you sure to reset this section options?', 'streamcast' ) .'">' : '';
+            echo ( $this->args['show_reset_all'] ) ? '<input type="submit" name="csf_transient[reset]" class="button csf-warning-primary csf-reset-all csf-confirm" value="'. ( ( $this->args['show_reset_section'] ) ? esc_html__( 'Reset All', 'streamcast' ) : esc_html__( 'Reset', 'streamcast' ) ) .'" data-confirm="'. esc_html__( 'Are you sure you want to reset all settings to default values?', 'streamcast' ) .'">' : '';
             echo '</div>';
 
           echo '</div>';
@@ -542,7 +542,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
                   echo '<li class="csf-tab-item">';
 
-                    echo '<a href="#tab='. esc_attr( $tab_id ) .'" data-tab-id="'. esc_attr( $tab_id ) .'" class="csf-arrow">'. $tab_icon . $tab['title'] . $tab_error .'</a>';
+                    echo '<a href="#tab='. esc_attr( $tab_id ) .'" data-tab-id="'. esc_attr( $tab_id ) .'" class="csf-arrow">'. wp_kses_post( $tab_icon ) . wp_kses_post( $tab['title'] ) . wp_kses_post( $tab_error ) .'</a>';
 
                     echo '<ul>';
 
@@ -552,7 +552,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
                       $sub_error = $this->error_check( $sub );
                       $sub_icon  = ( ! empty( $sub['icon'] ) ) ? '<i class="csf-tab-icon '. esc_attr( $sub['icon'] ) .'"></i>' : '';
 
-                      echo '<li><a href="#tab='. esc_attr( $sub_id ) .'" data-tab-id="'. esc_attr( $sub_id ) .'">'. $sub_icon . $sub['title'] . $sub_error .'</a></li>';
+                      echo '<li><a href="#tab='. esc_attr( $sub_id ) .'" data-tab-id="'. esc_attr( $sub_id ) .'">'. wp_kses_post( $sub_icon ) . wp_kses_post( $sub['title'] ) . wp_kses_post( $sub_error ) .'</a></li>';
 
                     }
 
@@ -562,7 +562,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
                 } else {
 
-                  echo '<li class="csf-tab-item"><a href="#tab='. esc_attr( $tab_id ) .'" data-tab-id="'. esc_attr( $tab_id ) .'">'. $tab_icon . $tab['title'] . $tab_error .'</a></li>';
+                  echo '<li class="csf-tab-item"><a href="#tab='. esc_attr( $tab_id ) .'" data-tab-id="'. esc_attr( $tab_id ) .'">'. wp_kses_post( $tab_icon ) . wp_kses_post( $tab['title'] ) . wp_kses_post( $tab_error ) .'</a></li>';
 
                 }
 
@@ -588,8 +588,8 @@ if ( ! class_exists( 'CSF_Options' ) ) {
               $section_slug   = ( ! empty( $section['title'] ) ) ? sanitize_title( $section_title ) : '';
 
               echo '<div class="csf-section hidden'. esc_attr( $section_onload . $section_class ) .'" data-section-id="'. esc_attr( $section_parent . $section_slug ) .'">';
-              echo ( $has_nav ) ? '<div class="csf-section-title"><h3>'. $section_icon . $section_title .'</h3></div>' : '';
-              echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. $section['description'] .'</div>' : '';
+              echo ( $has_nav ) ? '<div class="csf-section-title"><h3>'. wp_kses_post( $section_icon ) . wp_kses_post( $section_title ) .'</h3></div>' : '';
+              echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
 
               if ( ! empty( $section['fields'] ) ) {
 
@@ -613,7 +613,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
               } else {
 
-                echo '<div class="csf-no-option">'. esc_html__( 'No data available.', 'csf' ) .'</div>';
+                echo '<div class="csf-no-option">'. esc_html__( 'No data available.', 'streamcast' ) .'</div>';
 
               }
 
@@ -636,12 +636,12 @@ if ( ! class_exists( 'CSF_Options' ) ) {
           echo '<div class="csf-footer">';
 
           echo '<div class="csf-buttons">';
-          echo '<input type="submit" name="csf_transient[save]" class="button button-primary csf-save'. esc_attr( $ajax_class ) .'" value="'. esc_html__( 'Save', 'csf' ) .'" data-save="'. esc_html__( 'Saving...', 'csf' ) .'">';
-          echo ( $this->args['show_reset_section'] ) ? '<input type="submit" name="csf_transient[reset_section]" class="button button-secondary csf-reset-section csf-confirm" value="'. esc_html__( 'Reset Section', 'csf' ) .'" data-confirm="'. esc_html__( 'Are you sure to reset this section options?', 'csf' ) .'">' : '';
-          echo ( $this->args['show_reset_all'] ) ? '<input type="submit" name="csf_transient[reset]" class="button csf-warning-primary csf-reset-all csf-confirm" value="'. ( ( $this->args['show_reset_section'] ) ? esc_html__( 'Reset All', 'csf' ) : esc_html__( 'Reset', 'csf' ) ) .'" data-confirm="'. esc_html__( 'Are you sure you want to reset all settings to default values?', 'csf' ) .'">' : '';
+          echo '<input type="submit" name="csf_transient[save]" class="button button-primary csf-save'. esc_attr( $ajax_class ) .'" value="'. esc_html__( 'Save', 'streamcast' ) .'" data-save="'. esc_html__( 'Saving...', 'streamcast' ) .'">';
+          echo ( $this->args['show_reset_section'] ) ? '<input type="submit" name="csf_transient[reset_section]" class="button button-secondary csf-reset-section csf-confirm" value="'. esc_html__( 'Reset Section', 'streamcast' ) .'" data-confirm="'. esc_html__( 'Are you sure to reset this section options?', 'streamcast' ) .'">' : '';
+          echo ( $this->args['show_reset_all'] ) ? '<input type="submit" name="csf_transient[reset]" class="button csf-warning-primary csf-reset-all csf-confirm" value="'. ( ( $this->args['show_reset_section'] ) ? esc_html__( 'Reset All', 'streamcast' ) : esc_html__( 'Reset', 'streamcast' ) ) .'" data-confirm="'. esc_html__( 'Are you sure you want to reset all settings to default values?', 'streamcast' ) .'">' : '';
           echo '</div>';
 
-          echo ( ! empty( $this->args['footer_text'] ) ) ? '<div class="csf-copyright">'. $this->args['footer_text'] .'</div>' : '';
+          echo ( ! empty( $this->args['footer_text'] ) ) ? '<div class="csf-copyright">'. wp_kses_post( $this->args['footer_text'] ) .'</div>' : '';
 
           echo '<div class="clear"></div>';
           echo '</div>';
@@ -654,7 +654,7 @@ if ( ! class_exists( 'CSF_Options' ) ) {
 
         echo '<div class="clear"></div>';
 
-        echo ( ! empty( $this->args['footer_after'] ) ) ? $this->args['footer_after'] : '';
+        echo ( ! empty( $this->args['footer_after'] ) ) ? wp_kses_post( $this->args['footer_after'] ) : '';
 
       echo '</div>';
 

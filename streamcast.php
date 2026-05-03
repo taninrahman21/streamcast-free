@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Plugin Name: StreamCast Free
+ * Plugin Name: StreamCast
  * Plugin URI:  https://wordpress.org/plugins/streamcast
  * Description: Play iceCast, Shoutcast, Radioco, Radionomy Live stream in Wordpress.
  * Version: 2.4.0

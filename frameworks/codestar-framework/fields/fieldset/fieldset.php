@@ -16,7 +16,7 @@ if ( ! class_exists( 'CSF_Field_fieldset' ) ) {
 
     public function render() {
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo '<div class="csf-fieldset-content" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
 
@@ -33,7 +33,7 @@ if ( ! class_exists( 'CSF_Field_fieldset' ) ) {
 
       echo '</div>';
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

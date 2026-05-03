@@ -33,16 +33,16 @@ if ( ! class_exists( 'CSF_Field_link_color' ) ) {
       );
 
       $color_props = array(
-        'color'    => esc_html__( 'Normal', 'csf' ),
-        'hover'    => esc_html__( 'Hover', 'csf' ),
-        'active'   => esc_html__( 'Active', 'csf' ),
-        'visited'  => esc_html__( 'Visited', 'csf' ),
-        'focus'    => esc_html__( 'Focus', 'csf' )
+        'color'    => esc_html__( 'Normal', 'streamcast' ),
+        'hover'    => esc_html__( 'Hover', 'streamcast' ),
+        'active'   => esc_html__( 'Active', 'streamcast' ),
+        'visited'  => esc_html__( 'Visited', 'streamcast' ),
+        'focus'    => esc_html__( 'Focus', 'streamcast' )
       );
 
       $value = wp_parse_args( $this->value, $default_values );
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       foreach ( $color_props as $color_prop_key => $color_prop_value ) {
 
@@ -52,14 +52,14 @@ if ( ! class_exists( 'CSF_Field_link_color' ) ) {
 
           echo '<div class="csf--left csf-field-color">';
           echo '<div class="csf--title">'. esc_attr( $color_prop_value ) .'</div>';
-          echo '<input type="text" name="'. esc_attr( $this->field_name( '['. $color_prop_key .']' ) ) .'" value="'. esc_attr( $value[$color_prop_key] ) .'" class="csf-color"'. $default_attr . $this->field_attributes() .'/>';
+          echo '<input type="text" name="'. esc_attr( $this->field_name( '['. $color_prop_key .']' ) ) .'" value="'. esc_attr( $value[$color_prop_key] ) .'" class="csf-color"'. $default_attr . $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
           echo '</div>';
 
         }
 
       }
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

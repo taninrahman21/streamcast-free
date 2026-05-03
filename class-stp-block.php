@@ -13,7 +13,7 @@ if (!class_exists('STP_Block')) {
 			register_block_type(STP_PLUGIN_PATH . '/build');
 
 			// Register external Muses player script.
-			wp_register_script('muses-player', STP_PLUGIN_DIR . 'assets/vendor/muses-player/mrp.js', [], '1.0', true);
+			wp_register_script('muses-player', STP_PLUGIN_DIR . 'assets/vendor/muses-player/mrp.js', [], '1.0', false);
 		}
 
 		public static function scb_enqueue_block_assets() {

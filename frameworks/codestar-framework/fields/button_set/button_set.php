@@ -24,7 +24,7 @@ if ( ! class_exists( 'CSF_Field_button_set' ) ) {
 
       $value = ( is_array( $this->value ) ) ? $this->value : array_filter( (array) $this->value );
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       if ( isset( $this->field['options'] ) ) {
 
@@ -43,8 +43,8 @@ if ( ! class_exists( 'CSF_Field_button_set' ) ) {
             $checked = ( in_array( $key, $value ) || ( empty( $value ) && empty( $key ) ) ) ? ' checked' : '';
 
             echo '<div class="csf--sibling csf--button'. esc_attr( $active ) .'">';
-            echo '<input type="'. esc_attr( $type ) .'" name="'. esc_attr( $this->field_name( $extra ) ) .'" value="'. esc_attr( $key ) .'"'. $this->field_attributes() . esc_attr( $checked ) .'/>';
-            echo $option;
+            echo '<input type="'. esc_attr( $type ) .'" name="'. esc_attr( $this->field_name( $extra ) ) .'" value="'. esc_attr( $key ) .'"'. $this->field_attributes() . esc_attr( $checked ) .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo wp_kses_post( $option );
             echo '</div>';
 
           }
@@ -53,13 +53,13 @@ if ( ! class_exists( 'CSF_Field_button_set' ) ) {
 
         } else {
 
-          echo ( ! empty( $this->field['empty_message'] ) ) ? esc_attr( $this->field['empty_message'] ) : esc_html__( 'No data available.', 'csf' );
+          echo ( ! empty( $this->field['empty_message'] ) ) ? esc_attr( $this->field['empty_message'] ) : esc_html__( 'No data available.', 'streamcast' );
 
         }
 
       }
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

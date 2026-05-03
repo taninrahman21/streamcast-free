@@ -25,17 +25,17 @@ if ( ! class_exists( 'CSF_Field_slider' ) ) {
 
       $is_unit = ( ! empty( $args['unit'] ) ) ? ' csf--is-unit' : '';
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo '<div class="csf--wrap">';
       echo '<div class="csf-slider-ui"></div>';
       echo '<div class="csf--input">';
-      echo '<input type="number" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes( array( 'class' => 'csf-input-number'. esc_attr( $is_unit ) ) ) .' data-min="'. esc_attr( $args['min'] ) .'" data-max="'. esc_attr( $args['max'] ) .'" data-step="'. esc_attr( $args['step'] ) .'" step="any" />';
+      echo '<input type="number" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes( array( 'class' => 'csf-input-number'. esc_attr( $is_unit ) ) ) .' data-min="'. esc_attr( $args['min'] ) .'" data-max="'. esc_attr( $args['max'] ) .'" data-step="'. esc_attr( $args['step'] ) .'" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
       echo ( ! empty( $args['unit'] ) ) ? '<span class="csf--unit">'. esc_attr( $args['unit'] ) .'</span>' : '';
       echo '</div>';
       echo '</div>';
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

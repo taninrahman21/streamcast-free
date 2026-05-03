@@ -17,14 +17,14 @@ if ( ! class_exists( 'CSF_Field_gallery' ) ) {
     public function render() {
 
       $args = wp_parse_args( $this->field, array(
-        'add_title'   => esc_html__( 'Add Gallery', 'csf' ),
-        'edit_title'  => esc_html__( 'Edit Gallery', 'csf' ),
-        'clear_title' => esc_html__( 'Clear', 'csf' ),
+        'add_title'   => esc_html__( 'Add Gallery', 'streamcast' ),
+        'edit_title'  => esc_html__( 'Edit Gallery', 'streamcast' ),
+        'clear_title' => esc_html__( 'Clear', 'streamcast' ),
       ) );
 
       $hidden = ( empty( $this->value ) ) ? ' hidden' : '';
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo '<ul>';
       if ( ! empty( $this->value ) ) {
@@ -39,12 +39,12 @@ if ( ! class_exists( 'CSF_Field_gallery' ) ) {
       }
       echo '</ul>';
 
-      echo '<a href="#" class="button button-primary csf-button">'. $args['add_title'] .'</a>';
-      echo '<a href="#" class="button csf-edit-gallery'. esc_attr( $hidden ) .'">'. $args['edit_title'] .'</a>';
-      echo '<a href="#" class="button csf-warning-primary csf-clear-gallery'. esc_attr( $hidden ) .'">'. $args['clear_title'] .'</a>';
-      echo '<input type="hidden" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>';
+      echo '<a href="#" class="button button-primary csf-button">'. wp_kses_post( $args['add_title'] ) .'</a>';
+      echo '<a href="#" class="button csf-edit-gallery'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['edit_title'] ) .'</a>';
+      echo '<a href="#" class="button csf-warning-primary csf-clear-gallery'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['clear_title'] ) .'</a>';
+      echo '<input type="hidden" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

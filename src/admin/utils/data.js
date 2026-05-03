@@ -36,6 +36,20 @@ export const dashboardInfo = (info) => {
     licenseActiveNonce,
     changelogs: [
       {
+        version: "2.4.0 - 2 May 2026",
+        type: "update",
+        list: [
+          "Compliance: Removed all trialware/ feature - gating logic to ensure full functionality for all users.",
+          "Compliance: Localized third - party assets(WebFontLoader, FontAwesome, Plyr, Muses) to eliminate remote CDN dependencies.",
+          "Privacy: Removed unconditional Google Analytics tracking from the player script.",
+          "Compliance: Standardized internationalization(i18n) by migrating all text domains to 'streamcast'.",
+          "Security: Enhanced output escaping and data sanitization in shortcodes and Gutenberg blocks.",
+          "Enhancement: Added explicit '===External Services===' and '=== Source Code===' documentation in readme.txt.",
+          "Fix: Updated shortcode attributes to correctly honor user - provided stream URLs and background colors.",
+          "Maintenance: Updated compatibility tags and improved code adherence to WordPress.org standards.",
+        ],
+      },
+      {
         version: "2.3.9 - 23 February 2026",
         type: "update",
         list: ["Redesigned the dashboard with a modern and improved user interface, replacing the previous outdated layout."],

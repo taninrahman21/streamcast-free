@@ -105,8 +105,8 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
         $section_icon  = ( ! empty( $section['icon'] ) ) ? '<i class="csf-section-icon '. esc_attr( $section['icon'] ) .'"></i>' : '';
         $section_title = ( ! empty( $section['title'] ) ) ? $section['title'] : '';
 
-        echo ( $section_title || $section_icon ) ? '<h2>'. $section_icon . $section_title .'</h2>' : '';
-        echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. $section['description'] .'</div>' : '';
+        echo ( $section_title || $section_icon ) ? '<h2>'. wp_kses_post( $section_icon ) . wp_kses_post( $section_title ) .'</h2>' : '';
+        echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
 
         if ( ! empty( $section['fields'] ) ) {
 
@@ -147,7 +147,7 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
 
       // XSS ok.
       // No worries, This "POST" requests is sanitizing in the below foreach.
-      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? $_POST[ $this->unique ] : array();
+      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? wp_unslash( $_POST[ $this->unique ] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
       if ( ! empty( $request ) ) {
 

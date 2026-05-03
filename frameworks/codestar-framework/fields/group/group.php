@@ -20,7 +20,7 @@ if ( ! class_exists( 'CSF_Field_group' ) ) {
         'max'                       => 0,
         'min'                       => 0,
         'fields'                    => array(),
-        'button_title'              => esc_html__( 'Add New', 'csf' ),
+        'button_title'              => esc_html__( 'Add New', 'streamcast' ),
         'accordion_title_prefix'    => '',
         'accordion_title_number'    => false,
         'accordion_title_auto'      => true,
@@ -38,18 +38,18 @@ if ( ! class_exists( 'CSF_Field_group' ) ) {
 
       if ( preg_match( '/'. preg_quote( '['. $this->field['id'] .']' ) .'/', $this->unique ) ) {
 
-        echo '<div class="csf-notice csf-notice-danger">'. esc_html__( 'Error: Field ID conflict.', 'csf' ) .'</div>';
+        echo '<div class="csf-notice csf-notice-danger">'. esc_html__( 'Error: Field ID conflict.', 'streamcast' ) .'</div>';
 
       } else {
 
-        echo $this->field_before();
+        echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
         echo '<div class="csf-cloneable-item csf-cloneable-hidden" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
 
           echo '<div class="csf-cloneable-helper">';
           echo '<i class="csf-cloneable-sort fas fa-arrows-alt"></i>';
           echo '<i class="csf-cloneable-clone far fa-clone"></i>';
-          echo '<i class="csf-cloneable-remove csf-confirm fas fa-times" data-confirm="'. esc_html__( 'Are you sure to delete this item?', 'csf' ) .'"></i>';
+          echo '<i class="csf-cloneable-remove csf-confirm fas fa-times" data-confirm="'. esc_html__( 'Are you sure to delete this item?', 'streamcast' ) .'"></i>';
           echo '</div>';
 
           echo '<h4 class="csf-cloneable-title">';
@@ -104,7 +104,7 @@ if ( ! class_exists( 'CSF_Field_group' ) ) {
               echo '<div class="csf-cloneable-helper">';
               echo '<i class="csf-cloneable-sort fas fa-arrows-alt"></i>';
               echo '<i class="csf-cloneable-clone far fa-clone"></i>';
-              echo '<i class="csf-cloneable-remove csf-confirm fas fa-times" data-confirm="'. esc_html__( 'Are you sure to delete this item?', 'csf' ) .'"></i>';
+              echo '<i class="csf-cloneable-remove csf-confirm fas fa-times" data-confirm="'. esc_html__( 'Are you sure to delete this item?', 'streamcast' ) .'"></i>';
               echo '</div>';
 
               echo '<h4 class="csf-cloneable-title">';
@@ -138,11 +138,11 @@ if ( ! class_exists( 'CSF_Field_group' ) ) {
 
         echo '</div>';
 
-        echo '<div class="csf-cloneable-alert csf-cloneable-max">'. esc_html__( 'You cannot add more.', 'csf' ) .'</div>';
-        echo '<div class="csf-cloneable-alert csf-cloneable-min">'. esc_html__( 'You cannot remove more.', 'csf' ) .'</div>';
-        echo '<a href="#" class="button button-primary csf-cloneable-add">'. $args['button_title'] .'</a>';
+        echo '<div class="csf-cloneable-alert csf-cloneable-max">'. esc_html__( 'You cannot add more.', 'streamcast' ) .'</div>';
+        echo '<div class="csf-cloneable-alert csf-cloneable-min">'. esc_html__( 'You cannot remove more.', 'streamcast' ) .'</div>';
+        echo '<a href="#" class="button button-primary csf-cloneable-add">'. wp_kses_post( $args['button_title'] ) .'</a>';
 
-        echo $this->field_after();
+        echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       }
 

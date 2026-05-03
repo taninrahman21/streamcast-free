@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <script src="https://hosted.muses.org/mrp.js"></script>
+        <script src="./assets/vendor/muses-player/mrp.js"></script>
         <script>
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -24,8 +24,8 @@
 
     <body>
         <script type="text/javascript">
-            MRP.insert(playerData)
-            MRP.setTitle(playerData.title);
+            window.MRP?.insert(playerData)
+            window.MRP?.setTitle(playerData.title);
             window.top[getQueryParam("id")] = null;
         </script>
     </body>

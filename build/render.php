@@ -39,10 +39,10 @@ if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 	?>
 	<div id='<?php echo esc_attr( $id ); ?>'>
 		<style>
-			<?php echo wp_strip_all_tags( $dynamicPlayerStyles ); ?>
+			<?php echo esc_html( wp_strip_all_tags( $dynamicPlayerStyles ) ); ?>
 		</style>
 		<script type="text/javascript">
-			window.MRP.insert({
+			window.MRP?.insert({
 				url: <?php echo wp_json_encode( $streamUrl ); ?>,
 				lang: "en",
 				codec: "mp3",
@@ -114,7 +114,7 @@ if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 					}
 				<?php } ?>
 
-				MRP.setTitle(title);
+				window.MRP?.setTitle(title);
 			}
 
 			updateTitle();

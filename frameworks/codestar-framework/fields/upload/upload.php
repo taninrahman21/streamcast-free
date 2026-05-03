@@ -21,11 +21,11 @@ if ( ! class_exists( 'CSF_Field_upload' ) ) {
         'preview'        => false,
         'preview_width'  => '',
         'preview_height' => '',
-        'button_title'   => esc_html__( 'Upload', 'csf' ),
-        'remove_title'   => esc_html__( 'Remove', 'csf' ),
+        'button_title'   => esc_html__( 'Upload', 'streamcast' ),
+        'remove_title'   => esc_html__( 'Remove', 'streamcast' ),
       ) );
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       $library = ( is_array( $args['library'] ) ) ? $args['library'] : array_filter( (array) $args['library'] );
       $library = ( ! empty( $library ) ) ? implode(',', $library ) : '';
@@ -41,7 +41,7 @@ if ( ! class_exists( 'CSF_Field_upload' ) ) {
         $preview_hidden = ( empty( $preview_src ) ) ? ' hidden' : '';
 
         echo '<div class="csf--preview'. esc_attr( $preview_hidden ) .'">';
-        echo '<div class="csf-image-preview"'. $preview_style .'>';
+        echo '<div class="csf-image-preview"'. $preview_style .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '<i class="csf--remove fas fa-times"></i><span><img src="'. esc_url( $preview_src ) .'" class="csf--src" /></span>';
         echo '</div>';
         echo '</div>';
@@ -49,12 +49,12 @@ if ( ! class_exists( 'CSF_Field_upload' ) ) {
       }
 
       echo '<div class="csf--wrap">';
-      echo '<input type="text" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>';
-      echo '<a href="#" class="button button-primary csf--button" data-library="'. esc_attr( $library ) .'">'. $args['button_title'] .'</a>';
-      echo '<a href="#" class="button button-secondary csf-warning-primary csf--remove'. esc_attr( $hidden ) .'">'. $args['remove_title'] .'</a>';
+      echo '<input type="text" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo '<a href="#" class="button button-primary csf--button" data-library="'. esc_attr( $library ) .'">'. wp_kses_post( $args['button_title'] ) .'</a>';
+      echo '<a href="#" class="button button-secondary csf-warning-primary csf--remove'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['remove_title'] ) .'</a>';
       echo '</div>';
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
   }

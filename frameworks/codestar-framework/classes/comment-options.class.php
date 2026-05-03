@@ -133,7 +133,7 @@ if ( ! class_exists( 'CSF_Comment_Metabox' ) ) {
                 $tab_icon  = ( ! empty( $section['icon'] ) ) ? '<i class="csf-tab-icon '. esc_attr( $section['icon'] ) .'"></i>' : '';
                 $tab_error = ( ! empty( $errors['sections'][$tab_key] ) ) ? '<i class="csf-label-error csf-error">!</i>' : '';
 
-                echo '<li><a href="#">'. $tab_icon . $section['title'] . $tab_error .'</a></li>';
+                echo '<li><a href="#">'. wp_kses_post( $tab_icon ) . wp_kses_post( $section['title'] ) . wp_kses_post( $tab_error ) .'</a></li>';
 
                 $tab_key++;
 
@@ -160,8 +160,8 @@ if ( ! class_exists( 'CSF_Comment_Metabox' ) ) {
 
               echo '<div class="csf-section hidden'. esc_attr( $section_onload . $section_class ) .'">';
 
-              echo ( $section_title || $section_icon ) ? '<div class="csf-section-title"><h3>'. $section_icon . $section_title .'</h3></div>' : '';
-              echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. $section['description'] .'</div>' : '';
+              echo ( $section_title || $section_icon ) ? '<div class="csf-section-title"><h3>'. wp_kses_post( $section_icon ) . wp_kses_post( $section_title ) .'</h3></div>' : '';
+              echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
 
               if ( ! empty( $section['fields'] ) ) {
 
@@ -181,7 +181,7 @@ if ( ! class_exists( 'CSF_Comment_Metabox' ) ) {
 
               } else {
 
-                echo '<div class="csf-no-option">'. esc_html__( 'No data available.', 'csf' ) .'</div>';
+                echo '<div class="csf-no-option">'. esc_html__( 'No data available.', 'streamcast' ) .'</div>';
 
               }
 
@@ -198,8 +198,8 @@ if ( ! class_exists( 'CSF_Comment_Metabox' ) ) {
               echo '<div class="csf-sections-reset">';
               echo '<label>';
               echo '<input type="checkbox" name="'. esc_attr( $this->unique ) .'[_reset]" />';
-              echo '<span class="button csf-button-reset">'. esc_html__( 'Reset', 'csf' ) .'</span>';
-              echo '<span class="button csf-button-cancel">'. sprintf( '<small>( %s )</small> %s', esc_html__( 'update post', 'csf' ), esc_html__( 'Cancel', 'csf' ) ) .'</span>';
+              echo '<span class="button csf-button-reset">'. esc_html__( 'Reset', 'streamcast' ) .'</span>';
+              echo '<span class="button csf-button-cancel">'. sprintf( '<small>( %s )</small> %s', esc_html__( 'update post', 'streamcast' ), esc_html__( 'Cancel', 'streamcast' ) ) .'</span>';
               echo '</label>';
               echo '</div>';
 
@@ -232,7 +232,7 @@ if ( ! class_exists( 'CSF_Comment_Metabox' ) ) {
 
       // XSS ok.
       // No worries, This "POST" requests is sanitizing in the below foreach.
-      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? $_POST[ $this->unique ] : array();
+      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? wp_unslash( $_POST[ $this->unique ] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
       if ( ! empty( $request ) ) {
 

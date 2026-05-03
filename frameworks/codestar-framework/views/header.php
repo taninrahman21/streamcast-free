@@ -4,7 +4,7 @@
   $text    = ( ! empty( $demo ) ) ? 'Deactivate' : 'Activate';
   $status  = ( ! empty( $demo ) ) ? 'deactivate' : 'activate';
   $class   = ( ! empty( $demo ) ) ? ' csf-warning-primary' : '';
-  $section = ( ! empty( $_GET[ 'section' ] ) ) ? sanitize_text_field( wp_unslash( $_GET[ 'section' ] ) ) : 'about';
+  $section = ( ! empty( $_GET[ 'section' ] ) ) ? sanitize_text_field( wp_unslash( $_GET[ 'section' ] ) ) : 'about'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
   $links   = array(
     'about'           => 'About',
     'quickstart'      => 'Quick Start',
@@ -21,7 +21,7 @@
 
   <p class="csf-about-text">A Simple and Lightweight WordPress Option Framework for Themes and Plugins</p>
 
-  <p class="csf-demo-button"><a href="<?php echo esc_url( add_query_arg( array( 'csf-demo' => $status ) ) ); ?>" class="button button-primary<?php echo esc_attr( $class ); ?>"><?php echo esc_attr( $text ); ?> Demo</a></p>
+  <p class="csf-demo-button"><a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( 'csf-demo' => $status ) ), 'csf-demo-nonce' ) ); ?>" class="button button-primary<?php echo esc_attr( $class ); ?>"><?php echo esc_attr( $text ); ?> Demo</a></p>
 
   <div class="csf-logo">
     <div class="csf--effects"><i></i><i></i><i></i><i></i></div>

@@ -38,7 +38,7 @@ if ( ! class_exists( 'CSF_Welcome' ) ) {
 
     public function add_page_welcome() {
 
-      $section = ( ! empty( $_GET['section'] ) ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : '';
+      $section = ( ! empty( $_GET['section'] ) ) ? sanitize_text_field( wp_unslash( $_GET['section'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
       CSF::include_plugin_file( 'views/header.php' );
 
@@ -102,9 +102,9 @@ if ( ! class_exists( 'CSF_Welcome' ) ) {
 
       $demo_mode = get_option( 'csf_demo_mode', false );
 
-      $demo_activate = ( ! empty( $_GET[ 'csf-demo' ] ) ) ? sanitize_text_field( wp_unslash( $_GET[ 'csf-demo' ] ) ) : '';
+      $demo_activate = ( ! empty( $_GET[ 'csf-demo' ] ) ) ? sanitize_text_field( wp_unslash( $_GET[ 'csf-demo' ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-      if ( ! empty( $demo_activate ) ) {
+      if ( ! empty( $demo_activate ) && check_admin_referer( 'csf-demo-nonce' ) ) {
 
         $demo_mode = ( $demo_activate === 'activate' ) ? true : false;
 

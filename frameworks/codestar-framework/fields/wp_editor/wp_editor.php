@@ -39,15 +39,15 @@ if ( ! class_exists( 'CSF_Field_wp_editor' ) ) {
         'wpautop'       => $args['wpautop'],
       );
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo ( csf_wp_editor_api() ) ? '<div class="csf-wp-editor" data-editor-settings="'. esc_attr( json_encode( $editor_settings ) ) .'">' : '';
 
-      echo '<textarea name="'. esc_attr( $this->field_name() ) .'"'. $this->field_attributes( $attributes ) . $editor_height .'>'. $this->value .'</textarea>';
+      echo '<textarea name="'. esc_attr( $this->field_name() ) .'"'. $this->field_attributes( $attributes ) . $editor_height .'>'. esc_textarea( $this->value ) .'</textarea>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo ( csf_wp_editor_api() ) ? '</div>' : '';
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

@@ -8073,29 +8073,7 @@ if (2 == mrx24gx.length) {
     z.initialize = function (a, b) {
       z.initialized ||
         ((z.initialized = !0),
-        /*
-        (function (a, b, d, e, h, k, l) {
-          a.GoogleAnalyticsObject = h;
-          a[h] =
-            a[h] ||
-            function () {
-              (a[h].q = a[h].q || []).push(arguments);
-            };
-          a[h].l = 1 * new Date();
-          k = b.createElement(d);
-          l = b.getElementsByTagName(d)[0];
-          k.async = 1;
-          k.src = e;
-          l.parentNode.insertBefore(k, l);
-        })(
-          window,
-          document,
-          "script",
-          "https://www.google-analytics.com/analytics.js",
-          "ga"
-        ),
-        ga("create", "UA-12297597-7", "auto", "musesTracker"),
-        */
+        /* GA Removed */
         (new G(3e5).run = function () {
           a.shouldBePlaying() &&
             ((b.metric1 = a.ui.getPlayTime()),

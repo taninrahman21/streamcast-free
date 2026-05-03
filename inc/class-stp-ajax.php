@@ -17,12 +17,13 @@ class AJAX {
 	 */
 	public function fetch_stream_data() {
 		// Verify nonce
-		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'stp_fetch_nonce' ) ) {
+		$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+		if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'stp_fetch_nonce' ) ) {
 			wp_send_json_error( 'Invalid nonce', 403 );
 		}
 
 		// Get and validate URL
-		$url = isset( $_POST['url'] ) ? esc_url_raw( $_POST['url'] ) : '';
+		$url = isset( $_POST['url'] ) ? esc_url_raw( wp_unslash( $_POST['url'] ) ) : '';
 		if ( empty( $url ) ) {
 			wp_send_json_error( 'Invalid URL', 400 );
 		}

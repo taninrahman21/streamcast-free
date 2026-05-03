@@ -176,7 +176,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
       // Setup taxonomy option framework
       $params = array();
       if ( class_exists( 'CSF_Taxonomy_Options' ) && ! empty( self::$args['taxonomy_options'] ) ) {
-        $taxonomy = ( isset( $_GET['taxonomy'] ) ) ? sanitize_text_field( wp_unslash( $_GET['taxonomy'] ) ) : '';
+        $taxonomy = ( isset( $_GET['taxonomy'] ) ) ? sanitize_text_field( wp_unslash( $_GET['taxonomy'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         foreach ( self::$args['taxonomy_options'] as $key => $value ) {
           if ( ! empty( self::$args['sections'][$key] ) && ! isset( self::$inited[$key] ) ) {
 
@@ -446,7 +446,6 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
         'tabbed',
         'text',
         'textarea',
-        'typography',
         'upload',
         'wp_editor',
       ) );
@@ -463,7 +462,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
 
     // Setup textdomain
     public static function textdomain() {
-      load_textdomain( 'csf', self::$dir .'/languages/'. get_locale() .'.mo' );
+      load_textdomain( 'streamcast', self::$dir .'/languages/'. get_locale() .'.mo' );
     }
 
     // Set all of used fields
@@ -588,7 +587,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
       $min = ( self::$premium && SCRIPT_DEBUG ) ? '' : '.min';
 
       // Main style
-      wp_enqueue_style( 'csf', self::include_plugin_url( 'assets/css/style'. $min .'.css' ), array(), self::$version, 'all' );
+      wp_enqueue_style( 'streamcast', self::include_plugin_url( 'assets/css/style'. $min .'.css' ), array(), self::$version, 'all' );
 
       // Main RTL styles
       if ( is_rtl() ) {
@@ -597,16 +596,16 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
 
       // Main scripts
       wp_enqueue_script( 'csf-plugins', self::include_plugin_url( 'assets/js/plugins'. $min .'.js' ), array(), self::$version, true );
-      wp_enqueue_script( 'csf', self::include_plugin_url( 'assets/js/main'. $min .'.js' ), array( 'csf-plugins' ), self::$version, true );
+      wp_enqueue_script( 'streamcast', self::include_plugin_url( 'assets/js/main'. $min .'.js' ), array( 'csf-plugins' ), self::$version, true );
 
       // Main variables
-      wp_localize_script( 'csf', 'csf_vars', array(
+      wp_localize_script( 'streamcast', 'csf_vars', array(
         'color_palette'     => apply_filters( 'csf_color_palette', array() ),
         'i18n'              => array(
-          'confirm'         => esc_html__( 'Are you sure?', 'csf' ),
-          'typing_text'     => esc_html__( 'Please enter %s or more characters', 'csf' ),
-          'searching_text'  => esc_html__( 'Searching...', 'csf' ),
-          'no_results_text' => esc_html__( 'No results found.', 'csf' ),
+          'confirm'         => esc_html__( 'Are you sure?', 'streamcast' ),
+          'typing_text'     => esc_html__( 'Please enter %s or more characters', 'streamcast' ),
+          'searching_text'  => esc_html__( 'Searching...', 'streamcast' ),
+          'no_results_text' => esc_html__( 'No results found.', 'streamcast' ),
         ),
       ) );
 
@@ -656,7 +655,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
 
           $query['display'] = 'swap';
 
-          wp_enqueue_style( 'csf-google-web-fonts', esc_url( add_query_arg( $query, '//fonts.googleapis.com/css' ) ), array(), null );
+          wp_enqueue_style( 'csf-google-web-fonts', esc_url( add_query_arg( $query, '//fonts.googleapis.com/css' ) ), array(), self::$version );
 
         }
 
@@ -668,7 +667,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
             $fonts[] = $family . ( ( ! empty( $styles ) ) ? ':'. implode( ',', $styles ) : '' );
           }
 
-          wp_enqueue_script( 'csf-google-web-fonts', esc_url( '//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js' ), array(), null );
+          wp_enqueue_script( 'csf-google-web-fonts', self::include_plugin_url( 'assets/vendor/webfontloader/webfontloader.min.js' ), array(), '1.6.26', true );
 
           wp_localize_script( 'csf-google-web-fonts', 'WebFontConfig', array( 'google' => array( 'families' => $fonts ) ) );
 
@@ -693,7 +692,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
     public static function add_custom_css() {
 
       if ( ! empty( self::$css ) ) {
-        echo '<style type="text/css">'. wp_strip_all_tags( self::$css ) .'</style>';
+        echo '<style type="text/css">'. wp_strip_all_tags( self::$css ) .'</style>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
       }
 
     }
@@ -707,7 +706,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
         $field_type = $field['type'];
 
         $field            = array();
-        $field['content'] = esc_html__( 'Oops! Not allowed.', 'csf' ) .' <strong>('. $field_type .')</strong>';
+        $field['content'] = esc_html__( 'Oops! Not allowed.', 'streamcast' ) .' <strong>('. $field_type .')</strong>';
         $field['type']    = 'notice';
         $field['style']   = 'danger';
 
@@ -753,14 +752,14 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
       }
 
       // These attributes has been sanitized above.
-      echo '<div class="csf-field csf-field-'. $field_type . $is_pseudo . $class . $visible .'"'. $depend .'>';
+      echo '<div class="csf-field csf-field-'. $field_type . $is_pseudo . $class . $visible .'"'. $depend .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       if ( ! empty( $field_type ) ) {
 
         if ( ! empty( $field['title'] ) ) {
           echo '<div class="csf-title">';
-          echo '<h4>'. $field['title'] .'</h4>';
-          echo ( ! empty( $field['subtitle'] ) ) ? '<div class="csf-subtitle-text">'. $field['subtitle'] .'</div>' : '';
+          echo '<h4>'. wp_kses_post( $field['title'] ) .'</h4>';
+          echo ( ! empty( $field['subtitle'] ) ) ? '<div class="csf-subtitle-text">'. wp_kses_post( $field['subtitle'] ) .'</div>' : '';
           echo '</div>';
         }
 
@@ -775,11 +774,11 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
           $instance = new $classname( $field, $value, $unique, $where, $parent );
           $instance->render();
         } else {
-          echo '<p>'. esc_html__( 'Field not found!', 'csf' ) .'</p>';
+          echo '<p>'. esc_html__( 'Field not found!', 'streamcast' ) .'</p>';
         }
 
       } else {
-        echo '<p>'. esc_html__( 'Field not found!', 'csf' ) .'</p>';
+        echo '<p>'. esc_html__( 'Field not found!', 'streamcast' ) .'</p>';
       }
 
       echo ( ! empty( $field['title'] ) ) ? '</div>' : '';

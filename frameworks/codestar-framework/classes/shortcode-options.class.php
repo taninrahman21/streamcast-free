@@ -30,7 +30,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
         'description'    => 'CSF Shortcode Block',
         'icon'           => 'screenoptions',
         'category'       => 'widgets',
-        'keywords'       => array( 'shortcode', 'csf', 'insert' ),
+        'keywords'       => array( 'shortcode', 'streamcast', 'insert' ),
         'placeholder'    => 'Write shortcode here...',
       ),
     );
@@ -82,7 +82,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
 
     public function add_footer_modal_shortcode() {
 
-      if( ! wp_script_is( 'csf' ) ) {
+      if( ! wp_script_is( 'streamcast' ) ) {
         return;
       }
 
@@ -98,7 +98,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
             <div class="csf-modal-overlay"></div>
             <div class="csf-modal-inner">
               <div class="csf-modal-title">
-                <?php echo $this->args['button_title']; ?>
+                <?php echo wp_kses_post( $this->args['button_title'] ); ?>
                 <div class="csf-modal-close"></div>
               </div>
               <?php
@@ -121,7 +121,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
                       $shortcode = ( ! empty( $sub['shortcode'] ) ) ? ' data-shortcode="'. esc_attr( $sub['shortcode'] ) .'"' : '';
                       $group     = ( ! empty( $sub['group_shortcode'] ) ) ? ' data-group="'. esc_attr( $sub['group_shortcode'] ) .'"' : '';
 
-                      echo '<option value="'. esc_attr( $tab_key ) .'"'. $view . $shortcode . $group .'>'. esc_attr( $sub['title'] ) .'</option>';
+                      echo '<option value="'. esc_attr( $tab_key ) .'"'. $view . $shortcode . $group .'>'. esc_attr( $sub['title'] ) .'</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
                       $tab_key++;
 
@@ -135,7 +135,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
                       $shortcode = ( ! empty( $tab['shortcode'] ) ) ? ' data-shortcode="'. esc_attr( $tab['shortcode'] ) .'"' : '';
                       $group     = ( ! empty( $tab['group_shortcode'] ) ) ? ' data-group="'. esc_attr( $tab['group_shortcode'] ) .'"' : '';
 
-                      echo '<option value="'. esc_attr( $tab_key ) .'"'. $view . $shortcode . $group .'>'. esc_attr( $tab['title'] ) .'</option>';
+                      echo '<option value="'. esc_attr( $tab_key ) .'"'. $view . $shortcode . $group .'>'. esc_attr( $tab['title'] ) .'</option>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
                     $tab_key++;
 
@@ -151,7 +151,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
                 <div class="csf-modal-loading"><div class="csf-loading"></div></div>
                 <div class="csf-modal-load"></div>
               </div>
-              <div class="csf-modal-insert-wrapper hidden"><a href="#" class="button button-primary csf-modal-insert"><?php echo $this->args['insert_title']; ?></a></div>
+              <div class="csf-modal-insert-wrapper hidden"><a href="#" class="button button-primary csf-modal-insert"><?php echo esc_html( $this->args['insert_title'] ); ?></a></div>
             </div>
           </div>
         </div>
@@ -181,7 +181,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
 
             echo '<div class="csf-fields">';
 
-            echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. $section['description'] .'</div>' : '';
+            echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
 
             foreach ( $section['fields'] as $field ) {
 
@@ -207,7 +207,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
 
           if ( ! empty( $repeatable_fields ) ) {
 
-            $button_title    = ( ! empty( $section['button_title'] ) ) ? ' '. $section['button_title'] : esc_html__( 'Add New', 'csf' );
+            $button_title    = ( ! empty( $section['button_title'] ) ) ? ' '. $section['button_title'] : esc_html__( 'Add New', 'streamcast' );
             $inner_shortcode = ( ! empty( $section['group_shortcode'] ) ) ? $section['group_shortcode'] : $shortcode;
 
             echo '<div class="csf--repeatable">';
@@ -237,14 +237,14 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
 
             echo '</div>';
 
-            echo '<div class="csf--repeat-button-block"><a class="button csf--repeat-button" href="#"><i class="fas fa-plus-circle"></i> '. $button_title .'</a></div>';
+            echo '<div class="csf--repeat-button-block"><a class="button csf--repeat-button" href="#"><i class="fas fa-plus-circle"></i> '. wp_kses_post( $button_title ) .'</a></div>';
 
           }
 
         }
 
       } else {
-        echo '<div class="csf-field csf-error-text">'. esc_html__( 'Error: Invalid nonce verification.', 'csf' ) .'</div>';
+        echo '<div class="csf-field csf-error-text">'. esc_html__( 'Error: Invalid nonce verification.', 'streamcast' ) .'</div>';
       }
 
       wp_send_json_success( array( 'content' => ob_get_clean() ) );
@@ -275,7 +275,7 @@ if ( ! class_exists( 'CSF_Shortcoder' ) ) {
         $depends[] = 'wp-edit-post';
       }
 
-      wp_enqueue_script( 'csf-gutenberg-block', CSF::include_plugin_url( 'assets/js/gutenberg.js' ), $depends );
+      wp_enqueue_script( 'csf-gutenberg-block', CSF::include_plugin_url( 'assets/js/gutenberg.js' ), $depends, CSF::$version, true );
 
       wp_localize_script( 'csf-gutenberg-block', 'csf_gutenberg_blocks', CSF::$shortcode_instances );
 

@@ -17,9 +17,9 @@ if ( ! class_exists( 'CSF_Field_link' ) ) {
     public function render() {
 
       $args = wp_parse_args( $this->field, array(
-        'add_title'    => esc_html__( 'Add Link', 'csf' ),
-        'edit_title'   => esc_html__( 'Edit Link', 'csf' ),
-        'remove_title' => esc_html__( 'Remove Link', 'csf' ),
+        'add_title'    => esc_html__( 'Add Link', 'streamcast' ),
+        'edit_title'   => esc_html__( 'Edit Link', 'streamcast' ),
+        'remove_title' => esc_html__( 'Remove Link', 'streamcast' ),
       ) );
 
       $default_values = array(
@@ -34,21 +34,21 @@ if ( ! class_exists( 'CSF_Field_link' ) ) {
 
       $maybe_hidden = ( empty( $hidden ) ) ? ' hidden' : '';
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo '<textarea readonly="readonly" class="csf--link hidden"></textarea>';
 
-      echo '<div class="'. esc_attr( $maybe_hidden ) .'"><div class="csf--result">'. sprintf( '{url:"%s", text:"%s", target:"%s"}', $value['url'], $value['text'], $value['target'] ) .'</div></div>';
+      echo '<div class="'. esc_attr( $maybe_hidden ) .'"><div class="csf--result">'. sprintf( '{url:"%s", text:"%s", target:"%s"}', esc_html( $value['url'] ), esc_html( $value['text'] ), esc_html( $value['target'] ) ) .'</div></div>';
 
-      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[url]' ) ) .'" value="'. esc_attr( $value['url'] ) .'"'. $this->field_attributes( array( 'class' => 'csf--url' ) ) .' />';
+      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[url]' ) ) .'" value="'. esc_attr( $value['url'] ) .'"'. $this->field_attributes( array( 'class' => 'csf--url' ) ) .' />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
       echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[text]' ) ) .'" value="'. esc_attr( $value['text'] ) .'" class="csf--text" />';
       echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[target]' ) ) .'" value="'. esc_attr( $value['target'] ) .'" class="csf--target" />';
 
-      echo '<a href="#" class="button button-primary csf--add'. esc_attr( $hidden ) .'">'. $args['add_title'] .'</a> ';
-      echo '<a href="#" class="button csf--edit'. esc_attr( $maybe_hidden ) .'">'. $args['edit_title'] .'</a> ';
-      echo '<a href="#" class="button csf-warning-primary csf--remove'. esc_attr( $maybe_hidden ) .'">'. $args['remove_title'] .'</a>';
+      echo '<a href="#" class="button button-primary csf--add'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['add_title'] ) .'</a> ';
+      echo '<a href="#" class="button csf--edit'. esc_attr( $maybe_hidden ) .'">'. wp_kses_post( $args['edit_title'] ) .'</a> ';
+      echo '<a href="#" class="button csf-warning-primary csf--remove'. esc_attr( $maybe_hidden ) .'">'. wp_kses_post( $args['remove_title'] ) .'</a>';
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

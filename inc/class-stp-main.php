@@ -14,7 +14,7 @@ class STP_Main {
 		add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_admin_assets']);
 		add_action('admin_menu', [__CLASS__, 'add_help_pages']);
 		add_shortcode('stream', [__CLASS__, 'stream_shortcode']);
-		add_action('plugins_loaded', [__CLASS__, 'load_textdomain'] );
+
 		add_filter('plugin_action_links_' . plugin_basename(STP_PLUGIN_FILE), [$this, 'add_action_links']);
 	}
 
@@ -41,9 +41,7 @@ class STP_Main {
 		}
 	}
 
-	public static function load_textdomain() {
-		load_plugin_textdomain('streamcast', false, dirname(dirname(__FILE__)) . '/languages');
-	}
+
 
 	public static function enqueue_admin_assets($hook) {
 		global $typenow;

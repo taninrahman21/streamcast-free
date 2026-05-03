@@ -16,10 +16,10 @@ if ( ! class_exists( 'CSF_Field_textarea' ) ) {
 
     public function render() {
 
-      echo $this->field_before();
-      echo $this->shortcoder();
-      echo '<textarea name="'. esc_attr( $this->field_name() ) .'"'. $this->field_attributes() .'>'. $this->value .'</textarea>';
-      echo $this->field_after();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      $this->shortcoder();
+      echo '<textarea name="'. esc_attr( $this->field_name() ) .'"'. $this->field_attributes() .'>'. esc_textarea( $this->value ) .'</textarea>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 

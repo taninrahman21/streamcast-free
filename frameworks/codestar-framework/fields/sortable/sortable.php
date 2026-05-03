@@ -16,7 +16,7 @@ if ( ! class_exists( 'CSF_Field_sortable' ) ) {
 
     public function render() {
 
-      echo $this->field_before();
+      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
       echo '<div class="csf-sortable" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
 
@@ -71,7 +71,7 @@ if ( ! class_exists( 'CSF_Field_sortable' ) ) {
 
       echo '</div>';
 
-      echo $this->field_after();
+      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
     }
 
