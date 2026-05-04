@@ -78,8 +78,7 @@ if (!class_exists('STP_Admin')) {
 			return $actions;
 		}
 
-		public function hide_publishing_actions()
-		{
+		public function hide_publishing_actions() {
 			global $post;
 			if ($post && $post->post_type === 'streamcast') {
 				echo '<style>#misc-publishing-actions,#minor-publishing-actions{display:none;}</style>';

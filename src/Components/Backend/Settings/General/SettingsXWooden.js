@@ -3,6 +3,7 @@ import { __ } from '@wordpress/i18n';
 import { updateData } from '../../../../../../bpl-tools/utils/functions'; 
 import { playerTypeOptions } from '../../../../utils/options';
 import { playerTypeSwitch } from '../../../../utils/functions';
+import ProNotice from '../../../../Panel/ProNotice/ProNotice';
 
 const SettingsXWooden = ({ setAttributes, attributes }) => {
     const { radioPlayer } = attributes; 
@@ -36,7 +37,14 @@ const SettingsXWooden = ({ setAttributes, attributes }) => {
                 help="If name can't access then will use the given station name"
             />
            
-
+           <ProNotice 
+                title={__("Get More with Premium Version", "streamcast")}
+                features={[
+                    { name: "Vintage Textures", desc: "Unlock premium wooden and classic textures." },
+                    { name: "Hover Effects", desc: "Detailed control over interactive hover states." },
+                    { name: "Timestamp Branding", desc: "Custom styling for timestamp and player metadata." }
+                ]}
+            />
         </>
     )
 }

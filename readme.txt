@@ -44,9 +44,9 @@ https://www.youtube.com/watch?v=ad_LKLe_YQg
 
 ---
 
-### 🎧 StreamCast Pro – Unlock Premium Features
+### 🎧 StreamCast Pro – Premium Version Features
 
-Upgrade to **StreamCast Pro** to access advanced player controls, premium skins, and full customization options.
+The **StreamCast Premium** version includes advanced player controls, professional skins, and full customization options.
 
 **Pro Features Include:**
 
@@ -60,7 +60,7 @@ Upgrade to **StreamCast Pro** to access advanced player controls, premium skins,
 * Custom CSS Styling  
 * Priority Support & Future Updates  
 
-👉 [**Upgrade To Pro**](https://bplugins.com/products/streamcast-radio-player/pricing/)
+👉 [**Get Premium Version**](https://bplugins.com/products/streamcast-radio-player/pricing/)
 
 ---
 
@@ -286,6 +286,12 @@ This plugin connects to the following external services to provide enhanced func
    - Data sent: Asset request (no personal data)
    - Loaded on: Admin dashboard and player initialization
    - Terms: https://bplugins.com/terms-of-service/ | Privacy Policy: https://bplugins.com/privacy-policy/
+
+9. **Freemius SDK**
+   - Source: [https://freemius.com/](https://freemius.com/)
+   - GitHub: [https://github.com/Freemius/wordpress-sdk](https://github.com/Freemius/wordpress-sdk)
+   - License: GPLv3 – [https://github.com/Freemius/wordpress-sdk/blob/master/LICENSE.txt](https://github.com/Freemius/wordpress-sdk/blob/master/LICENSE.txt)
+   - Purpose:  Provides opt-in usage tracking and analytics to help improve the plugin.
 ---
 
 == Screenshots ==

@@ -1,11 +1,9 @@
-import React from 'react';
-import { TabPanel, __experimentalUnitControl as UnitControl } from '@wordpress/components';
-import { ColorControl, Typography } from '../../../../../../bpl-tools/Components';
-// import { ColorControl } from '../../../../../../Components';
+import { __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { ColorControl } from '../../../../../../bpl-tools/Components';
 import { __ } from "@wordpress/i18n";
 import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
-import { tabController, updateData } from '../../../../../../bpl-tools/utils/functions';
-import { BControlPro } from '../../../../../../bpl-tools/ProControls';
+import { updateData } from '../../../../../../bpl-tools/utils/functions';
+import ProNotice from '../../../../Panel/ProNotice/ProNotice';
 
 
 const StyleXEchoStreamXAurora = ({ attributes, setAttributes }) => {
@@ -41,21 +39,15 @@ const StyleXEchoStreamXAurora = ({ attributes, setAttributes }) => {
             defaultColor='#ffffff'
         />
 
-        {/* {
-            playerType === "echoStream" && <BControlPro
-                label={__('Play Button Color', 'streamcast')}
-                value={playBtnColor}
-                onChange={val => setAttributes({ radioStyles: updateData(radioStyles, val, "playBtnColor"), })}
-                defaultColor='#ffffff'
-                Component={ColorControl}
-                {...premiumProps}
-            />
-        } */}
-
-
-
-
-
+        <ProNotice 
+            title={__("Get More with Premium Version", "streamcast")}
+            features={[
+                { name: "Advanced Colors", desc: "Separate color control for every small element of the player." },
+                { name: "Hover Background", desc: "Option to change the background color on mouse hover." },
+                { name: "Artist Typography", desc: "Customize fonts for artist names alongside station names." },
+                { name: "Title Typography", desc: "Customize fonts for title alongside station names." }
+            ]}
+        />
 
     </>;
 }

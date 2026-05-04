@@ -5,6 +5,7 @@ import { playerTypeOptions } from '../../../../utils/options';
 import { updateData } from '../../../../../../bpl-tools/utils/functions'; 
 import { Tab } from '../../../../Panel/Tab/Tab'; 
 import { playerTypeSwitch } from '../../../../utils/functions';
+import ProNotice from '../../../../Panel/ProNotice/ProNotice';
 
 const GeneralXUltimate = ({ attributes, setAttributes }) => {
     const { radioPlayer } = attributes; 
@@ -72,6 +73,16 @@ const GeneralXUltimate = ({ attributes, setAttributes }) => {
             onChange={(e) => setAttributes({ radioPlayer: updateData(radioPlayer, e, "fetchNameFromUrl") })}
             help="If the Fetch From URL is checked, use the station name from the stream URL if available; otherwise, use the name set above."
         /> 
+
+        <ProNotice 
+            title={__("Get More with Premium Version", "streamcast")}
+            features={[
+                { name: "Visualizer", desc: "Stunning dynamic audio waves while playing." },
+                { name: "Advanced Themes", desc: "Choice of Dodger Blue, Bittersweet, and more." },
+                { name: "Custom Branding", desc: "Poster images, BG images, and custom color overlays." },
+                { name: "Full Metadata", desc: "Fetch station and artist name from URL." }
+            ]}
+        />
     </>;
 }
 

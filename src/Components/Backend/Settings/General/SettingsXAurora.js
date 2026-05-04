@@ -6,6 +6,7 @@ import { updateData } from '../../../../../../bpl-tools/utils/functions';
 import { BtnGroup, InlineDetailMediaUpload } from '../../../../../../bpl-tools/Components';
 import { playerTypeOptions } from '../../../../utils/options';
 import { playerTypeSwitch } from '../../../../utils/functions';
+import ProNotice from '../../../../Panel/ProNotice/ProNotice';
 
 const SettingsXAurora = ({ setAttributes, attributes }) => {
     const { radioPlayer } = attributes;
@@ -45,6 +46,15 @@ const SettingsXAurora = ({ setAttributes, attributes }) => {
                 value={welcomeMessage}
                 onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "welcomeMessage") })}
             /> 
+
+            <ProNotice 
+                title={__("Get More with Premium Version", "streamcast")}
+                features={[
+                    { name: "Art Work Image", desc: "Upload and display beautiful custom artwork." },
+                    { name: "Detailed Styling", desc: "Customize Station Name, Artist Name, and Hover colors." },
+                    { name: "Player Position", desc: "Align player to Left, Center, or Right." }
+                ]}
+            />
         </>
     )
 }

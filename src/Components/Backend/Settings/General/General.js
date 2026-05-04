@@ -5,8 +5,9 @@ import { playerTypeOptions, skins } from '../../../../utils/options';
 import { updateData } from '../../../../../../bpl-tools/utils/functions';
 import { BtnGroup, ColorControl, InlineDetailMediaUpload, Label } from '../../../../../../bpl-tools/Components';
 import { playerTypeSwitch, skinSwitch } from '../../../../utils/functions';
-import { BControlPro } from '../../../../../../bpl-tools/ProControls';
+import { BControlPro, ProAds } from '../../../../../../bpl-tools/ProControls';
 import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
+import ProNotice from '../../../../Panel/ProNotice/ProNotice';
 
 const General = ({ attributes, setAttributes }) => {
     const { radioPlayer, radioStyles } = attributes;
@@ -33,18 +34,13 @@ const General = ({ attributes, setAttributes }) => {
                         value={streamURL}
                         onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "streamURL") })}
                     />
-                    {/* <p className='mt20'>Player Position</p>
-                    <BControlPro
-                        value={playerPosition}
-                        options={[
-                            { label: "Left", value: "left" },
-                            { label: "Center", value: "center" },
-                            { label: "Right", value: "right" }
+
+                    <ProNotice 
+                        title={__("Get More with Premium Version", "streamcast")}
+                        features={[
+                            { name: "Player Position", desc: "Align player to Left, Center, or Right." }
                         ]}
-                        onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "playerPosition") })}
-                        Component={BtnGroup}
-                        {...premiumProps}
-                    /> */}
+                    />
 
                 </>
             }
@@ -63,15 +59,7 @@ const General = ({ attributes, setAttributes }) => {
                         value={stationName}
                         onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "stationName") })}
                     />
-                    {/* <BControlPro
-                        className='mt20'
-                        label='Fetch From URL'
-                        checked={fetchNameFromUrl}
-                        onChange={(e) => setAttributes({ radioPlayer: updateData(radioPlayer, e, "fetchNameFromUrl") })}
-                        Component={ToggleControl}
-                        {...premiumProps}
-                        help="If the Fetch From URL is checked, use the station name from the stream URL if available; otherwise, use the name set above."
-                    /> */}
+                    
                     <TextControl
                         className="mt20"
                         label={__("Welcome Message*", "streamcast")}
@@ -99,7 +87,16 @@ const General = ({ attributes, setAttributes }) => {
                                 })
                             }
                         />
-                    }             
+                    }
+
+                    <ProNotice 
+                        title={__("Get More with Premium Version", "streamcast")}
+                        features={[
+                            {name: "Auto Play & Volume", desc: "Automatically start playing with preset volume."},
+                            {name: "Fetch Name From URL", desc: "Get station name automatically from the stream."},
+                            { name: "Player Position", desc: "Align player to Left, Center, or Right." }
+                        ]}
+                    />             
                 </>
             }
 
@@ -130,10 +127,23 @@ const General = ({ attributes, setAttributes }) => {
                         value={welcomeMessage}
                         onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "welcomeMessage") })}
                     /> 
+
+                    <ProNotice 
+                        title={__("Get More with Premium Version", "streamcast")}
+                        features={[
+                            { name: "Custom Artwork", desc: "Show beautiful station images." },
+                            { name: "Show Time & BG Color", desc: "Display duration and customize colors." },
+                            { name: "Full Control", desc: "Autoplay, Volume, and Metadata fetching included." },
+                            { name: "Player Position", desc: "Align player to Left, Center, or Right." }
+                            
+                        ]}
+                    />
                 </>
             }
 
         </PanelBody>
+
+        <ProAds/>
     </>;
 }
 

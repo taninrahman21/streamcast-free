@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
 import { ColorControl, Typography } from '../../../../../../bpl-tools/Components';
 import { tabController, updateData } from '../../../../../../bpl-tools/utils/functions';
+import ProNotice from '../../../../Panel/ProNotice/ProNotice';
 
 const StyleXWooden = ({ attributes, setAttributes }) => {
     const { radioStyles } = attributes;
@@ -33,6 +34,15 @@ const StyleXWooden = ({ attributes, setAttributes }) => {
             value={contentColor}
             onChange={val => setAttributes({ radioStyles: updateData(radioStyles, val, "contentColor"), })}
             defaultColor='#ffffff'
+        />
+
+        <ProNotice 
+            title={__("Get More with Premium Version", "streamcast")}
+            features={[
+                { name: "Station Name Typography", desc: "Detailed control over station name fonts." },
+                { name: "Timestamp Style", desc: "Customize timestamp color and typography." },
+                { name: "Custom Texture", desc: "Apply premium textures to the wooden player." }
+            ]}
         />
 
     </>
