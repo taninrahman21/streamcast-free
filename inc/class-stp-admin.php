@@ -16,7 +16,6 @@ if (!class_exists('STP_Admin')) {
 			add_filter('manage_streamcast_posts_columns', [$this, 'manage_columns'], 10);
 			add_action('manage_streamcast_posts_custom_column', [$this, 'manage_custom_columns'], 10, 2);
 			add_action('edit_form_after_title', [$this, 'shortcode_area']);
-			add_filter('admin_footer_text', [$this, 'admin_footer']);
 		}
 
 		public static function register_post_type() {
@@ -131,17 +130,7 @@ if (!class_exists('STP_Admin')) {
             </div>
         </div>
 		<?php
-		}
-
-		public function admin_footer($text) {
-			if ('streamcast' === get_post_type()) {
-				$url = 'https://wordpress.org/support/plugin/streamcast/reviews/?filter=5#new-post';
-
-				return sprintf(__('If you like <strong>StreamCast Radio Player</strong> plugin, please leave us a <a href="%s" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a> rating.', 'streamcast'), $url);
-			}
-
-			return $text;
-		}
+		} 
 
 	}
 

@@ -232,13 +232,8 @@ Please report security bugs found in the source code of the StreamCast plugin th
 
 == Source Code ==
 
-The full unminified source code is available at the following public repository:
-https://github.com/taninrahman21/streamcast-free
-
-Build tool: npm
-Build steps:
-1. npm install
-2. npm run build
+You can find the source code, report bugs, and contribute to the development of this plugin on our GitHub repository: 
+[**StreamCast on GitHub**](https://github.com/bPlugins/streamcast-wp)
 
 == External Services ==
 
