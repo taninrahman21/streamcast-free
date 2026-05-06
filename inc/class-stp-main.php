@@ -13,8 +13,7 @@ class STP_Main {
 		do_action('csf_init');
 		add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue_admin_assets']);
 		add_action('admin_menu', [__CLASS__, 'add_help_pages']);
-		add_shortcode('stream', [__CLASS__, 'stream_shortcode']);
-
+		add_shortcode('stream', [__CLASS__, 'stream_shortcode']); 
 		add_filter('plugin_action_links_' . plugin_basename(STP_PLUGIN_FILE), [$this, 'add_action_links']);
 	}
 

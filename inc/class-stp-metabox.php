@@ -4,9 +4,11 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-if (class_exists('CSF')) { 
+if (class_exists('CSF')) {
 	$prefix = 'sc_';
-	$post_type = 'streamcast';  
+	$post_type = 'streamcast';
+
+	$stp_crown_icon = '<span class="stp-crown-icon" style="display: inline-flex; width: 18px; height: 18px; vertical-align: middle; margin-right: 5px; align-items: center; justify-content: center;"><img src="' . STP_PLUGIN_DIR . 'assets/crown.png" alt="pro-icon" style="width: 18px; height: 16px; display: block;" /></span>';
 
 	// Create a metabox
 	\CSF::createMetabox($prefix, array(
@@ -313,7 +315,7 @@ if (class_exists('CSF')) {
                             <li><strong>Custom CSS:</strong> Add your own styles to match your site perfectly.</li>
                             <li><strong>Player Position:</strong> Align your player to Left, Center, or Right.</li>
                         </ul>
-                        <a href="https://bplugins.com/products/streamcast-radio-player/pricing/" target="_blank" class="stp-pro-notice-button">Get Premium Version</a>
+                        <a href="edit.php?post_type=streamcast&page=streamcast#/pricing" class="stp-pro-notice-button">' . $stp_crown_icon . ' Get Preemium</a>
                     </div>
                 ',
 				'dependency' => array('opt-radio', '==', 'minimal'),
@@ -330,7 +332,7 @@ if (class_exists('CSF')) {
                             <li><strong>Fetch Name From URL:</strong> Get station name automatically from the stream.</li>
                             <li><strong>Custom CSS & Position:</strong> Full control over styling and placement.</li>
                         </ul>
-                        <a href="https://bplugins.com/products/streamcast-radio-player/pricing/" target="_blank" class="stp-pro-notice-button">Get Premium Version</a>
+                        <a href="edit.php?post_type=streamcast&page=streamcast#/pricing" class="stp-pro-notice-button">' . $stp_crown_icon . ' Get Preemium</a>
                     </div>
                 ',
 				'dependency' => array('opt-radio', '==', 'standard'),
@@ -347,7 +349,7 @@ if (class_exists('CSF')) {
                             <li><strong>Show Time & BG Color:</strong> Display duration and customize the layout color.</li>
                             <li><strong>Full Control:</strong> Autoplay, Volume, and Metadata fetching included.</li>
                         </ul>
-                        <a href="https://bplugins.com/products/streamcast-radio-player/pricing/" target="_blank" class="stp-pro-notice-button">Get Premium Version</a>
+                        <a href="edit.php?post_type=streamcast&page=streamcast#/pricing" class="stp-pro-notice-button">' . $stp_crown_icon . ' Get Preemium</a>
                     </div>
                 ',
 				'dependency' => array('opt-radio', '==', 'advanced'),
@@ -365,7 +367,7 @@ if (class_exists('CSF')) {
                             <li><strong>Custom Branding:</strong> Poster images, BG images, and custom color overlays.</li>
                             <li><strong>Full Metadata:</strong> Fetch station and artist name from URL.</li>
                         </ul>
-                        <a href="https://bplugins.com/products/streamcast-radio-player/pricing/" target="_blank" class="stp-pro-notice-button">Get Premium Version</a>
+                        <a href="edit.php?post_type=streamcast&page=streamcast#/pricing" class="stp-pro-notice-button">' . $stp_crown_icon . ' Get Preemium</a>
                     </div>
                 ',
 				'dependency' => array('opt-radio', '==', 'ultimate'),
@@ -382,7 +384,7 @@ if (class_exists('CSF')) {
                             <li><strong>Detailed Styling:</strong> Customize Station Name, Artist Name, and Hover colors.</li>
                             <li><strong>Wooden Special:</strong> Full control over Timestamp and Hover backgrounds.</li>
                         </ul>
-                        <a href="https://bplugins.com/products/streamcast-radio-player/pricing/" target="_blank" class="stp-pro-notice-button">Get Premium Version</a>
+                        <a href="edit.php?post_type=streamcast&page=streamcast#/pricing" class="stp-pro-notice-button">' . $stp_crown_icon . ' Get Preemium</a>
                     </div>
                 ',
 				'dependency' => array('opt-radio', 'any', 'echoStream,auroraPlay,wooden'),
