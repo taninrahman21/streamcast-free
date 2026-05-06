@@ -8,8 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class AJAX {
 	public function __construct() {
-		add_action( 'wp_ajax_my_user_vote', array( $this, 'fetch_stream_data' ) );
-		add_action( 'wp_ajax_nopriv_my_user_vote', array( $this, 'fetch_stream_data' ) );
+		add_action( 'wp_ajax_stp_fetch_stream', array( $this, 'fetch_stream_data' ) );
+		add_action( 'wp_ajax_nopriv_stp_fetch_stream', array( $this, 'fetch_stream_data' ) );
 	}
 
 	/**
@@ -28,8 +28,14 @@ class AJAX {
 			wp_send_json_error( 'Invalid URL', 400 );
 		}
 
+		// SSRF Protection: Validate the URL to prevent access to internal services
+		$validated_url = wp_http_validate_url( $url );
+		if ( ! $validated_url ) {
+			wp_send_json_error( 'Insecure or invalid URL detected', 400 );
+		}
+
 		// Fetch the data
-		$response = wp_remote_get( $url, array(
+		$response = wp_remote_get( $validated_url, array(
 			'timeout' => 5,
 		) );
 

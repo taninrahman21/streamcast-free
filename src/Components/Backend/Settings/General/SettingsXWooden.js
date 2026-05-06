@@ -2,12 +2,12 @@ import { SelectControl, TextControl, ToggleControl } from '@wordpress/components
 import { __ } from '@wordpress/i18n';
 import { updateData } from '../../../../../../bpl-tools/utils/functions'; 
 import { playerTypeOptions } from '../../../../utils/options';
-import { playerTypeSwitch } from '../../../../utils/functions';
-import ProNotice from '../../../../Panel/ProNotice/ProNotice';
+import { playerTypeSwitch } from '../../../../utils/functions'; 
+import { Notice } from '../../../../../../bpl-tools/Components';
 
 const SettingsXWooden = ({ setAttributes, attributes }) => {
     const { radioPlayer } = attributes; 
-    const { streamURL, stationName, welcomeMessage, fetchNameFromUrl, playerType } = radioPlayer; 
+    const { streamURL, stationName, fetchNameFromUrl, playerType } = radioPlayer; 
 
     return (
         <>
@@ -36,15 +36,10 @@ const SettingsXWooden = ({ setAttributes, attributes }) => {
                 onChange={(e) => setAttributes({ radioPlayer: updateData(radioPlayer, e, "fetchNameFromUrl") })}
                 help="If name can't access then will use the given station name"
             />
-           
-           <ProNotice 
-                title={__("Get More with Premium Version", "streamcast")}
-                features={[
-                    { name: "Vintage Textures", desc: "Unlock premium wooden and classic textures." },
-                    { name: "Hover Effects", desc: "Detailed control over interactive hover states." },
-                    { name: "Timestamp Branding", desc: "Custom styling for timestamp and player metadata." }
-                ]}
-            />
+
+            <Notice status='premium' isIcon={true}>
+                {__('Vintage Textures, Hover Effects, Player Metadata, Timestamp Styling are available in Premium Version.', 'streamcast')}
+            </Notice>
         </>
     )
 }

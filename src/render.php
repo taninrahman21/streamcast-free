@@ -15,8 +15,8 @@ $volume         = $attributes['radioPlayer']['initialVolume'];
 $playerPosition = $attributes['radioPlayer']['playerPosition'];
 $nonce          = wp_create_nonce( 'stp_fetch_nonce' );
 
-if ( ! function_exists( 'getPlayerPositionStyles' ) ) {
-	function getPlayerPositionStyles( $id, $playerPosition ) {
+if ( ! function_exists( 'stp_get_player_position_styles' ) ) {
+	function stp_get_player_position_styles( $id, $playerPosition ) {
 		$styles = '';
 		if ( $playerPosition === 'center' ) {
 			$styles = 'margin: auto; display: block;';
@@ -30,7 +30,7 @@ if ( ! function_exists( 'getPlayerPositionStyles' ) ) {
 	}
 }
 
-$dynamicPlayerStyles = getPlayerPositionStyles( $id, $playerPosition );
+$dynamicPlayerStyles = stp_get_player_position_styles( $id, $playerPosition );
 
 if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 	$stationName      = $attributes['radioPlayer']['stationName'];
@@ -66,7 +66,7 @@ if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 				try {
 					const fetchUrl = <?php echo wp_json_encode( esc_url( $streamUrl ) . '/currentsong?sid=1' ); ?>;
 					const formData = new FormData();
-					formData.append('action', 'my_user_vote');
+					formData.append('action', 'stp_fetch_stream');
 					formData.append("url", fetchUrl);
 					formData.append("nonce", <?php echo wp_json_encode( $nonce ); ?>);
 
@@ -88,12 +88,28 @@ if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 
 			async function fetchIceCastData() {
 				try {
-					const response = await fetch(<?php echo wp_json_encode( esc_url( $streamUrl ) . '/status-json.xsl' ); ?>);
-					const data = await response.json();
+					const fetchUrl = <?php echo wp_json_encode( esc_url( $streamUrl ) . '/status-json.xsl' ); ?>;
+					const formData = new FormData();
+					formData.append('action', 'stp_fetch_stream');
+					formData.append("url", fetchUrl);
+					formData.append("nonce", <?php echo wp_json_encode( $nonce ); ?>);
 
-					const stream = data.icestats?.source || null;
-					if (stream) {
-						return stream.title || stream.song || stream.server_name || "No Title Available";
+					const response = await fetch(<?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>, {
+						method: "POST",
+						body: formData,
+					});
+
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+
+					const result = await response.json();
+					if (result?.success && result?.data) {
+						const data = JSON.parse(result.data);
+						const stream = data.icestats?.source || null;
+						if (stream) {
+							return stream.title || stream.song || stream.server_name || "No Title Available";
+						}
 					}
 					return null;
 				} catch (error) {

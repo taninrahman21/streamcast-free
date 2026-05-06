@@ -11,7 +11,10 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(param);
             }
-            const playerData = window.top[getQueryParam("id")];
+            let playerData = null;
+            if (window.top && window.top.location.origin === window.location.origin) {
+                playerData = window.top[getQueryParam("id")];
+            }
         </script>
         <style>
             body {
@@ -24,9 +27,13 @@
 
     <body>
         <script type="text/javascript">
-            window.MRP?.insert(playerData)
-            window.MRP?.setTitle(playerData.title);
-            window.top[getQueryParam("id")] = null;
+            if (playerData) {
+                window.MRP?.insert(playerData)
+                window.MRP?.setTitle(playerData.title);
+                if (window.top && window.top.location.origin === window.location.origin) {
+                    window.top[getQueryParam("id")] = null;
+                }
+            }
         </script>
     </body>
 

@@ -17,6 +17,10 @@ if (!class_exists('STP_Block')) {
 		}
 
 		public static function scb_enqueue_block_assets() {
+			if ( ! has_block( 'scb/streamcast-block' ) && ! is_admin() ) {
+				return;
+			}
+
 			wp_enqueue_style('scb-style', STP_PLUGIN_DIR . 'public/css/radio.css', array(), STP_PLUGIN_VERSION, 'all');
 			wp_enqueue_style('scb-player-style', STP_PLUGIN_DIR . 'public/css/styles.css', array(), STP_PLUGIN_VERSION, 'all');
 			wp_enqueue_script('scb-script', STP_PLUGIN_DIR . 'public/js/streamcast-final.js', array('jquery'), STP_PLUGIN_VERSION, true);

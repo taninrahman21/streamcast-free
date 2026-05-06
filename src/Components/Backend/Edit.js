@@ -44,7 +44,7 @@ const Edit = (props) => {
   const fetchShoutCastData = async () => {
     try {
       const formData = new FormData();
-      formData.append("action", "my_user_vote");
+      formData.append("action", "stp_fetch_stream");
       formData.append("url", urlToFetch);
       formData.append("nonce", window.myScriptData.nonce);
 
@@ -73,18 +73,32 @@ const Edit = (props) => {
 
   const fetchIceCastData = async () => {
     try {
-      const response = await fetch(urlToFetchIceCast);
-      const data = await response.json();
+      const formData = new FormData();
+      formData.append("action", "stp_fetch_stream");
+      formData.append("url", urlToFetchIceCast);
+      formData.append("nonce", window.myScriptData.nonce);
 
-      // Extract stream info (modify based on JSON structure)
-      const stream = data.icestats?.source || null;
-      if (stream) {
-        const title =
-          stream?.title ||
-          stream?.song ||
-          stream?.server_name ||
-          "No Title Available";
-        return title;
+      const response = await fetch(`${window.myScriptData.ajaxUrl}`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        return null;
+      }
+
+      const result = await response.json();
+      if (result?.success && result?.data) {
+        const data = JSON.parse(result.data);
+        const stream = data.icestats?.source || null;
+        if (stream) {
+          const title =
+            stream?.title ||
+            stream?.song ||
+            stream?.server_name ||
+            "No Title Available";
+          return title;
+        }
       }
       return null;
     } catch (error) {

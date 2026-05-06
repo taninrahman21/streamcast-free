@@ -2,8 +2,8 @@ import { RangeControl, SelectControl, TextControl, ToggleControl } from '@wordpr
 import { __ } from '@wordpress/i18n'; 
 import { updateData } from '../../../../../../bpl-tools/utils/functions';
 import { playerTypeOptions } from '../../../../utils/options';
-import { playerTypeSwitch } from '../../../../utils/functions';
-import ProNotice from '../../../../Panel/ProNotice/ProNotice';
+import { playerTypeSwitch } from '../../../../utils/functions'; 
+import { Notice } from '../../../../../../bpl-tools/Components';
 
 const SettingsXEchoStream = ({ setAttributes, attributes }) => {
     const { radioPlayer, radioStyles } = attributes;
@@ -56,14 +56,11 @@ const SettingsXEchoStream = ({ setAttributes, attributes }) => {
                 step={1}
             />
 
-            <ProNotice 
-                title={__("Get More with Premium Version", "streamcast")}
-                features={[
-                    { name: "Poster Image", desc: "Set a stunning background poster." },
-                    { name: "Visualizer", desc: "Add dynamic audio visual effects." },
-                    { name: "Full Customization", desc: "Unlock all advanced styling and metadata options." }
-                ]}
-            />
+            <Notice status='premium' isIcon={true}>
+                {__('Background Image, Dynamic Audio Visualizer, Full Player Customization are available in Premium Version.', 'streamcast')}
+            </Notice>
+
+             
         </>
     )
 }

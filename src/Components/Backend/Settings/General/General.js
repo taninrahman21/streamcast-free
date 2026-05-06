@@ -2,12 +2,11 @@ import React from 'react';
 import { PanelBody, RangeControl, SelectControl, TextControl, ToggleControl, __experimentalNumberControl as NumberControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { playerTypeOptions, skins } from '../../../../utils/options';
-import { updateData } from '../../../../../../bpl-tools/utils/functions';
-import { BtnGroup, ColorControl, InlineDetailMediaUpload, Label } from '../../../../../../bpl-tools/Components';
+import { updateData } from '../../../../../../bpl-tools/utils/functions'; 
 import { playerTypeSwitch, skinSwitch } from '../../../../utils/functions';
-import { BControlPro, ProAds } from '../../../../../../bpl-tools/ProControls';
-import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
-import ProNotice from '../../../../Panel/ProNotice/ProNotice';
+import { ProAds } from '../../../../../../bpl-tools/ProControls';
+import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options'; 
+import { Notice } from '../../../../../../bpl-tools/Components';
 
 const General = ({ attributes, setAttributes }) => {
     const { radioPlayer, radioStyles } = attributes;
@@ -35,12 +34,11 @@ const General = ({ attributes, setAttributes }) => {
                         onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "streamURL") })}
                     />
 
-                    <ProNotice 
-                        title={__("Get More with Premium Version", "streamcast")}
-                        features={[
-                            { name: "Player Position", desc: "Align player to Left, Center, or Right." }
-                        ]}
-                    />
+                    <Notice status='premium' isIcon={true}>
+                        {__('Player Position (Left, Center, Right) are available in Premium Version.', 'streamcast')}
+                    </Notice>
+
+                    
 
                 </>
             }
@@ -89,14 +87,9 @@ const General = ({ attributes, setAttributes }) => {
                         />
                     }
 
-                    <ProNotice 
-                        title={__("Get More with Premium Version", "streamcast")}
-                        features={[
-                            {name: "Auto Play & Volume", desc: "Automatically start playing with preset volume."},
-                            {name: "Fetch Name From URL", desc: "Get station name automatically from the stream."},
-                            { name: "Player Position", desc: "Align player to Left, Center, or Right." }
-                        ]}
-                    />             
+                    <Notice status='premium' isIcon={true}>
+                        {__('Auto Play, Initial Volume Control, Fetch Station Name from URL, Player Position (Left, Center, Right) are available in Premium Version.', 'streamcast')}
+                    </Notice>     
                 </>
             }
 
@@ -128,22 +121,13 @@ const General = ({ attributes, setAttributes }) => {
                         onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "welcomeMessage") })}
                     /> 
 
-                    <ProNotice 
-                        title={__("Get More with Premium Version", "streamcast")}
-                        features={[
-                            { name: "Custom Artwork", desc: "Show beautiful station images." },
-                            { name: "Show Time & BG Color", desc: "Display duration and customize colors." },
-                            { name: "Full Control", desc: "Autoplay, Volume, and Metadata fetching included." },
-                            { name: "Player Position", desc: "Align player to Left, Center, or Right." }
-                            
-                        ]}
-                    />
+                    <Notice status='premium' isIcon={true}>
+                        {__('Custom Artwork Image (94x94 px), Auto Play, Initial Volume Control, Show/Hide Play Time, Background Color Styling, Player Position (Left, Center, Right) are available in Premium Version.', 'streamcast')}
+                    </Notice>
                 </>
             }
 
         </PanelBody>
-
-        <ProAds/>
     </>;
 }
 

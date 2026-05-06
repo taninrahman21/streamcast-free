@@ -1,9 +1,9 @@
 .stp-pro-notice-box {
-    background: linear-gradient(135deg, #f9fbff 0%, #f0f5ff 100%);
+    background: linear-gradient(135deg, #fff9f0 0%, #fff5e6 100%);
     padding: 25px;
     border-radius: 12px;
-    border: 1px solid #e0e7ff;
-    box-shadow: 0 4px 15px rgba(35, 119, 242, 0.05);
+    border: 1px solid #ffeed6;
+    box-shadow: 0 4px 15px rgba(251, 122, 1, 0.05);
     position: relative;
     overflow: hidden;
 
@@ -14,7 +14,7 @@
         left: 0;
         width: 4px;
         height: 100%;
-        background: #2377f2;
+        background: #fb7a01;
     }
 
     &.compact {
@@ -55,7 +55,7 @@
 
 .stp-pro-notice-title {
     margin-top: 0 !important;
-    color: #1a56b1 !important;
+    color: #d66801 !important;
     font-size: 18px !important;
     font-weight: 700 !important;
     display: flex;
@@ -65,7 +65,7 @@
 
 .stp-pro-notice-desc {
     font-size: 14px;
-    color: #2377f2;
+    color: #fb7a01;
     margin-bottom: 15px;
     font-weight: 500;
 }
@@ -79,19 +79,19 @@
         position: relative;
         padding-left: 25px;
         margin-bottom: 10px;
-        color: #1a56b1;
+        color: #d66801;
         font-size: 13.5px;
 
         &::before {
             content: "✦";
             position: absolute;
             left: 0;
-            color: #2377f2;
+            color: #fb7a01;
             font-weight: bold;
         }
 
         strong {
-            color: #0d2c5a;
+            color: #8c4400;
         }
     }
 }
@@ -100,7 +100,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #2377f2;
+    background: #fb7a01;
     color: #fff !important;
     padding: 10px 22px;
     border-radius: 6px;
@@ -108,14 +108,14 @@
     font-weight: 600;
     font-size: 14px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(35, 119, 242, 0.2);
+    box-shadow: 0 4px 12px rgba(251, 122, 1, 0.2);
     border: none;
     cursor: pointer;
 
     &:hover {
-        background: #1a56b1;
+        background: #d66801;
         transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(35, 119, 242, 0.3);
+        box-shadow: 0 6px 18px rgba(251, 122, 1, 0.3);
         color: #fff !important;
     }
 }

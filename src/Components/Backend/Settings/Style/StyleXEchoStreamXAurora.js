@@ -1,9 +1,8 @@
 import { __experimentalUnitControl as UnitControl } from '@wordpress/components';
-import { ColorControl } from '../../../../../../bpl-tools/Components';
+import { ColorControl, Notice } from '../../../../../../bpl-tools/Components';
 import { __ } from "@wordpress/i18n";
 import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
-import { updateData } from '../../../../../../bpl-tools/utils/functions';
-import ProNotice from '../../../../Panel/ProNotice/ProNotice';
+import { updateData } from '../../../../../../bpl-tools/utils/functions'; 
 
 
 const StyleXEchoStreamXAurora = ({ attributes, setAttributes }) => {
@@ -39,16 +38,17 @@ const StyleXEchoStreamXAurora = ({ attributes, setAttributes }) => {
             defaultColor='#ffffff'
         />
 
-        <ProNotice 
-            title={__("Get More with Premium Version", "streamcast")}
-            features={[
-                { name: "Advanced Colors", desc: "Separate color control for every small element of the player." },
-                { name: "Hover Background", desc: "Option to change the background color on mouse hover." },
-                { name: "Artist Typography", desc: "Customize fonts for artist names alongside station names." },
-                { name: "Title Typography", desc: "Customize fonts for title alongside station names." }
-            ]}
-        />
+        {
+            playerType === "auroraPlay" && <Notice status='premium' isIcon={true}>
+                {__('Advanced Color control for every UI element, Hover Background Colors, Typography control (Station Name & Artist Name) are available in Premium Version.', 'streamcast')}
+            </Notice>
+        }
 
+        {
+            playerType === "echoStream" && <Notice status='premium' isIcon={true}>
+                {__('Advanced Color control for small elements, Hover Background Styles, Typography control (Station Name & Artist Name) are available in Premium Version.', 'streamcast')}
+            </Notice>
+        } 
     </>;
 }
 

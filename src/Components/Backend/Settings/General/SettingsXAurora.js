@@ -1,12 +1,9 @@
-import { PanelBody, RangeControl, SelectControl, TextControl, ToggleControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
-import React from 'react'
-import { BControlPro } from '../../../../../../bpl-tools/ProControls';
-import { updateData } from '../../../../../../bpl-tools/utils/functions';
-import { BtnGroup, InlineDetailMediaUpload } from '../../../../../../bpl-tools/Components';
+import { SelectControl, TextControl, ToggleControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n'; 
+import { updateData } from '../../../../../../bpl-tools/utils/functions'; 
 import { playerTypeOptions } from '../../../../utils/options';
-import { playerTypeSwitch } from '../../../../utils/functions';
-import ProNotice from '../../../../Panel/ProNotice/ProNotice';
+import { playerTypeSwitch } from '../../../../utils/functions'; 
+import { Notice } from '../../../../../../bpl-tools/Components';
 
 const SettingsXAurora = ({ setAttributes, attributes }) => {
     const { radioPlayer } = attributes;
@@ -47,14 +44,10 @@ const SettingsXAurora = ({ setAttributes, attributes }) => {
                 onChange={(val) => setAttributes({ radioPlayer: updateData(radioPlayer, val, "welcomeMessage") })}
             /> 
 
-            <ProNotice 
-                title={__("Get More with Premium Version", "streamcast")}
-                features={[
-                    { name: "Art Work Image", desc: "Upload and display beautiful custom artwork." },
-                    { name: "Detailed Styling", desc: "Customize Station Name, Artist Name, and Hover colors." },
-                    { name: "Player Position", desc: "Align player to Left, Center, or Right." }
-                ]}
-            />
+            <Notice status='premium' isIcon={true}>
+                {__('Custom Artwork Image, Player Position (Left, Center, Right) are available in Premium Version.', 'streamcast')}
+            </Notice>
+            
         </>
     )
 }

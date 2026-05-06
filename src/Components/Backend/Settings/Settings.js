@@ -4,10 +4,9 @@ import { TabPanel } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 
 import { tabController } from "../../../../../bpl-tools/utils/functions";
-import { AboutProModal } from "../../../../../bpl-tools/ProControls";
+import { AdvertiseCard } from "../../../../../bpl-tools/ProControls";
 import { generalStyleTabs } from "../../../utils/options";
-import General from "./General/General";
-import { BBlocksAds } from "../../../../../bpl-tools/Components";
+import General from "./General/General"; 
 import GeneralTab from "./General/GeneralTab";
 import Style from "./Style/Style";
 
@@ -56,6 +55,9 @@ const Settings = ({ attributes, setAttributes }) => {
               setAttributes={setAttributes} 
             />
           )}
+
+
+        <AdvertiseCard/>
       </InspectorControls> 
     </>
   );

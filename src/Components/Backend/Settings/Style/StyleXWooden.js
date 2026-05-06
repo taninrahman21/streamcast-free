@@ -1,10 +1,8 @@
-import { BControlPro } from '../../../../../../bpl-tools/ProControls';
-import { TabPanel, __experimentalUnitControl as UnitControl } from '@wordpress/components';
+import { __experimentalUnitControl as UnitControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { perUnit, pxUnit } from '../../../../../../bpl-tools/utils/options';
-import { ColorControl, Typography } from '../../../../../../bpl-tools/Components';
-import { tabController, updateData } from '../../../../../../bpl-tools/utils/functions';
-import ProNotice from '../../../../Panel/ProNotice/ProNotice';
+import { ColorControl, Notice } from '../../../../../../bpl-tools/Components';
+import { updateData } from '../../../../../../bpl-tools/utils/functions';
 
 const StyleXWooden = ({ attributes, setAttributes }) => {
     const { radioStyles } = attributes;
@@ -36,14 +34,9 @@ const StyleXWooden = ({ attributes, setAttributes }) => {
             defaultColor='#ffffff'
         />
 
-        <ProNotice 
-            title={__("Get More with Premium Version", "streamcast")}
-            features={[
-                { name: "Station Name Typography", desc: "Detailed control over station name fonts." },
-                { name: "Timestamp Style", desc: "Customize timestamp color and typography." },
-                { name: "Custom Texture", desc: "Apply premium textures to the wooden player." }
-            ]}
-        />
+        <Notice status='premium' isIcon={true}>
+            {__('Station Name Typography (Font Control), Timestamp Typography & Color, Custom Premium Textures are available in Premium Version.', 'streamcast')}
+        </Notice>
 
     </>
 }
