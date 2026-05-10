@@ -14,11 +14,11 @@
   //
   // Constants
   //
-  var CSF   = CSF || {};
+  var STREAMCAST_STREAMCAST_STREAMCAST_CSF   = STREAMCAST_STREAMCAST_STREAMCAST_CSF || {};
 
-  CSF.funcs = {};
+  STREAMCAST_STREAMCAST_CSF.funcs = {};
 
-  CSF.vars  = {
+  STREAMCAST_STREAMCAST_CSF.vars  = {
     onloaded: false,
     $body: $('body'),
     $window: $(window),
@@ -33,7 +33,7 @@
   //
   // Helper Functions
   //
-  CSF.helper = {
+  STREAMCAST_STREAMCAST_CSF.helper = {
 
     //
     // Generate UID
@@ -54,7 +54,7 @@
     name_nested_replace: function( $selector, field_id ) {
 
       var checks = [];
-      var regex  = new RegExp(CSF.helper.preg_quote(field_id +'[\\d+]'), 'g');
+      var regex  = new RegExp(STREAMCAST_STREAMCAST_CSF.helper.preg_quote(field_id +'[\\d+]'), 'g');
 
       $selector.find(':radio').each(function() {
         if ( this.checked || this.orginal_checked ) {
@@ -100,7 +100,7 @@
   //
   // Custom clone for textarea and select clone() bug
   //
-  $.fn.csf_clone = function() {
+  $.fn.streamcast_csf_clone = function() {
 
     var base   = $.fn.clone.apply(this, arguments),
         clone  = this.find('select').add(this.filter('select')),
@@ -127,13 +127,13 @@
   //
   // Expand All Options
   //
-  $.fn.csf_expand_all = function() {
+  $.fn.streamcast_csf_expand_all = function() {
     return this.each( function() {
       $(this).on('click', function( e ) {
 
         e.preventDefault();
-        $('.csf-wrapper').toggleClass('csf-show-all');
-        $('.csf-section').csf_reload_script();
+        $('.streamcast-csf-wrapper').toggleClass('streamcast-csf-show-all');
+        $('.streamcast-csf-section').streamcast_csf_reload_script();
         $(this).find('.fa').toggleClass('fa-indent').toggleClass('fa-outdent');
 
       });
@@ -143,7 +143,7 @@
   //
   // Options Navigation
   //
-  $.fn.csf_nav_options = function() {
+  $.fn.streamcast_csf_nav_options = function() {
     return this.each( function() {
 
       var $nav    = $(this),
@@ -160,7 +160,7 @@
 
         if ( $link.length ) {
 
-          $link.closest('.csf-tab-item').addClass('csf-tab-expanded').siblings().removeClass('csf-tab-expanded');
+          $link.closest('.streamcast-csf-tab-item').addClass('streamcast-csf-tab-expanded').siblings().removeClass('streamcast-csf-tab-expanded');
 
           if( $link.next().is('ul') ) {
 
@@ -169,8 +169,8 @@
 
           }
 
-          $links.removeClass('csf-active');
-          $link.addClass('csf-active');
+          $links.removeClass('streamcast-csf-active');
+          $link.addClass('streamcast-csf-active');
 
           if ( $last ) {
             $last.addClass('hidden');
@@ -179,9 +179,9 @@
           var $section = $('[data-section-id="'+slug+'"]');
 
           $section.removeClass('hidden');
-          $section.csf_reload_script();
+          $section.streamcast_csf_reload_script();
 
-          $('.csf-section-id').val( $section.index()+1 );
+          $('.streamcast-csf-section-id').val( $section.index()+1 );
 
           $last = $section;
 
@@ -200,12 +200,12 @@
   //
   // Metabox Tabs
   //
-  $.fn.csf_nav_metabox = function() {
+  $.fn.streamcast_csf_nav_metabox = function() {
     return this.each( function() {
 
       var $nav      = $(this),
           $links    = $nav.find('a'),
-          $sections = $nav.parent().find('.csf-section'),
+          $sections = $nav.parent().find('.streamcast-csf-section'),
           $last;
 
       $links.each( function( index ) {
@@ -216,8 +216,8 @@
 
           var $link = $(this);
 
-          $links.removeClass('csf-active');
-          $link.addClass('csf-active');
+          $links.removeClass('streamcast-csf-active');
+          $link.addClass('streamcast-csf-active');
 
           if ( $last !== undefined ) {
             $last.addClass('hidden');
@@ -226,7 +226,7 @@
           var $section = $sections.eq(index);
 
           $section.removeClass('hidden');
-          $section.csf_reload_script();
+          $section.streamcast_csf_reload_script();
 
           $last = $section;
 
@@ -242,15 +242,15 @@
   //
   // Metabox Page Templates Listener
   //
-  $.fn.csf_page_templates = function() {
+  $.fn.streamcast_csf_page_templates = function() {
     if ( this.length ) {
 
       $(document).on('change', '.editor-page-attributes__template select, #page_template, .edit-post-post-status + div select', function() {
 
         var maybe_value = $(this).val() || 'default';
 
-        $('.csf-page-templates').removeClass('csf-metabox-show').addClass('csf-metabox-hide');
-        $('.csf-page-'+maybe_value.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'-')).removeClass('csf-metabox-hide').addClass('csf-metabox-show');
+        $('.streamcast-csf-page-templates').removeClass('streamcast-csf-metabox-show').addClass('streamcast-csf-metabox-hide');
+        $('.streamcast-csf-page-'+maybe_value.toLowerCase().replace(/[^a-zA-Z0-9]+/g,'-')).removeClass('streamcast-csf-metabox-hide').addClass('streamcast-csf-metabox-show');
 
       });
 
@@ -260,7 +260,7 @@
   //
   // Metabox Post Formats Listener
   //
-  $.fn.csf_post_formats = function() {
+  $.fn.streamcast_csf_post_formats = function() {
     if ( this.length ) {
 
       $(document).on('change', '.editor-post-format select, #formatdiv input[name="post_format"]', function() {
@@ -270,8 +270,8 @@
         // Fallback for classic editor version
         maybe_value = ( maybe_value === '0' ) ? 'default' : maybe_value;
 
-        $('.csf-post-formats').removeClass('csf-metabox-show').addClass('csf-metabox-hide');
-        $('.csf-post-format-'+maybe_value).removeClass('csf-metabox-hide').addClass('csf-metabox-show');
+        $('.streamcast-csf-post-formats').removeClass('streamcast-csf-metabox-show').addClass('streamcast-csf-metabox-hide');
+        $('.streamcast-csf-post-format-'+maybe_value).removeClass('streamcast-csf-metabox-hide').addClass('streamcast-csf-metabox-show');
 
       });
 
@@ -281,7 +281,7 @@
   //
   // Search
   //
-  $.fn.csf_search = function() {
+  $.fn.streamcast_csf_search = function() {
     return this.each( function() {
 
       var $this  = $(this),
@@ -290,15 +290,15 @@
       $input.on('change keyup', function() {
 
         var value    = $(this).val(),
-            $wrapper = $('.csf-wrapper'),
-            $section = $wrapper.find('.csf-section'),
-            $fields  = $section.find('> .csf-field:not(.csf-depend-on)'),
-            $titles  = $fields.find('> .csf-title, .csf-search-tags');
+            $wrapper = $('.streamcast-csf-wrapper'),
+            $section = $wrapper.find('.streamcast-csf-section'),
+            $fields  = $section.find('> .streamcast-csf-field:not(.streamcast-csf-depend-on)'),
+            $titles  = $fields.find('> .streamcast-csf-title, .streamcast-csf-search-tags');
 
         if ( value.length > 3 ) {
 
-          $fields.addClass('csf-metabox-hide');
-          $wrapper.addClass('csf-search-all');
+          $fields.addClass('streamcast-csf-metabox-hide');
+          $wrapper.addClass('streamcast-csf-search-all');
 
           $titles.each( function() {
 
@@ -306,10 +306,10 @@
 
             if ( $title.text().match( new RegExp('.*?' + value + '.*?', 'i') ) ) {
 
-              var $field = $title.closest('.csf-field');
+              var $field = $title.closest('.streamcast-csf-field');
 
-              $field.removeClass('csf-metabox-hide');
-              $field.parent().csf_reload_script();
+              $field.removeClass('streamcast-csf-metabox-hide');
+              $field.parent().streamcast_csf_reload_script();
 
             }
 
@@ -317,8 +317,8 @@
 
         } else {
 
-          $fields.removeClass('csf-metabox-hide');
-          $wrapper.removeClass('csf-search-all');
+          $fields.removeClass('streamcast-csf-metabox-hide');
+          $wrapper.removeClass('streamcast-csf-search-all');
 
         }
 
@@ -330,12 +330,12 @@
   //
   // Sticky Header
   //
-  $.fn.csf_sticky = function() {
+  $.fn.streamcast_csf_sticky = function() {
     return this.each( function() {
 
       var $this     = $(this),
           $window   = $(window),
-          $inner    = $this.find('.csf-header-inner'),
+          $inner    = $this.find('.streamcast-csf-header-inner'),
           padding   = parseInt( $inner.css('padding-left') ) + parseInt( $inner.css('padding-right') ),
           offset    = 32,
           scrollTop = 0,
@@ -349,10 +349,10 @@
 
             if ( stickyTop <= offset && winWidth > 782 ) {
               $inner.css({width: $this.outerWidth()-padding});
-              $this.css({height: $this.outerHeight()}).addClass( 'csf-sticky' );
+              $this.css({height: $this.outerHeight()}).addClass( 'streamcast-csf-sticky' );
             } else {
               $inner.removeAttr('style');
-              $this.removeAttr('style').removeClass( 'csf-sticky' );
+              $this.removeAttr('style').removeClass( 'streamcast-csf-sticky' );
             }
 
           },
@@ -385,7 +385,7 @@
   //
   // Dependency System
   //
-  $.fn.csf_dependency = function() {
+  $.fn.streamcast_csf_dependency = function() {
     return this.each( function() {
 
       var $this   = $(this),
@@ -393,8 +393,8 @@
 
       if( $fields.length ) {
 
-        var normal_ruleset = $.csf_deps.createRuleset(),
-            global_ruleset = $.csf_deps.createRuleset(),
+        var normal_ruleset = $.streamcast_csf_deps.createRuleset(),
+            global_ruleset = $.streamcast_csf_deps.createRuleset(),
             normal_depends = [],
             global_depends = [];
 
@@ -427,11 +427,11 @@
         });
 
         if ( normal_depends.length ) {
-          $.csf_deps.enable($this, normal_ruleset, normal_depends);
+          $.streamcast_csf_deps.enable($this, normal_ruleset, normal_depends);
         }
 
         if ( global_depends.length ) {
-          $.csf_deps.enable(CSF.vars.$body, global_ruleset, global_depends);
+          $.streamcast_csf_deps.enable(STREAMCAST_STREAMCAST_CSF.vars.$body, global_ruleset, global_depends);
         }
 
       }
@@ -442,15 +442,15 @@
   //
   // Field: accordion
   //
-  $.fn.csf_field_accordion = function() {
+  $.fn.streamcast_csf_field_accordion = function() {
     return this.each( function() {
 
-      var $titles = $(this).find('.csf-accordion-title');
+      var $titles = $(this).find('.streamcast-csf-accordion-title');
 
       $titles.on('click', function() {
 
         var $title   = $(this),
-            $icon    = $title.find('.csf-accordion-icon'),
+            $icon    = $title.find('.streamcast-csf-accordion-icon'),
             $content = $title.next();
 
         if ( $icon.hasClass('fa-angle-right') ) {
@@ -461,12 +461,12 @@
 
         if ( !$content.data( 'opened' ) ) {
 
-          $content.csf_reload_script();
+          $content.streamcast_csf_reload_script();
           $content.data( 'opened', true );
 
         }
 
-        $content.toggleClass('csf-accordion-open');
+        $content.toggleClass('streamcast-csf-accordion-open');
 
       });
 
@@ -476,7 +476,7 @@
   //
   // Field: backup
   //
-  $.fn.csf_field_backup = function() {
+  $.fn.streamcast_csf_field_backup = function() {
     return this.each( function() {
 
       if ( window.wp.customize === undefined ) { return; }
@@ -484,8 +484,8 @@
       var base    = this,
           $this   = $(this),
           $body   = $('body'),
-          $import = $this.find('.csf-import'),
-          $reset  = $this.find('.csf-reset');
+          $import = $this.find('.streamcast-csf-import'),
+          $reset  = $this.find('.streamcast-csf-reset');
 
       base.notificationOverlay = function() {
 
@@ -499,7 +499,7 @@
           }
 
           // then show a notification overlay
-          wp.customize.notifications.add( new wp.customize.OverlayNotification('csf_field_backup_notification', {
+          wp.customize.notifications.add( new wp.customize.OverlayNotification('streamcast_csf_field_backup_notification', {
             type: 'default',
             message: '&nbsp;',
             loading: true
@@ -513,11 +513,11 @@
 
         e.preventDefault();
 
-        if ( CSF.vars.is_confirm ) {
+        if ( STREAMCAST_STREAMCAST_CSF.vars.is_confirm ) {
 
           base.notificationOverlay();
 
-          window.wp.ajax.post('csf-reset', {
+          window.wp.ajax.post('streamcast-csf-reset', {
             unique: $reset.data('unique'),
             nonce: $reset.data('nonce')
           })
@@ -526,7 +526,7 @@
           })
           .fail( function( response ) {
             alert( response.error );
-            wp.customize.notifications.remove('csf_field_backup_notification');
+            wp.customize.notifications.remove('streamcast_csf_field_backup_notification');
           });
 
         }
@@ -537,19 +537,19 @@
 
         e.preventDefault();
 
-        if ( CSF.vars.is_confirm ) {
+        if ( STREAMCAST_STREAMCAST_CSF.vars.is_confirm ) {
 
           base.notificationOverlay();
 
-          window.wp.ajax.post( 'csf-import', {
+          window.wp.ajax.post( 'streamcast-csf-import', {
             unique: $import.data('unique'),
             nonce: $import.data('nonce'),
-            data: $this.find('.csf-import-data').val()
+            data: $this.find('.streamcast-csf-import-data').val()
           }).done( function( response ) {
             window.location.reload(true);
           }).fail( function( response ) {
             alert( response.error );
-            wp.customize.notifications.remove('csf_field_backup_notification');
+            wp.customize.notifications.remove('streamcast_csf_field_backup_notification');
           });
 
         }
@@ -562,16 +562,16 @@
   //
   // Field: background
   //
-  $.fn.csf_field_background = function() {
+  $.fn.streamcast_csf_field_background = function() {
     return this.each( function() {
-      $(this).find('.csf--background-image').csf_reload_script();
+      $(this).find('.streamcast-csf--background-image').streamcast_csf_reload_script();
     });
   };
 
   //
   // Field: code_editor
   //
-  $.fn.csf_field_code_editor = function() {
+  $.fn.streamcast_csf_field_code_editor = function() {
     return this.each( function() {
 
       if ( typeof CodeMirror !== 'function' ) { return; }
@@ -591,21 +591,21 @@
           var code_editor = CodeMirror.fromTextArea( $textarea[0], data_editor );
 
           // load code-mirror theme css.
-          if ( data_editor.theme !== 'default' && CSF.vars.code_themes.indexOf(data_editor.theme) === -1 ) {
+          if ( data_editor.theme !== 'default' && STREAMCAST_STREAMCAST_CSF.vars.code_themes.indexOf(data_editor.theme) === -1 ) {
 
             var $cssLink = $('<link>');
 
-            $('#csf-codemirror-css').after( $cssLink );
+            $('#streamcast-csf-codemirror-css').after( $cssLink );
 
             $cssLink.attr({
               rel: 'stylesheet',
-              id: 'csf-codemirror-'+ data_editor.theme +'-css',
+              id: 'streamcast-csf-codemirror-'+ data_editor.theme +'-css',
               href: data_editor.cdnURL +'/theme/'+ data_editor.theme +'.min.css',
               type: 'text/css',
               media: 'all'
             });
 
-            CSF.vars.code_themes.push(data_editor.theme);
+            STREAMCAST_STREAMCAST_CSF.vars.code_themes.push(data_editor.theme);
 
           }
 
@@ -627,21 +627,21 @@
   //
   // Field: date
   //
-  $.fn.csf_field_date = function() {
+  $.fn.streamcast_csf_field_date = function() {
     return this.each( function() {
 
       var $this    = $(this),
           $inputs  = $this.find('input'),
-          settings = $this.find('.csf-date-settings').data('settings'),
-          wrapper  = '<div class="csf-datepicker-wrapper"></div>';
+          settings = $this.find('.streamcast-csf-date-settings').data('settings'),
+          wrapper  = '<div class="streamcast-csf-datepicker-wrapper"></div>';
 
       var defaults = {
         showAnim: '',
         beforeShow: function(input, inst) {
-          $(inst.dpDiv).addClass('csf-datepicker-wrapper');
+          $(inst.dpDiv).addClass('streamcast-csf-datepicker-wrapper');
         },
         onClose: function( input, inst ) {
-          $(inst.dpDiv).removeClass('csf-datepicker-wrapper');
+          $(inst.dpDiv).removeClass('streamcast-csf-datepicker-wrapper');
         },
       };
 
@@ -682,16 +682,16 @@
   //
   // Field: datetime
   //
-  $.fn.csf_field_datetime = function() {
+  $.fn.streamcast_csf_field_datetime = function() {
     return this.each( function() {
 
       var $this    = $(this),
           $inputs  = $this.find('input'),
-          settings = $this.find('.csf-datetime-settings').data('settings');
+          settings = $this.find('.streamcast-csf-datetime-settings').data('settings');
 
       settings = $.extend({}, settings, {
         onReady: function( selectedDates, dateStr, instance) {
-          $(instance.calendarContainer).addClass('csf-flatpickr');
+          $(instance.calendarContainer).addClass('streamcast-csf-flatpickr');
         },
       });
 
@@ -717,31 +717,31 @@
   //
   // Field: fieldset
   //
-  $.fn.csf_field_fieldset = function() {
+  $.fn.streamcast_csf_field_fieldset = function() {
     return this.each( function() {
-      $(this).find('.csf-fieldset-content').csf_reload_script();
+      $(this).find('.streamcast-csf-fieldset-content').streamcast_csf_reload_script();
     });
   };
 
   //
   // Field: gallery
   //
-  $.fn.csf_field_gallery = function() {
+  $.fn.streamcast_csf_field_gallery = function() {
     return this.each( function() {
 
       var $this  = $(this),
-          $edit  = $this.find('.csf-edit-gallery'),
-          $clear = $this.find('.csf-clear-gallery'),
+          $edit  = $this.find('.streamcast-csf-edit-gallery'),
+          $clear = $this.find('.streamcast-csf-clear-gallery'),
           $list  = $this.find('ul'),
           $input = $this.find('input'),
           $img   = $this.find('img'),
           wp_media_frame;
 
-      $this.on('click', '.csf-button, .csf-edit-gallery', function( e ) {
+      $this.on('click', '.streamcast-csf-button, .streamcast-csf-edit-gallery', function( e ) {
 
         var $el   = $(this),
             ids   = $input.val(),
-            what  = ( $el.hasClass('csf-edit-gallery') ) ? 'edit' : 'add',
+            what  = ( $el.hasClass('streamcast-csf-edit-gallery') ) ? 'edit' : 'add',
             state = ( what === 'add' && !ids.length ) ? 'gallery' : 'gallery-edit';
 
         e.preventDefault();
@@ -811,16 +811,16 @@
   //
   // Field: group
   //
-  $.fn.csf_field_group = function() {
+  $.fn.streamcast_csf_field_group = function() {
     return this.each( function() {
 
       var $this           = $(this),
-          $fieldset    = $this.children('.csf-fieldset'),
+          $fieldset    = $this.children('.streamcast-csf-fieldset'),
           $group       = $fieldset.length ? $fieldset : $this,
-          $wrapper     = $group.children('.csf-cloneable-wrapper'),
-          $hidden      = $group.children('.csf-cloneable-hidden'),
-          $max         = $group.children('.csf-cloneable-max'),
-          $min         = $group.children('.csf-cloneable-min'),
+          $wrapper     = $group.children('.streamcast-csf-cloneable-wrapper'),
+          $hidden      = $group.children('.streamcast-csf-cloneable-hidden'),
+          $max         = $group.children('.streamcast-csf-cloneable-max'),
+          $min         = $group.children('.streamcast-csf-cloneable-min'),
           title_by     = $wrapper.data('title-by'),
           title_prefix = $wrapper.data('title-by-prefix'),
           field_id     = $wrapper.data('field-id'),
@@ -834,20 +834,20 @@
       }
 
       var update_title_numbers = function( $selector ) {
-        $selector.find('.csf-cloneable-title-number').each( function( index ) {
-          $(this).html( ( $(this).closest('.csf-cloneable-item').index()+1 ) + '.' );
+        $selector.find('.streamcast-csf-cloneable-title-number').each( function( index ) {
+          $(this).html( ( $(this).closest('.streamcast-csf-cloneable-item').index()+1 ) + '.' );
         });
       };
 
       $wrapper.accordion({
-        header: '> .csf-cloneable-item > .csf-cloneable-title',
+        header: '> .streamcast-csf-cloneable-item > .streamcast-csf-cloneable-title',
         collapsible : true,
         active: false,
         animate: false,
         heightStyle: 'content',
         icons: {
-          'header': 'csf-cloneable-header-icon fas fa-angle-right',
-          'activeHeader': 'csf-cloneable-header-icon fas fa-angle-down'
+          'header': 'streamcast-csf-cloneable-header-icon fas fa-angle-right',
+          'activeHeader': 'streamcast-csf-cloneable-header-icon fas fa-angle-down'
         },
         activate: function( event, ui ) {
 
@@ -856,7 +856,7 @@
 
           if ( $panel.length && !$panel.data( 'opened' ) ) {
 
-            var $title = $header.find('.csf-cloneable-value');
+            var $title = $header.find('.streamcast-csf-cloneable-value');
             var inputs = [];
 
             $.each(title_by, function( key, title_key ) {
@@ -887,13 +887,13 @@
 
             });
 
-            $panel.csf_reload_script();
+            $panel.streamcast_csf_reload_script();
             $panel.data( 'opened', true );
             $panel.data( 'retry', false );
 
           } else if ( $panel.data( 'retry' ) ) {
 
-            $panel.csf_reload_script_retry();
+            $panel.streamcast_csf_reload_script_retry();
             $panel.data( 'retry', false );
 
           }
@@ -903,7 +903,7 @@
 
       $wrapper.sortable({
         axis: 'y',
-        handle: '.csf-cloneable-title,.csf-cloneable-sort',
+        handle: '.streamcast-csf-cloneable-title,.streamcast-csf-cloneable-sort',
         helper: 'original',
         cursor: 'move',
         placeholder: 'widget-placeholder',
@@ -911,13 +911,13 @@
 
           $wrapper.accordion({ active:false });
           $wrapper.sortable('refreshPositions');
-          ui.item.children('.csf-cloneable-content').data('retry', true);
+          ui.item.children('.streamcast-csf-cloneable-content').data('retry', true);
 
         },
         update: function( event, ui ) {
 
-          CSF.helper.name_nested_replace( $wrapper.children('.csf-cloneable-item'), field_id );
-          $wrapper.csf_customizer_refresh();
+          STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $wrapper.children('.streamcast-csf-cloneable-item'), field_id );
+          $wrapper.streamcast_csf_customizer_refresh();
 
           if ( is_number ) {
             update_title_numbers($wrapper);
@@ -926,11 +926,11 @@
         },
       });
 
-      $group.children('.csf-cloneable-add').on('click', function( e ) {
+      $group.children('.streamcast-csf-cloneable-add').on('click', function( e ) {
 
         e.preventDefault();
 
-        var count = $wrapper.children('.csf-cloneable-item').length;
+        var count = $wrapper.children('.streamcast-csf-cloneable-item').length;
 
         $min.hide();
 
@@ -939,9 +939,9 @@
           return;
         }
 
-        var $cloned_item = $hidden.csf_clone(true);
+        var $cloned_item = $hidden.streamcast_csf_clone(true);
 
-        $cloned_item.removeClass('csf-cloneable-hidden');
+        $cloned_item.removeClass('streamcast-csf-cloneable-hidden');
 
         $cloned_item.find(':input[name!="_pseudo"]').each( function() {
           this.name = this.name.replace( '___', '' ).replace( field_id +'[0]', field_id +'['+ count +']' );
@@ -950,8 +950,8 @@
         $wrapper.append($cloned_item);
         $wrapper.accordion('refresh');
         $wrapper.accordion({active: count});
-        $wrapper.csf_customizer_refresh();
-        $wrapper.csf_customizer_listen({closest: true});
+        $wrapper.streamcast_csf_customizer_refresh();
+        $wrapper.streamcast_csf_customizer_listen({closest: true});
 
         if ( is_number ) {
           update_title_numbers($wrapper);
@@ -963,7 +963,7 @@
 
         e.preventDefault();
 
-        var count = $wrapper.children('.csf-cloneable-item').length;
+        var count = $wrapper.children('.streamcast-csf-cloneable-item').length;
 
         $min.hide();
 
@@ -974,10 +974,10 @@
 
         var $this           = $(this),
             $parent         = $this.parent().parent(),
-            $cloned_helper  = $parent.children('.csf-cloneable-helper').csf_clone(true),
-            $cloned_title   = $parent.children('.csf-cloneable-title').csf_clone(),
-            $cloned_content = $parent.children('.csf-cloneable-content').csf_clone(),
-            $cloned_item    = $('<div class="csf-cloneable-item" />');
+            $cloned_helper  = $parent.children('.streamcast-csf-cloneable-helper').streamcast_csf_clone(true),
+            $cloned_title   = $parent.children('.streamcast-csf-cloneable-title').streamcast_csf_clone(),
+            $cloned_content = $parent.children('.streamcast-csf-cloneable-content').streamcast_csf_clone(),
+            $cloned_item    = $('<div class="streamcast-csf-cloneable-item" />');
 
         $cloned_item.append($cloned_helper);
         $cloned_item.append($cloned_title);
@@ -985,11 +985,11 @@
 
         $wrapper.children().eq($parent.index()).after($cloned_item);
 
-        CSF.helper.name_nested_replace( $wrapper.children('.csf-cloneable-item'), field_id );
+        STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $wrapper.children('.streamcast-csf-cloneable-item'), field_id );
 
         $wrapper.accordion('refresh');
-        $wrapper.csf_customizer_refresh();
-        $wrapper.csf_customizer_listen({closest: true});
+        $wrapper.streamcast_csf_customizer_refresh();
+        $wrapper.streamcast_csf_customizer_listen({closest: true});
 
         if ( is_number ) {
           update_title_numbers($wrapper);
@@ -997,14 +997,14 @@
 
       };
 
-      $wrapper.children('.csf-cloneable-item').children('.csf-cloneable-helper').on('click', '.csf-cloneable-clone', event_clone);
-      $group.children('.csf-cloneable-hidden').children('.csf-cloneable-helper').on('click', '.csf-cloneable-clone', event_clone);
+      $wrapper.children('.streamcast-csf-cloneable-item').children('.streamcast-csf-cloneable-helper').on('click', '.streamcast-csf-cloneable-clone', event_clone);
+      $group.children('.streamcast-csf-cloneable-hidden').children('.streamcast-csf-cloneable-helper').on('click', '.streamcast-csf-cloneable-clone', event_clone);
 
       var event_remove = function( e ) {
 
         e.preventDefault();
 
-        var count = $wrapper.children('.csf-cloneable-item').length;
+        var count = $wrapper.children('.streamcast-csf-cloneable-item').length;
 
         $max.hide();
         $min.hide();
@@ -1014,11 +1014,11 @@
           return;
         }
 
-        $(this).closest('.csf-cloneable-item').remove();
+        $(this).closest('.streamcast-csf-cloneable-item').remove();
 
-        CSF.helper.name_nested_replace( $wrapper.children('.csf-cloneable-item'), field_id );
+        STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $wrapper.children('.streamcast-csf-cloneable-item'), field_id );
 
-        $wrapper.csf_customizer_refresh();
+        $wrapper.streamcast_csf_customizer_refresh();
 
         if ( is_number ) {
           update_title_numbers($wrapper);
@@ -1026,8 +1026,8 @@
 
       };
 
-      $wrapper.children('.csf-cloneable-item').children('.csf-cloneable-helper').on('click', '.csf-cloneable-remove', event_remove);
-      $group.children('.csf-cloneable-hidden').children('.csf-cloneable-helper').on('click', '.csf-cloneable-remove', event_remove);
+      $wrapper.children('.streamcast-csf-cloneable-item').children('.streamcast-csf-cloneable-helper').on('click', '.streamcast-csf-cloneable-remove', event_remove);
+      $group.children('.streamcast-csf-cloneable-hidden').children('.streamcast-csf-cloneable-helper').on('click', '.streamcast-csf-cloneable-remove', event_remove);
 
     });
   };
@@ -1035,35 +1035,35 @@
   //
   // Field: icon
   //
-  $.fn.csf_field_icon = function() {
+  $.fn.streamcast_csf_field_icon = function() {
     return this.each( function() {
 
       var $this = $(this);
 
-      $this.on('click', '.csf-icon-add', function( e ) {
+      $this.on('click', '.streamcast-csf-icon-add', function( e ) {
 
         e.preventDefault();
 
         var $button = $(this);
-        var $modal  = $('#csf-modal-icon');
+        var $modal  = $('#streamcast-csf-modal-icon');
 
         $modal.removeClass('hidden');
 
-        CSF.vars.$icon_target = $this;
+        STREAMCAST_STREAMCAST_CSF.vars.$icon_target = $this;
 
-        if ( !CSF.vars.icon_modal_loaded ) {
+        if ( !STREAMCAST_STREAMCAST_CSF.vars.icon_modal_loaded ) {
 
-          $modal.find('.csf-modal-loading').show();
+          $modal.find('.streamcast-csf-modal-loading').show();
 
-          window.wp.ajax.post( 'csf-get-icons', {
+          window.wp.ajax.post( 'streamcast-csf-get-icons', {
             nonce: $button.data('nonce')
           }).done( function( response ) {
 
-            $modal.find('.csf-modal-loading').hide();
+            $modal.find('.streamcast-csf-modal-loading').hide();
 
-            CSF.vars.icon_modal_loaded = true;
+            STREAMCAST_STREAMCAST_CSF.vars.icon_modal_loaded = true;
 
-            var $load = $modal.find('.csf-modal-load').html( response.content );
+            var $load = $modal.find('.streamcast-csf-modal-load').html( response.content );
 
             $load.on('click', 'i', function( e ) {
 
@@ -1071,16 +1071,16 @@
 
               var icon = $(this).attr('title');
 
-              CSF.vars.$icon_target.find('.csf-icon-preview i').removeAttr('class').addClass(icon);
-              CSF.vars.$icon_target.find('.csf-icon-preview').removeClass('hidden');
-              CSF.vars.$icon_target.find('.csf-icon-remove').removeClass('hidden');
-              CSF.vars.$icon_target.find('input').val(icon).trigger('change');
+              STREAMCAST_STREAMCAST_CSF.vars.$icon_target.find('.streamcast-csf-icon-preview i').removeAttr('class').addClass(icon);
+              STREAMCAST_STREAMCAST_CSF.vars.$icon_target.find('.streamcast-csf-icon-preview').removeClass('hidden');
+              STREAMCAST_STREAMCAST_CSF.vars.$icon_target.find('.streamcast-csf-icon-remove').removeClass('hidden');
+              STREAMCAST_STREAMCAST_CSF.vars.$icon_target.find('input').val(icon).trigger('change');
 
               $modal.addClass('hidden');
 
             });
 
-            $modal.on('change keyup', '.csf-icon-search', function() {
+            $modal.on('change keyup', '.streamcast-csf-icon-search', function() {
 
               var value  = $(this).val(),
                   $icons = $load.find('i');
@@ -1099,13 +1099,13 @@
 
             });
 
-            $modal.on('click', '.csf-modal-close, .csf-modal-overlay', function() {
+            $modal.on('click', '.streamcast-csf-modal-close, .streamcast-csf-modal-overlay', function() {
               $modal.addClass('hidden');
             });
 
           }).fail( function( response ) {
-            $modal.find('.csf-modal-loading').hide();
-            $modal.find('.csf-modal-load').html( response.error );
+            $modal.find('.streamcast-csf-modal-loading').hide();
+            $modal.find('.streamcast-csf-modal-load').html( response.error );
             $modal.on('click', function() {
               $modal.addClass('hidden');
             });
@@ -1114,9 +1114,9 @@
 
       });
 
-      $this.on('click', '.csf-icon-remove', function( e ) {
+      $this.on('click', '.streamcast-csf-icon-remove', function( e ) {
         e.preventDefault();
-        $this.find('.csf-icon-preview').addClass('hidden');
+        $this.find('.streamcast-csf-icon-preview').addClass('hidden');
         $this.find('input').val('').trigger('change');
         $(this).addClass('hidden');
       });
@@ -1127,17 +1127,17 @@
   //
   // Field: map
   //
-  $.fn.csf_field_map = function() {
+  $.fn.streamcast_csf_field_map = function() {
     return this.each( function() {
 
       if ( typeof L === 'undefined' ) { return; }
 
       var $this         = $(this),
-          $map          = $this.find('.csf--map-osm'),
-          $search_input = $this.find('.csf--map-search input'),
-          $latitude     = $this.find('.csf--latitude'),
-          $longitude    = $this.find('.csf--longitude'),
-          $zoom         = $this.find('.csf--zoom'),
+          $map          = $this.find('.streamcast-csf--map-osm'),
+          $search_input = $this.find('.streamcast-csf--map-search input'),
+          $latitude     = $this.find('.streamcast-csf--latitude'),
+          $longitude    = $this.find('.streamcast-csf--longitude'),
+          $zoom         = $this.find('.streamcast-csf--zoom'),
           map_data      = $map.data( 'map' );
 
       var mapInit = L.map( $map.get(0), map_data);
@@ -1168,7 +1168,7 @@
       });
 
       if ( ! $search_input.length ) {
-        $search_input = $( '[data-depend-id="'+ $this.find('.csf--address-field').data( 'address-field' ) +'"]' );
+        $search_input = $( '[data-depend-id="'+ $this.find('.streamcast-csf--address-field').data( 'address-field' ) +'"]' );
       }
 
       var cache = {};
@@ -1224,7 +1224,7 @@
 
         },
         create: function (event, ui) {
-          $(this).autocomplete('widget').addClass('csf-map-ui-autocomplate');
+          $(this).autocomplete('widget').addClass('streamcast-csf-map-ui-autocomplate');
         }
       });
 
@@ -1246,16 +1246,16 @@
   //
   // Field: link
   //
-  $.fn.csf_field_link = function() {
+  $.fn.streamcast_csf_field_link = function() {
     return this.each( function() {
 
       var $this   = $(this),
-          $link   = $this.find('.csf--link'),
-          $add    = $this.find('.csf--add'),
-          $edit   = $this.find('.csf--edit'),
-          $remove = $this.find('.csf--remove'),
-          $result = $this.find('.csf--result'),
-          uniqid  = CSF.helper.uid('csf-wplink-textarea-');
+          $link   = $this.find('.streamcast-csf--link'),
+          $add    = $this.find('.streamcast-csf--add'),
+          $edit   = $this.find('.streamcast-csf--edit'),
+          $remove = $this.find('.streamcast-csf--remove'),
+          $result = $this.find('.streamcast-csf--result'),
+          uniqid  = STREAMCAST_STREAMCAST_CSF.helper.uid('streamcast-csf-wplink-textarea-');
 
       $add.on('click', function( e ) {
 
@@ -1271,9 +1271,9 @@
 
         $add.trigger('click');
 
-        $('#wp-link-url').val($this.find('.csf--url').val());
-        $('#wp-link-text').val($this.find('.csf--text').val());
-        $('#wp-link-target').prop('checked', ($this.find('.csf--target').val() === '_blank'));
+        $('#wp-link-url').val($this.find('.streamcast-csf--url').val());
+        $('#wp-link-text').val($this.find('.streamcast-csf--text').val());
+        $('#wp-link-target').prop('checked', ($this.find('.streamcast-csf--target').val() === '_blank'));
 
       });
 
@@ -1281,9 +1281,9 @@
 
         e.preventDefault();
 
-        $this.find('.csf--url').val('').trigger('change');
-        $this.find('.csf--text').val('');
-        $this.find('.csf--target').val('');
+        $this.find('.streamcast-csf--url').val('').trigger('change');
+        $this.find('.streamcast-csf--text').val('');
+        $this.find('.streamcast-csf--target').val('');
 
         $add.removeClass('hidden');
         $edit.addClass('hidden');
@@ -1299,9 +1299,9 @@
             text   = $('#wp-link-text').val(),
             target = ( atts.target ) ? atts.target : '';
 
-        $this.find('.csf--url').val(href).trigger('change');
-        $this.find('.csf--text').val(text);
-        $this.find('.csf--target').val(target);
+        $this.find('.streamcast-csf--url').val(href).trigger('change');
+        $this.find('.streamcast-csf--text').val(text);
+        $this.find('.streamcast-csf--target').val(target);
 
         $result.html('{url:"'+href+'", text:"'+text+'", target:"'+target+'"}');
 
@@ -1319,14 +1319,14 @@
   //
   // Field: media
   //
-  $.fn.csf_field_media = function() {
+  $.fn.streamcast_csf_field_media = function() {
     return this.each( function() {
 
       var $this            = $(this),
-          $upload_button   = $this.find('.csf--button'),
-          $remove_button   = $this.find('.csf--remove'),
+          $upload_button   = $this.find('.streamcast-csf--button'),
+          $remove_button   = $this.find('.streamcast-csf--remove'),
           $library         = $upload_button.data('library') && $upload_button.data('library').split(',') || '',
-          $auto_attributes = ( $this.hasClass('csf-assign-field-background') ) ? $this.closest('.csf-field-background').find('.csf--auto-attributes') : false,
+          $auto_attributes = ( $this.hasClass('streamcast-csf-assign-field-background') ) ? $this.closest('.streamcast-csf-field-background').find('.streamcast-csf--auto-attributes') : false,
           wp_media_frame;
 
       $upload_button.on('click', function( e ) {
@@ -1358,12 +1358,12 @@
             return;
           }
 
-          $this.find('.csf--id').val( attributes.id );
-          $this.find('.csf--width').val( attributes.width );
-          $this.find('.csf--height').val( attributes.height );
-          $this.find('.csf--alt').val( attributes.alt );
-          $this.find('.csf--title').val( attributes.title );
-          $this.find('.csf--description').val( attributes.description );
+          $this.find('.streamcast-csf--id').val( attributes.id );
+          $this.find('.streamcast-csf--width').val( attributes.width );
+          $this.find('.streamcast-csf--height').val( attributes.height );
+          $this.find('.streamcast-csf--alt').val( attributes.alt );
+          $this.find('.streamcast-csf--title').val( attributes.title );
+          $this.find('.streamcast-csf--description').val( attributes.description );
 
           if ( typeof attributes.sizes !== 'undefined' && typeof attributes.sizes.thumbnail !== 'undefined' && preview_size === 'thumbnail' ) {
             thumbnail = attributes.sizes.thumbnail.url;
@@ -1376,15 +1376,15 @@
           }
 
           if ( $auto_attributes ) {
-            $auto_attributes.removeClass('csf--attributes-hidden');
+            $auto_attributes.removeClass('streamcast-csf--attributes-hidden');
           }
 
           $remove_button.removeClass('hidden');
 
-          $this.find('.csf--preview').removeClass('hidden');
-          $this.find('.csf--src').attr('src', thumbnail);
-          $this.find('.csf--thumbnail').val( thumbnail );
-          $this.find('.csf--url').val( attributes.url ).trigger('change');
+          $this.find('.streamcast-csf--preview').removeClass('hidden');
+          $this.find('.streamcast-csf--src').attr('src', thumbnail);
+          $this.find('.streamcast-csf--thumbnail').val( thumbnail );
+          $this.find('.streamcast-csf--url').val( attributes.url ).trigger('change');
 
         });
 
@@ -1397,13 +1397,13 @@
         e.preventDefault();
 
         if ( $auto_attributes ) {
-          $auto_attributes.addClass('csf--attributes-hidden');
+          $auto_attributes.addClass('streamcast-csf--attributes-hidden');
         }
 
         $remove_button.addClass('hidden');
         $this.find('input').val('');
-        $this.find('.csf--preview').addClass('hidden');
-        $this.find('.csf--url').trigger('change');
+        $this.find('.streamcast-csf--preview').addClass('hidden');
+        $this.find('.streamcast-csf--url').trigger('change');
 
       });
 
@@ -1414,42 +1414,42 @@
   //
   // Field: repeater
   //
-  $.fn.csf_field_repeater = function() {
+  $.fn.streamcast_csf_field_repeater = function() {
     return this.each( function() {
 
       var $this     = $(this),
-          $fieldset = $this.children('.csf-fieldset'),
+          $fieldset = $this.children('.streamcast-csf-fieldset'),
           $repeater = $fieldset.length ? $fieldset : $this,
-          $wrapper  = $repeater.children('.csf-repeater-wrapper'),
-          $hidden   = $repeater.children('.csf-repeater-hidden'),
-          $max      = $repeater.children('.csf-repeater-max'),
-          $min      = $repeater.children('.csf-repeater-min'),
+          $wrapper  = $repeater.children('.streamcast-csf-repeater-wrapper'),
+          $hidden   = $repeater.children('.streamcast-csf-repeater-hidden'),
+          $max      = $repeater.children('.streamcast-csf-repeater-max'),
+          $min      = $repeater.children('.streamcast-csf-repeater-min'),
           field_id  = $wrapper.data('field-id'),
           max       = parseInt( $wrapper.data('max') ),
           min       = parseInt( $wrapper.data('min') );
 
-      $wrapper.children('.csf-repeater-item').children('.csf-repeater-content').csf_reload_script();
+      $wrapper.children('.streamcast-csf-repeater-item').children('.streamcast-csf-repeater-content').streamcast_csf_reload_script();
 
       $wrapper.sortable({
         axis: 'y',
-        handle: '.csf-repeater-sort',
+        handle: '.streamcast-csf-repeater-sort',
         helper: 'original',
         cursor: 'move',
         placeholder: 'widget-placeholder',
         update: function( event, ui ) {
 
-          CSF.helper.name_nested_replace( $wrapper.children('.csf-repeater-item'), field_id );
-          $wrapper.csf_customizer_refresh();
-          ui.item.csf_reload_script_retry();
+          STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $wrapper.children('.streamcast-csf-repeater-item'), field_id );
+          $wrapper.streamcast_csf_customizer_refresh();
+          ui.item.streamcast_csf_reload_script_retry();
 
         }
       });
 
-      $repeater.children('.csf-repeater-add').on('click', function( e ) {
+      $repeater.children('.streamcast-csf-repeater-add').on('click', function( e ) {
 
         e.preventDefault();
 
-        var count = $wrapper.children('.csf-repeater-item').length;
+        var count = $wrapper.children('.streamcast-csf-repeater-item').length;
 
         $min.hide();
 
@@ -1458,18 +1458,18 @@
           return;
         }
 
-        var $cloned_item = $hidden.csf_clone(true);
+        var $cloned_item = $hidden.streamcast_csf_clone(true);
 
-        $cloned_item.removeClass('csf-repeater-hidden');
+        $cloned_item.removeClass('streamcast-csf-repeater-hidden');
 
         $cloned_item.find(':input[name!="_pseudo"]').each( function() {
           this.name = this.name.replace( '___', '' ).replace( field_id +'[0]', field_id +'['+ count +']' );
         });
 
         $wrapper.append($cloned_item);
-        $cloned_item.children('.csf-repeater-content').csf_reload_script();
-        $wrapper.csf_customizer_refresh();
-        $wrapper.csf_customizer_listen({closest: true});
+        $cloned_item.children('.streamcast-csf-repeater-content').streamcast_csf_reload_script();
+        $wrapper.streamcast_csf_customizer_refresh();
+        $wrapper.streamcast_csf_customizer_listen({closest: true});
 
       });
 
@@ -1477,7 +1477,7 @@
 
         e.preventDefault();
 
-        var count = $wrapper.children('.csf-repeater-item').length;
+        var count = $wrapper.children('.streamcast-csf-repeater-item').length;
 
         $min.hide();
 
@@ -1488,32 +1488,32 @@
 
         var $this           = $(this),
             $parent         = $this.parent().parent().parent(),
-            $cloned_content = $parent.children('.csf-repeater-content').csf_clone(),
-            $cloned_helper  = $parent.children('.csf-repeater-helper').csf_clone(true),
-            $cloned_item    = $('<div class="csf-repeater-item" />');
+            $cloned_content = $parent.children('.streamcast-csf-repeater-content').streamcast_csf_clone(),
+            $cloned_helper  = $parent.children('.streamcast-csf-repeater-helper').streamcast_csf_clone(true),
+            $cloned_item    = $('<div class="streamcast-csf-repeater-item" />');
 
         $cloned_item.append($cloned_content);
         $cloned_item.append($cloned_helper);
 
         $wrapper.children().eq($parent.index()).after($cloned_item);
 
-        $cloned_item.children('.csf-repeater-content').csf_reload_script();
+        $cloned_item.children('.streamcast-csf-repeater-content').streamcast_csf_reload_script();
 
-        CSF.helper.name_nested_replace( $wrapper.children('.csf-repeater-item'), field_id );
+        STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $wrapper.children('.streamcast-csf-repeater-item'), field_id );
 
-        $wrapper.csf_customizer_refresh();
-        $wrapper.csf_customizer_listen({closest: true});
+        $wrapper.streamcast_csf_customizer_refresh();
+        $wrapper.streamcast_csf_customizer_listen({closest: true});
 
       };
 
-      $wrapper.children('.csf-repeater-item').children('.csf-repeater-helper').on('click', '.csf-repeater-clone', event_clone);
-      $repeater.children('.csf-repeater-hidden').children('.csf-repeater-helper').on('click', '.csf-repeater-clone', event_clone);
+      $wrapper.children('.streamcast-csf-repeater-item').children('.streamcast-csf-repeater-helper').on('click', '.streamcast-csf-repeater-clone', event_clone);
+      $repeater.children('.streamcast-csf-repeater-hidden').children('.streamcast-csf-repeater-helper').on('click', '.streamcast-csf-repeater-clone', event_clone);
 
       var event_remove = function( e ) {
 
         e.preventDefault();
 
-        var count = $wrapper.children('.csf-repeater-item').length;
+        var count = $wrapper.children('.streamcast-csf-repeater-item').length;
 
         $max.hide();
         $min.hide();
@@ -1523,16 +1523,16 @@
           return;
         }
 
-        $(this).closest('.csf-repeater-item').remove();
+        $(this).closest('.streamcast-csf-repeater-item').remove();
 
-        CSF.helper.name_nested_replace( $wrapper.children('.csf-repeater-item'), field_id );
+        STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $wrapper.children('.streamcast-csf-repeater-item'), field_id );
 
-        $wrapper.csf_customizer_refresh();
+        $wrapper.streamcast_csf_customizer_refresh();
 
       };
 
-      $wrapper.children('.csf-repeater-item').children('.csf-repeater-helper').on('click', '.csf-repeater-remove', event_remove);
-      $repeater.children('.csf-repeater-hidden').children('.csf-repeater-helper').on('click', '.csf-repeater-remove', event_remove);
+      $wrapper.children('.streamcast-csf-repeater-item').children('.streamcast-csf-repeater-helper').on('click', '.streamcast-csf-repeater-remove', event_remove);
+      $repeater.children('.streamcast-csf-repeater-hidden').children('.streamcast-csf-repeater-helper').on('click', '.streamcast-csf-repeater-remove', event_remove);
 
     });
   };
@@ -1540,12 +1540,12 @@
   //
   // Field: slider
   //
-  $.fn.csf_field_slider = function() {
+  $.fn.streamcast_csf_field_slider = function() {
     return this.each( function() {
 
       var $this   = $(this),
           $input  = $this.find('input'),
-          $slider = $this.find('.csf-slider-ui'),
+          $slider = $this.find('.streamcast-csf-slider-ui'),
           data    = $input.data(),
           value   = $input.val() || 0;
 
@@ -1574,10 +1574,10 @@
   //
   // Field: sortable
   //
-  $.fn.csf_field_sortable = function() {
+  $.fn.streamcast_csf_field_sortable = function() {
     return this.each( function() {
 
-      var $sortable = $(this).find('.csf-sortable');
+      var $sortable = $(this).find('.streamcast-csf-sortable');
 
       $sortable.sortable({
         axis: 'y',
@@ -1585,11 +1585,11 @@
         cursor: 'move',
         placeholder: 'widget-placeholder',
         update: function( event, ui ) {
-          $sortable.csf_customizer_refresh();
+          $sortable.streamcast_csf_customizer_refresh();
         }
       });
 
-      $sortable.find('.csf-sortable-content').csf_reload_script();
+      $sortable.find('.streamcast-csf-sortable-content').streamcast_csf_reload_script();
 
     });
   };
@@ -1597,12 +1597,12 @@
   //
   // Field: sorter
   //
-  $.fn.csf_field_sorter = function() {
+  $.fn.streamcast_csf_field_sorter = function() {
     return this.each( function() {
 
       var $this         = $(this),
-          $enabled      = $this.find('.csf-enabled'),
-          $has_disabled = $this.find('.csf-disabled'),
+          $enabled      = $this.find('.streamcast-csf-enabled'),
+          $has_disabled = $this.find('.streamcast-csf-disabled'),
           $disabled     = ( $has_disabled.length ) ? $has_disabled : false;
 
       $enabled.sortable({
@@ -1612,13 +1612,13 @@
 
           var $el = ui.item.find('input');
 
-          if ( ui.item.parent().hasClass('csf-enabled') ) {
+          if ( ui.item.parent().hasClass('streamcast-csf-enabled') ) {
             $el.attr('name', $el.attr('name').replace('disabled', 'enabled'));
           } else {
             $el.attr('name', $el.attr('name').replace('enabled', 'disabled'));
           }
 
-          $this.csf_customizer_refresh();
+          $this.streamcast_csf_customizer_refresh();
 
         }
       });
@@ -1629,7 +1629,7 @@
           connectWith: $enabled,
           placeholder: 'ui-sortable-placeholder',
           update: function( event, ui ) {
-            $this.csf_customizer_refresh();
+            $this.streamcast_csf_customizer_refresh();
           }
         });
 
@@ -1641,7 +1641,7 @@
   //
   // Field: spinner
   //
-  $.fn.csf_field_spinner = function() {
+  $.fn.streamcast_csf_field_spinner = function() {
     return this.each( function() {
 
       var $this   = $(this),
@@ -1659,7 +1659,7 @@
         step: data.step || 1,
         create: function( event, ui ) {
           if ( data.unit ) {
-            $input.after('<span class="ui-button csf--unit">'+ data.unit +'</span>');
+            $input.after('<span class="ui-button streamcast-csf--unit">'+ data.unit +'</span>');
           }
         },
         spin: function (event, ui ) {
@@ -1673,21 +1673,21 @@
   //
   // Field: switcher
   //
-  $.fn.csf_field_switcher = function() {
+  $.fn.streamcast_csf_field_switcher = function() {
     return this.each( function() {
 
-      var $switcher = $(this).find('.csf--switcher');
+      var $switcher = $(this).find('.streamcast-csf--switcher');
 
       $switcher.on('click', function() {
 
         var value  = 0;
         var $input = $switcher.find('input');
 
-        if ( $switcher.hasClass('csf--active') ) {
-          $switcher.removeClass('csf--active');
+        if ( $switcher.hasClass('streamcast-csf--active') ) {
+          $switcher.removeClass('streamcast-csf--active');
         } else {
           value = 1;
-          $switcher.addClass('csf--active');
+          $switcher.addClass('streamcast-csf--active');
         }
 
         $input.val(value).trigger('change');
@@ -1700,14 +1700,14 @@
   //
   // Field: tabbed
   //
-  $.fn.csf_field_tabbed = function() {
+  $.fn.streamcast_csf_field_tabbed = function() {
     return this.each( function() {
 
       var $this     = $(this),
-          $links    = $this.find('.csf-tabbed-nav a'),
-          $contents = $this.find('.csf-tabbed-content');
+          $links    = $this.find('.streamcast-csf-tabbed-nav a'),
+          $contents = $this.find('.streamcast-csf-tabbed-content');
 
-      $contents.eq(0).csf_reload_script();
+      $contents.eq(0).streamcast_csf_reload_script();
 
       $links.on( 'click', function( e ) {
 
@@ -1717,8 +1717,8 @@
             index    = $link.index(),
             $content = $contents.eq(index);
 
-        $link.addClass('csf-tabbed-active').siblings().removeClass('csf-tabbed-active');
-        $content.csf_reload_script();
+        $link.addClass('streamcast-csf-tabbed-active').siblings().removeClass('streamcast-csf-tabbed-active');
+        $content.streamcast_csf_reload_script();
         $content.removeClass('hidden').siblings().addClass('hidden');
 
       });
@@ -1729,15 +1729,15 @@
   //
   // Field: typography
   //
-  $.fn.csf_field_typography = function() {
+  $.fn.streamcast_csf_field_typography = function() {
     return this.each(function () {
 
       var base          = this;
       var $this         = $(this);
       var loaded_fonts  = [];
-      var webfonts      = csf_typography_json.webfonts;
-      var googlestyles  = csf_typography_json.googlestyles;
-      var defaultstyles = csf_typography_json.defaultstyles;
+      var webfonts      = streamcast_csf_typography_json.webfonts;
+      var googlestyles  = streamcast_csf_typography_json.googlestyles;
+      var defaultstyles = streamcast_csf_typography_json.defaultstyles;
 
       //
       //
@@ -1820,9 +1820,9 @@
         //
         // Constants
         var selected_styles  = [];
-        var $typography      = $this.find('.csf--typography');
-        var $type            = $this.find('.csf--type');
-        var $styles          = $this.find('.csf--block-font-style');
+        var $typography      = $this.find('.streamcast-csf--typography');
+        var $type            = $this.find('.streamcast-csf--type');
+        var $styles          = $this.find('.streamcast-csf--block-font-style');
         var unit             = $typography.data('unit');
         var line_height_unit = $typography.data('line-height-unit');
         var exclude_fonts    = $typography.data('exclude') ? $typography.data('exclude').split(',') : [];
@@ -1830,7 +1830,7 @@
         //
         //
         // Chosen init
-        if ( $this.find('.csf--chosen').length ) {
+        if ( $this.find('.streamcast-csf--chosen').length ) {
 
           var $chosen_selects = $this.find('select');
 
@@ -1856,7 +1856,7 @@
         //
         //
         // Font family select
-        var $font_family_select = $this.find('.csf--font-family');
+        var $font_family_select = $this.find('.streamcast-csf--font-family');
         var first_font_family   = $font_family_select.val();
 
         // Clear default font family select options
@@ -1890,11 +1890,11 @@
         //
         //
         // Font style select
-        var $font_style_block = $this.find('.csf--block-font-style');
+        var $font_style_block = $this.find('.streamcast-csf--block-font-style');
 
         if ( $font_style_block.length ) {
 
-          var $font_style_select = $this.find('.csf--font-style-select');
+          var $font_style_select = $this.find('.streamcast-csf--font-style-select');
           var first_style_value  = $font_style_select.val() ? $font_style_select.val().replace(/normal/g, '' ) : '';
 
           //
@@ -1913,18 +1913,18 @@
             var font_weight = ( style_value && style_value !== 'italic' && style_value !== 'normal' ) ? style_value.replace('italic', '') : font_normal;
             var font_style  = ( style_value && style_value.substr(-6) === 'italic' ) ? 'italic' : '';
 
-            $this.find('.csf--font-weight').val( font_weight );
-            $this.find('.csf--font-style').val( font_style );
+            $this.find('.streamcast-csf--font-weight').val( font_weight );
+            $this.find('.streamcast-csf--font-style').val( font_style );
 
           });
 
           //
           //
           // Extra font style select
-          var $extra_font_style_block = $this.find('.csf--block-extra-styles');
+          var $extra_font_style_block = $this.find('.streamcast-csf--block-extra-styles');
 
           if ( $extra_font_style_block.length ) {
-            var $extra_font_style_select = $this.find('.csf--extra-styles');
+            var $extra_font_style_select = $this.find('.streamcast-csf--extra-styles');
             var first_extra_style_value  = $extra_font_style_select.val();
           }
 
@@ -1933,9 +1933,9 @@
         //
         //
         // Subsets select
-        var $subset_block = $this.find('.csf--block-subset');
+        var $subset_block = $this.find('.streamcast-csf--block-subset');
         if ( $subset_block.length ) {
-          var $subset_select = $this.find('.csf--subset');
+          var $subset_select = $this.find('.streamcast-csf--subset');
           var first_subset_select_value = $subset_select.val();
           var subset_multi_select = $subset_select.data('multiple') || false;
         }
@@ -1943,7 +1943,7 @@
         //
         //
         // Backup font family
-        var $backup_font_family_block = $this.find('.csf--block-backup-font-family');
+        var $backup_font_family_block = $this.find('.streamcast-csf--block-backup-font-family');
 
         //
         //
@@ -2065,31 +2065,31 @@
         //
         //
         // Preview
-        var $preview_block = $this.find('.csf--block-preview');
+        var $preview_block = $this.find('.streamcast-csf--block-preview');
 
         if ( $preview_block.length ) {
 
-          var $preview = $this.find('.csf--preview');
+          var $preview = $this.find('.streamcast-csf--preview');
 
           // Set preview styles on change
-          $this.on('change', CSF.helper.debounce( function( event ) {
+          $this.on('change', STREAMCAST_STREAMCAST_CSF.helper.debounce( function( event ) {
 
             $preview_block.removeClass('hidden');
 
             var font_family       = $font_family_select.val(),
-                font_weight       = $this.find('.csf--font-weight').val(),
-                font_style        = $this.find('.csf--font-style').val(),
-                font_size         = $this.find('.csf--font-size').val(),
-                font_variant      = $this.find('.csf--font-variant').val(),
-                line_height       = $this.find('.csf--line-height').val(),
-                text_align        = $this.find('.csf--text-align').val(),
-                text_transform    = $this.find('.csf--text-transform').val(),
-                text_decoration   = $this.find('.csf--text-decoration').val(),
-                text_color        = $this.find('.csf--color').val(),
-                word_spacing      = $this.find('.csf--word-spacing').val(),
-                letter_spacing    = $this.find('.csf--letter-spacing').val(),
-                custom_style      = $this.find('.csf--custom-style').val(),
-                type              = $this.find('.csf--type').val();
+                font_weight       = $this.find('.streamcast-csf--font-weight').val(),
+                font_style        = $this.find('.streamcast-csf--font-style').val(),
+                font_size         = $this.find('.streamcast-csf--font-size').val(),
+                font_variant      = $this.find('.streamcast-csf--font-variant').val(),
+                line_height       = $this.find('.streamcast-csf--line-height').val(),
+                text_align        = $this.find('.streamcast-csf--text-align').val(),
+                text_transform    = $this.find('.streamcast-csf--text-transform').val(),
+                text_decoration   = $this.find('.streamcast-csf--text-decoration').val(),
+                text_color        = $this.find('.streamcast-csf--color').val(),
+                word_spacing      = $this.find('.streamcast-csf--word-spacing').val(),
+                letter_spacing    = $this.find('.streamcast-csf--letter-spacing').val(),
+                custom_style      = $this.find('.streamcast-csf--custom-style').val(),
+                type              = $this.find('.streamcast-csf--type').val();
 
             if ( type === 'google' ) {
               base.load_google_font(font_family, font_weight, font_style);
@@ -2122,9 +2122,9 @@
           // Preview black and white backgrounds trigger
           $preview_block.on('click', function() {
 
-            $preview.toggleClass('csf--black-background');
+            $preview.toggleClass('streamcast-csf--black-background');
 
-            var $toggle = $preview_block.find('.csf--toggle');
+            var $toggle = $preview_block.find('.streamcast-csf--toggle');
 
             if ( $toggle.hasClass('fa-toggle-off') ) {
               $toggle.removeClass('fa-toggle-off').addClass('fa-toggle-on');
@@ -2150,15 +2150,15 @@
   //
   // Field: upload
   //
-  $.fn.csf_field_upload = function() {
+  $.fn.streamcast_csf_field_upload = function() {
     return this.each( function() {
 
       var $this          = $(this),
           $input         = $this.find('input'),
-          $upload_button = $this.find('.csf--button'),
-          $remove_button = $this.find('.csf--remove'),
-          $preview_wrap  = $this.find('.csf--preview'),
-          $preview_src   = $this.find('.csf--src'),
+          $upload_button = $this.find('.streamcast-csf--button'),
+          $remove_button = $this.find('.streamcast-csf--remove'),
+          $preview_wrap  = $this.find('.streamcast-csf--preview'),
+          $preview_src   = $this.find('.streamcast-csf--src'),
           $library       = $upload_button.data('library') && $upload_button.data('library').split(',') || '',
           wp_media_frame;
 
@@ -2233,15 +2233,15 @@
   //
   // Field: wp_editor
   //
-  $.fn.csf_field_wp_editor = function() {
+  $.fn.streamcast_csf_field_wp_editor = function() {
     return this.each( function() {
 
-      if ( typeof window.wp.editor === 'undefined' || typeof window.tinyMCEPreInit === 'undefined' || typeof window.tinyMCEPreInit.mceInit.csf_wp_editor === 'undefined' ) {
+      if ( typeof window.wp.editor === 'undefined' || typeof window.tinyMCEPreInit === 'undefined' || typeof window.tinyMCEPreInit.mceInit.streamcast_csf_wp_editor === 'undefined' ) {
         return;
       }
 
       var $this     = $(this),
-          $editor   = $this.find('.csf-wp-editor'),
+          $editor   = $this.find('.streamcast-csf-wp-editor'),
           $textarea = $this.find('textarea');
 
       // If there is wp-editor remove it for avoid dupliated wp-editor conflicts.
@@ -2254,14 +2254,14 @@
       }
 
       // Generate a unique id
-      var uid = CSF.helper.uid('csf-editor-');
+      var uid = STREAMCAST_STREAMCAST_CSF.helper.uid('streamcast-csf-editor-');
 
       $textarea.attr('id', uid);
 
       // Get default editor settings
       var default_editor_settings = {
-        tinymce: window.tinyMCEPreInit.mceInit.csf_wp_editor,
-        quicktags: window.tinyMCEPreInit.qtInit.csf_wp_editor
+        tinymce: window.tinyMCEPreInit.mceInit.streamcast_csf_wp_editor,
+        quicktags: window.tinyMCEPreInit.qtInit.streamcast_csf_wp_editor
       };
 
       // Get default editor settings
@@ -2290,13 +2290,13 @@
       // Override editor tinymce settings
       if ( field_editor_settings.tinymce === false ) {
         default_editor_settings.tinymce = false;
-        $editor.addClass('csf-no-tinymce');
+        $editor.addClass('streamcast-csf-no-tinymce');
       }
 
       // Override editor quicktags settings
       if ( field_editor_settings.quicktags === false ) {
         default_editor_settings.quicktags = false;
-        $editor.addClass('csf-no-quicktags');
+        $editor.addClass('streamcast-csf-no-quicktags');
       }
 
       // Wait until :visible
@@ -2308,19 +2308,19 @@
       });
 
       // Add Media buttons
-      if ( field_editor_settings.media_buttons && window.csf_media_buttons ) {
+      if ( field_editor_settings.media_buttons && window.streamcast_csf_media_buttons ) {
 
         var $editor_buttons = $editor.find('.wp-media-buttons');
 
         if ( $editor_buttons.length ) {
 
-          $editor_buttons.find('.csf-shortcode-button').data('editor-id', uid);
+          $editor_buttons.find('.streamcast-csf-shortcode-button').data('editor-id', uid);
 
         } else {
 
-          var $media_buttons = $(window.csf_media_buttons);
+          var $media_buttons = $(window.streamcast_csf_media_buttons);
 
-          $media_buttons.find('.csf-shortcode-button').data('editor-id', uid);
+          $media_buttons.find('.streamcast-csf-shortcode-button').data('editor-id', uid);
 
           $editor.prepend( $media_buttons );
 
@@ -2335,16 +2335,16 @@
   //
   // Confirm
   //
-  $.fn.csf_confirm = function() {
+  $.fn.streamcast_csf_confirm = function() {
     return this.each( function() {
       $(this).on('click', function( e ) {
 
-        var confirm_text   = $(this).data('confirm') || window.csf_vars.i18n.confirm;
+        var confirm_text   = $(this).data('confirm') || window.streamcast_csf_vars.i18n.confirm;
         var confirm_answer = confirm( confirm_text );
 
         if ( confirm_answer ) {
-          CSF.vars.is_confirm = true;
-          CSF.vars.form_modified = false;
+          STREAMCAST_STREAMCAST_CSF.vars.is_confirm = true;
+          STREAMCAST_STREAMCAST_CSF.vars.form_modified = false;
         } else {
           e.preventDefault();
           return false;
@@ -2374,12 +2374,12 @@
   //
   // Options Save
   //
-  $.fn.csf_save = function() {
+  $.fn.streamcast_csf_save = function() {
     return this.each( function() {
 
       var $this    = $(this),
-          $buttons = $('.csf-save'),
-          $panel   = $('.csf-options'),
+          $buttons = $('.streamcast-csf-save'),
+          $panel   = $('.streamcast-csf-options'),
           flooding = false,
           timeout;
 
@@ -2392,55 +2392,55 @@
 
           $buttons.attr('value', $text);
 
-          if ( $this.hasClass('csf-save-ajax') ) {
+          if ( $this.hasClass('streamcast-csf-save-ajax') ) {
 
             e.preventDefault();
 
-            $panel.addClass('csf-saving');
+            $panel.addClass('streamcast-csf-saving');
             $buttons.prop('disabled', true);
 
-            window.wp.ajax.post( 'csf_'+ $panel.data('unique') +'_ajax_save', {
-              data: $('#csf-form').serializeJSONCSF()
+            window.wp.ajax.post( 'streamcast_csf_'+ $panel.data('unique') +'_ajax_save', {
+              data: $('#streamcast-csf-form').serializeJSONCSF()
             })
             .done( function( response ) {
 
               // clear errors
-              $('.csf-error').remove();
+              $('.streamcast-csf-error').remove();
 
               if ( Object.keys( response.errors ).length ) {
 
-                var error_icon = '<i class="csf-label-error csf-error">!</i>';
+                var error_icon = '<i class="streamcast-csf-label-error streamcast-csf-error">!</i>';
 
                 $.each(response.errors, function( key, error_message ) {
 
                   var $field = $('[data-depend-id="'+ key +'"]'),
-                      $link  = $('a[href="#tab='+ $field.closest('.csf-section').data('section-id') +'"]' ),
-                      $tab   = $link.closest('.csf-tab-item');
+                      $link  = $('a[href="#tab='+ $field.closest('.streamcast-csf-section').data('section-id') +'"]' ),
+                      $tab   = $link.closest('.streamcast-csf-tab-item');
 
-                  $field.closest('.csf-fieldset').append( '<p class="csf-error csf-error-text">'+ error_message +'</p>' );
+                  $field.closest('.streamcast-csf-fieldset').append( '<p class="streamcast-csf-error streamcast-csf-error-text">'+ error_message +'</p>' );
 
-                  if ( !$link.find('.csf-error').length ) {
+                  if ( !$link.find('.streamcast-csf-error').length ) {
                     $link.append( error_icon );
                   }
 
-                  if ( !$tab.find('.csf-arrow .csf-error').length ) {
-                    $tab.find('.csf-arrow').append( error_icon );
+                  if ( !$tab.find('.streamcast-csf-arrow .streamcast-csf-error').length ) {
+                    $tab.find('.streamcast-csf-arrow').append( error_icon );
                   }
 
                 });
 
               }
 
-              $panel.removeClass('csf-saving');
+              $panel.removeClass('streamcast-csf-saving');
               $buttons.prop('disabled', false).attr('value', $value);
               flooding = false;
 
-              CSF.vars.form_modified = false;
-              CSF.vars.$form_warning.hide();
+              STREAMCAST_STREAMCAST_CSF.vars.form_modified = false;
+              STREAMCAST_STREAMCAST_CSF.vars.$form_warning.hide();
 
               clearTimeout(timeout);
 
-              var $result_success = $('.csf-form-success');
+              var $result_success = $('.streamcast-csf-form-success');
               $result_success.empty().append(response.notice).fadeIn('fast', function() {
                 timeout = setTimeout( function() {
                   $result_success.fadeOut('fast');
@@ -2454,7 +2454,7 @@
 
           } else {
 
-            CSF.vars.form_modified = false;
+            STREAMCAST_STREAMCAST_CSF.vars.form_modified = false;
 
           }
 
@@ -2470,35 +2470,35 @@
   //
   // Option Framework
   //
-  $.fn.csf_options = function() {
+  $.fn.streamcast_csf_options = function() {
     return this.each( function() {
 
       var $this         = $(this),
-          $content      = $this.find('.csf-content'),
-          $form_success = $this.find('.csf-form-success'),
-          $form_warning = $this.find('.csf-form-warning'),
-          $save_button  = $this.find('.csf-header .csf-save');
+          $content      = $this.find('.streamcast-csf-content'),
+          $form_success = $this.find('.streamcast-csf-form-success'),
+          $form_warning = $this.find('.streamcast-csf-form-warning'),
+          $save_button  = $this.find('.streamcast-csf-header .streamcast-csf-save');
 
-      CSF.vars.$form_warning = $form_warning;
+      STREAMCAST_STREAMCAST_CSF.vars.$form_warning = $form_warning;
 
       // Shows a message white leaving theme options without saving
       if ( $form_warning.length ) {
 
         window.onbeforeunload = function() {
-          return ( CSF.vars.form_modified ) ? true : undefined;
+          return ( STREAMCAST_STREAMCAST_CSF.vars.form_modified ) ? true : undefined;
         };
 
         $content.on('change keypress', ':input', function() {
-          if ( !CSF.vars.form_modified ) {
+          if ( !STREAMCAST_STREAMCAST_CSF.vars.form_modified ) {
             $form_success.hide();
             $form_warning.fadeIn('fast');
-            CSF.vars.form_modified = true;
+            STREAMCAST_STREAMCAST_CSF.vars.form_modified = true;
           }
         });
 
       }
 
-      if ( $form_success.hasClass('csf-form-show') ) {
+      if ( $form_success.hasClass('streamcast-csf-form-show') ) {
         setTimeout( function() {
           $form_success.fadeOut('fast');
         }, 1000);
@@ -2518,7 +2518,7 @@
   //
   // Taxonomy Framework
   //
-  $.fn.csf_taxonomy = function() {
+  $.fn.streamcast_csf_taxonomy = function() {
     return this.each( function() {
 
       var $this = $(this),
@@ -2527,7 +2527,7 @@
       if ( $form.attr('id') === 'addtag' ) {
 
         var $submit = $form.find('#submit'),
-            $cloned = $this.children('.csf-field').csf_clone();
+            $cloned = $this.children('.streamcast-csf-field').streamcast_csf_clone();
 
         $submit.on( 'click', function() {
 
@@ -2539,9 +2539,9 @@
 
             $this.html( $cloned );
 
-            $cloned = $cloned.csf_clone();
+            $cloned = $cloned.streamcast_csf_clone();
 
-            $this.csf_reload_script();
+            $this.streamcast_csf_reload_script();
 
           }
 
@@ -2555,7 +2555,7 @@
   //
   // Shortcode Framework
   //
-  $.fn.csf_shortcode = function() {
+  $.fn.streamcast_csf_shortcode = function() {
 
     var base = this;
 
@@ -2664,10 +2664,10 @@
     return this.each( function() {
 
       var $modal   = $(this),
-          $load    = $modal.find('.csf-modal-load'),
-          $content = $modal.find('.csf-modal-content'),
-          $insert  = $modal.find('.csf-modal-insert'),
-          $loading = $modal.find('.csf-modal-loading'),
+          $load    = $modal.find('.streamcast-csf-modal-load'),
+          $content = $modal.find('.streamcast-csf-modal-content'),
+          $insert  = $modal.find('.streamcast-csf-modal-insert'),
+          $loading = $modal.find('.streamcast-csf-modal-loading'),
           $select  = $modal.find('select'),
           modal_id = $modal.data('modal-id'),
           nonce    = $modal.data('nonce'),
@@ -2681,7 +2681,7 @@
           $cloned,
           $button;
 
-      $(document).on('click', '.csf-shortcode-button[data-modal-id="'+ modal_id +'"]', function( e ) {
+      $(document).on('click', '.streamcast-csf-shortcode-button[data-modal-id="'+ modal_id +'"]', function( e ) {
 
         e.preventDefault();
 
@@ -2693,7 +2693,7 @@
         $modal.removeClass('hidden');
 
         // single usage trigger first shortcode
-        if ( $modal.hasClass('csf-shortcode-single') && sc_name === undefined ) {
+        if ( $modal.hasClass('streamcast-csf-shortcode-single') && sc_name === undefined ) {
           $select.trigger('change');
         }
 
@@ -2715,7 +2715,7 @@
 
           $loading.show();
 
-          window.wp.ajax.post( 'csf-get-shortcode-'+ modal_id, {
+          window.wp.ajax.post( 'streamcast-csf-get-shortcode-'+ modal_id, {
             shortcode_key: sc_key,
             nonce: nonce
           })
@@ -2727,10 +2727,10 @@
 
             $insert.parent().removeClass('hidden');
 
-            $cloned = $appended.find('.csf--repeat-shortcode').csf_clone();
+            $cloned = $appended.find('.streamcast-csf--repeat-shortcode').streamcast_csf_clone();
 
-            $appended.csf_reload_script();
-            $appended.find('.csf-fields').csf_reload_script();
+            $appended.streamcast_csf_reload_script();
+            $appended.find('.streamcast-csf-fields').streamcast_csf_reload_script();
 
           });
 
@@ -2749,7 +2749,7 @@
         if ( $insert.prop('disabled') || $insert.attr('disabled') ) { return; }
 
         var shortcode = '';
-        var serialize = $modal.find('.csf-field:not(.csf-depend-on)').find(':input:not(.ignore)').serializeObjectCSF();
+        var serialize = $modal.find('.streamcast-csf-field:not(.streamcast-csf-depend-on)').find(':input:not(.ignore)').serializeObjectCSF();
 
         switch ( sc_view ) {
 
@@ -2787,8 +2787,8 @@
 
         if ( gutenberg_id ) {
 
-          var content = window.csf_gutenberg_props.attributes.hasOwnProperty('shortcode') ? window.csf_gutenberg_props.attributes.shortcode : '';
-          window.csf_gutenberg_props.setAttributes({shortcode: content + shortcode});
+          var content = window.streamcast_csf_gutenberg_props.attributes.hasOwnProperty('shortcode') ? window.streamcast_csf_gutenberg_props.attributes.shortcode : '';
+          window.streamcast_csf_gutenberg_props.setAttributes({shortcode: content + shortcode});
 
         } else if ( editor_id ) {
 
@@ -2805,31 +2805,31 @@
 
       });
 
-      $modal.on('click', '.csf--repeat-button', function( e ) {
+      $modal.on('click', '.streamcast-csf--repeat-button', function( e ) {
 
         e.preventDefault();
 
-        var $repeatable = $modal.find('.csf--repeatable');
-        var $new_clone  = $cloned.csf_clone();
-        var $remove_btn = $new_clone.find('.csf-repeat-remove');
+        var $repeatable = $modal.find('.streamcast-csf--repeatable');
+        var $new_clone  = $cloned.streamcast_csf_clone();
+        var $remove_btn = $new_clone.find('.streamcast-csf-repeat-remove');
 
         var $appended = $new_clone.appendTo( $repeatable );
 
-        $new_clone.find('.csf-fields').csf_reload_script();
+        $new_clone.find('.streamcast-csf-fields').streamcast_csf_reload_script();
 
-        CSF.helper.name_nested_replace( $modal.find('.csf--repeat-shortcode'), sc_group );
+        STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $modal.find('.streamcast-csf--repeat-shortcode'), sc_group );
 
         $remove_btn.on('click', function() {
 
           $new_clone.remove();
 
-          CSF.helper.name_nested_replace( $modal.find('.csf--repeat-shortcode'), sc_group );
+          STREAMCAST_STREAMCAST_CSF.helper.name_nested_replace( $modal.find('.streamcast-csf--repeat-shortcode'), sc_group );
 
         });
 
       });
 
-      $modal.on('click', '.csf-modal-close, .csf-modal-overlay', function() {
+      $modal.on('click', '.streamcast-csf-modal-close, .streamcast-csf-modal-overlay', function() {
         $modal.addClass('hidden');
       });
 
@@ -2863,7 +2863,7 @@
 
   }
 
-  CSF.funcs.parse_color = function( color ) {
+  STREAMCAST_STREAMCAST_CSF.funcs.parse_color = function( color ) {
 
     var value = color.replace(/\s+/g, ''),
         trans = ( value.indexOf('rgba') !== -1 ) ? parseFloat( value.replace(/^.*,(.+)\)/, '$1') * 100 ) : 100,
@@ -2873,12 +2873,12 @@
 
   };
 
-  $.fn.csf_color = function() {
+  $.fn.streamcast_csf_color = function() {
     return this.each( function() {
 
       var $input        = $(this),
-          picker_color  = CSF.funcs.parse_color( $input.val() ),
-          palette_color = window.csf_vars.color_palette.length ? window.csf_vars.color_palette : true,
+          picker_color  = STREAMCAST_STREAMCAST_CSF.funcs.parse_color( $input.val() ),
+          palette_color = window.streamcast_csf_vars.color_palette.length ? window.streamcast_csf_vars.color_palette : true,
           $container;
 
       // Destroy and Reinit
@@ -2892,8 +2892,8 @@
 
           var ui_color_value = ui.color.toString();
 
-          $container.removeClass('csf--transparent-active');
-          $container.find('.csf--transparent-offset').css('background-color', ui_color_value);
+          $container.removeClass('streamcast-csf--transparent-active');
+          $container.find('.streamcast-csf--transparent-offset').css('background-color', ui_color_value);
           $input.val(ui_color_value).trigger('change');
 
         },
@@ -2902,28 +2902,28 @@
           $container = $input.closest('.wp-picker-container');
 
           var a8cIris = $input.data('a8cIris'),
-              $transparent_wrap = $('<div class="csf--transparent-wrap">' +
-                                '<div class="csf--transparent-slider"></div>' +
-                                '<div class="csf--transparent-offset"></div>' +
-                                '<div class="csf--transparent-text"></div>' +
-                                '<div class="csf--transparent-button">transparent <i class="fas fa-toggle-off"></i></div>' +
+              $transparent_wrap = $('<div class="streamcast-csf--transparent-wrap">' +
+                                '<div class="streamcast-csf--transparent-slider"></div>' +
+                                '<div class="streamcast-csf--transparent-offset"></div>' +
+                                '<div class="streamcast-csf--transparent-text"></div>' +
+                                '<div class="streamcast-csf--transparent-button">transparent <i class="fas fa-toggle-off"></i></div>' +
                                 '</div>').appendTo( $container.find('.wp-picker-holder') ),
-              $transparent_slider = $transparent_wrap.find('.csf--transparent-slider'),
-              $transparent_text   = $transparent_wrap.find('.csf--transparent-text'),
-              $transparent_offset = $transparent_wrap.find('.csf--transparent-offset'),
-              $transparent_button = $transparent_wrap.find('.csf--transparent-button');
+              $transparent_slider = $transparent_wrap.find('.streamcast-csf--transparent-slider'),
+              $transparent_text   = $transparent_wrap.find('.streamcast-csf--transparent-text'),
+              $transparent_offset = $transparent_wrap.find('.streamcast-csf--transparent-offset'),
+              $transparent_button = $transparent_wrap.find('.streamcast-csf--transparent-button');
 
           if ( $input.val() === 'transparent' ) {
-            $container.addClass('csf--transparent-active');
+            $container.addClass('streamcast-csf--transparent-active');
           }
 
           $transparent_button.on('click', function() {
             if ( $input.val() !== 'transparent' ) {
               $input.val('transparent').trigger('change').removeClass('iris-error');
-              $container.addClass('csf--transparent-active');
+              $container.addClass('streamcast-csf--transparent-active');
             } else {
               $input.val( a8cIris._color.toString() ).trigger('change');
-              $container.removeClass('csf--transparent-active');
+              $container.removeClass('streamcast-csf--transparent-active');
             }
           });
 
@@ -2953,14 +2953,14 @@
                 a8cIris._color._alpha = 1;
                 $transparent_text.text('');
                 $transparent_slider.slider('option', 'value', 100);
-                $container.removeClass('csf--transparent-active');
+                $container.removeClass('streamcast-csf--transparent-active');
                 $input.trigger('change');
 
               });
 
               $container.on('click', '.wp-picker-default', function() {
 
-                var default_color = CSF.funcs.parse_color( $input.data('default-color') ),
+                var default_color = STREAMCAST_STREAMCAST_CSF.funcs.parse_color( $input.data('default-color') ),
                     default_value = parseFloat( default_color.transparent / 100 ),
                     default_text  = default_value < 1 ? default_value : '';
 
@@ -2970,7 +2970,7 @@
 
                 if ( default_color.value === 'transparent' ) {
                   $input.removeClass('iris-error');
-                  $container.addClass('csf--transparent-active');
+                  $container.addClass('streamcast-csf--transparent-active');
                 }
 
               });
@@ -2986,20 +2986,20 @@
   //
   // ChosenJS
   //
-  $.fn.csf_chosen = function() {
+  $.fn.streamcast_csf_chosen = function() {
     return this.each( function() {
 
       var $this       = $(this),
           $inited     = $this.parent().find('.chosen-container'),
-          is_sortable = $this.hasClass('csf-chosen-sortable') || false,
-          is_ajax     = $this.hasClass('csf-chosen-ajax') || false,
+          is_sortable = $this.hasClass('streamcast-csf-chosen-sortable') || false,
+          is_ajax     = $this.hasClass('streamcast-csf-chosen-ajax') || false,
           is_multiple = $this.attr('multiple') || false,
           set_width   = is_multiple ? '100%' : 'auto',
           set_options = $.extend({
             allow_single_deselect: true,
             disable_search_threshold: 10,
             width: set_width,
-            no_results_text: window.csf_vars.i18n.no_results_text,
+            no_results_text: window.streamcast_csf_vars.i18n.no_results_text,
           }, $this.data('chosen-settings'));
 
       if ( $inited.length ) {
@@ -3019,9 +3019,9 @@
           width: '100%',
           min_length: 3,
           type_delay: 500,
-          typing_text: window.csf_vars.i18n.typing_text,
-          searching_text: window.csf_vars.i18n.searching_text,
-          no_results_text: window.csf_vars.i18n.no_results_text,
+          typing_text: window.streamcast_csf_vars.i18n.typing_text,
+          searching_text: window.streamcast_csf_vars.i18n.searching_text,
+          no_results_text: window.streamcast_csf_vars.i18n.no_results_text,
         }, $this.data('chosen-settings'));
 
         $this.CSFAjaxChosen(set_ajax_options);
@@ -3035,7 +3035,7 @@
       // Chosen keep options order
       if ( is_multiple ) {
 
-        var $hidden_select = $this.parent().find('.csf-hide-select');
+        var $hidden_select = $this.parent().find('.streamcast-csf-hide-select');
         var $hidden_value  = $hidden_select.val() || [];
 
         $this.on('change', function(obj, result) {
@@ -3085,7 +3085,7 @@
 
             var select_options = '';
             var chosen_object  = $this.data('chosen');
-            var $prev_select   = $this.parent().find('.csf-hide-select');
+            var $prev_select   = $this.parent().find('.streamcast-csf-hide-select');
 
             $chosen_choices.find('.search-choice-close').each( function() {
               var option_array_index = $(this).data('option-array-index');
@@ -3111,12 +3111,12 @@
   //
   // Helper Checkbox Checker
   //
-  $.fn.csf_checkbox = function() {
+  $.fn.streamcast_csf_checkbox = function() {
     return this.each( function() {
 
       var $this     = $(this),
-          $input    = $this.find('.csf--input'),
-          $checkbox = $this.find('.csf--checkbox');
+          $input    = $this.find('.streamcast-csf--input'),
+          $checkbox = $this.find('.streamcast-csf--checkbox');
 
       $checkbox.on('click', function() {
         $input.val( Number( $checkbox.prop('checked') ) ).trigger('change');
@@ -3128,14 +3128,14 @@
   //
   // Helper Check/Uncheck All
   //
-  $.fn.csf_checkbox_all = function() {
+  $.fn.streamcast_csf_checkbox_all = function() {
     return this.each( function() {
 
       var $this = $(this);
 
       $this.on('click', function() {
 
-        var $inputs = $this.closest('.csf-field-checkbox').find(':input'),
+        var $inputs = $this.closest('.streamcast-csf-field-checkbox').find(':input'),
             uncheck = false;
 
         $inputs.each(function() {
@@ -3162,11 +3162,11 @@
   //
   // Siblings
   //
-  $.fn.csf_siblings = function() {
+  $.fn.streamcast_csf_siblings = function() {
     return this.each( function() {
 
       var $this     = $(this),
-          $siblings = $this.find('.csf--sibling'),
+          $siblings = $this.find('.streamcast-csf--sibling'),
           multiple  = $this.data('multiple') || false;
 
       $siblings.on('click', function() {
@@ -3175,11 +3175,11 @@
 
         if ( multiple ) {
 
-          if ( $sibling.hasClass('csf--active') ) {
-            $sibling.removeClass('csf--active');
+          if ( $sibling.hasClass('streamcast-csf--active') ) {
+            $sibling.removeClass('streamcast-csf--active');
             $sibling.find('input').prop('checked', false).trigger('change');
           } else {
-            $sibling.addClass('csf--active');
+            $sibling.addClass('streamcast-csf--active');
             $sibling.find('input').prop('checked', true).trigger('change');
           }
 
@@ -3187,7 +3187,7 @@
 
           $this.find('input').prop('checked', false);
           $sibling.find('input').prop('checked', true).trigger('change');
-          $sibling.addClass('csf--active').siblings().removeClass('csf--active');
+          $sibling.addClass('streamcast-csf--active').siblings().removeClass('streamcast-csf--active');
 
         }
 
@@ -3199,7 +3199,7 @@
   //
   // Help Tooltip
   //
-  $.fn.csf_help = function() {
+  $.fn.streamcast_csf_help = function() {
     return this.each( function() {
 
       var $this = $(this),
@@ -3209,8 +3209,8 @@
       $this.on({
         mouseenter: function() {
 
-          $tooltip = $( '<div class="csf-tooltip"></div>' ).html( $this.find('.csf-help-text').html() ).appendTo('body');
-          offset_left = ( CSF.vars.is_rtl ) ? ( $this.offset().left + 24 ) : ( $this.offset().left - $tooltip.outerWidth() );
+          $tooltip = $( '<div class="streamcast-csf-tooltip"></div>' ).html( $this.find('.streamcast-csf-help-text').html() ).appendTo('body');
+          offset_left = ( STREAMCAST_STREAMCAST_CSF.vars.is_rtl ) ? ( $this.offset().left + 24 ) : ( $this.offset().left - $tooltip.outerWidth() );
 
           $tooltip.css({
             top: $this.offset().top - ( ( $tooltip.outerHeight() / 2 ) - 14 ),
@@ -3234,11 +3234,11 @@
   //
   // Customize Refresh
   //
-  $.fn.csf_customizer_refresh = function() {
+  $.fn.streamcast_csf_customizer_refresh = function() {
     return this.each( function() {
 
       var $this    = $(this),
-          $complex = $this.closest('.csf-customize-complex');
+          $complex = $this.closest('.streamcast-csf-customize-complex');
 
       if ( $complex.length ) {
 
@@ -3265,7 +3265,7 @@
 
       }
 
-      $(document).trigger('csf-customizer-refresh', $this);
+      $(document).trigger('streamcast-csf-customizer-refresh', $this);
 
     });
   };
@@ -3273,7 +3273,7 @@
   //
   // Customize Listen Form Elements
   //
-  $.fn.csf_customizer_listen = function( options ) {
+  $.fn.streamcast_csf_customizer_listen = function( options ) {
 
     var settings = $.extend({
       closest: false,
@@ -3283,7 +3283,7 @@
 
       if ( window.wp.customize === undefined ) { return; }
 
-      var $this     = ( settings.closest ) ? $(this).closest('.csf-customize-complex') : $(this),
+      var $this     = ( settings.closest ) ? $(this).closest('.streamcast-csf-customize-complex') : $(this),
           $input    = $this.find(':input'),
           unique_id = $this.data('unique-id'),
           option_id = $this.data('option-id');
@@ -3313,13 +3313,13 @@
 
     if ( $this.hasClass('open') && !$this.data('inited') ) {
 
-      var $fields  = $this.find('.csf-customize-field');
-      var $complex = $this.find('.csf-customize-complex');
+      var $fields  = $this.find('.streamcast-csf-customize-field');
+      var $complex = $this.find('.streamcast-csf-customize-complex');
 
       if ( $fields.length ) {
-        $this.csf_dependency();
-        $fields.csf_reload_script({dependency: false});
-        $complex.csf_customizer_listen();
+        $this.streamcast_csf_dependency();
+        $fields.streamcast_csf_reload_script({dependency: false});
+        $complex.streamcast_csf_customizer_listen();
       }
 
       $this.data('inited', true);
@@ -3331,13 +3331,13 @@
   //
   // Window on resize
   //
-  CSF.vars.$window.on('resize csf.resize', CSF.helper.debounce( function( event ) {
+  STREAMCAST_STREAMCAST_CSF.vars.$window.on('resize csf.resize', STREAMCAST_STREAMCAST_CSF.helper.debounce( function( event ) {
 
-    var window_width = navigator.userAgent.indexOf('AppleWebKit/') > -1 ? CSF.vars.$window.width() : window.innerWidth;
+    var window_width = navigator.userAgent.indexOf('AppleWebKit/') > -1 ? STREAMCAST_STREAMCAST_CSF.vars.$window.width() : window.innerWidth;
 
-    if ( window_width <= 782 && !CSF.vars.onloaded ) {
-      $('.csf-section').csf_reload_script();
-      CSF.vars.onloaded  = true;
+    if ( window_width <= 782 && !STREAMCAST_STREAMCAST_CSF.vars.onloaded ) {
+      $('.streamcast-csf-section').streamcast_csf_reload_script();
+      STREAMCAST_STREAMCAST_CSF.vars.onloaded  = true;
     }
 
   }, 200)).trigger('csf.resize');
@@ -3345,31 +3345,31 @@
   //
   // Widgets Framework
   //
-  $.fn.csf_widgets = function() {
+  $.fn.streamcast_csf_widgets = function() {
     return this.each( function() {
 
       $(document).on('widget-added widget-updated', function( event, $widget ) {
 
-        var $fields = $widget.find('.csf-fields');
+        var $fields = $widget.find('.streamcast-csf-fields');
 
         if ( $fields.length ) {
-          $fields.csf_reload_script();
+          $fields.streamcast_csf_reload_script();
         }
 
       });
 
       $(document).on('click', '.widget-top', function( event ) {
 
-        var $fields = $(this).parent().find('.csf-fields');
+        var $fields = $(this).parent().find('.streamcast-csf-fields');
 
         if ( $fields.length ) {
-          $fields.csf_reload_script();
+          $fields.streamcast_csf_reload_script();
         }
 
       });
 
       $('.widgets-sortables, .control-section-sidebar').on('sortstop', function( event, ui ) {
-        ui.item.find('.csf-fields').csf_reload_script_retry();
+        ui.item.find('.streamcast-csf-fields').streamcast_csf_reload_script_retry();
       });
 
     });
@@ -3378,17 +3378,17 @@
   //
   // Nav Menu Options Framework
   //
-  $.fn.csf_nav_menu = function() {
+  $.fn.streamcast_csf_nav_menu = function() {
     return this.each( function() {
 
       var $navmenu = $(this);
 
       $navmenu.on('click', 'a.item-edit', function() {
-        $(this).closest('li.menu-item').find('.csf-fields').csf_reload_script();
+        $(this).closest('li.menu-item').find('.streamcast-csf-fields').streamcast_csf_reload_script();
       });
 
       $navmenu.on('sortstop', function( event, ui ) {
-        ui.item.find('.csf-fields').csf_reload_script_retry();
+        ui.item.find('.streamcast-csf-fields').streamcast_csf_reload_script_retry();
       });
 
     });
@@ -3397,13 +3397,13 @@
   //
   // Retry Plugins
   //
-  $.fn.csf_reload_script_retry = function() {
+  $.fn.streamcast_csf_reload_script_retry = function() {
     return this.each( function() {
 
       var $this = $(this);
 
       if ( $this.data('inited') ) {
-        $this.children('.csf-field-wp_editor').csf_field_wp_editor();
+        $this.children('.streamcast-csf-field-wp_editor').streamcast_csf_field_wp_editor();
       }
 
     });
@@ -3412,7 +3412,7 @@
   //
   // Reload Plugins
   //
-  $.fn.csf_reload_script = function( options ) {
+  $.fn.streamcast_csf_reload_script = function( options ) {
 
     var settings = $.extend({
       dependency: true,
@@ -3426,60 +3426,60 @@
       if ( !$this.data('inited') ) {
 
         // Field plugins
-        $this.children('.csf-field-accordion').csf_field_accordion();
-        $this.children('.csf-field-backup').csf_field_backup();
-        $this.children('.csf-field-background').csf_field_background();
-        $this.children('.csf-field-code_editor').csf_field_code_editor();
-        $this.children('.csf-field-date').csf_field_date();
-        $this.children('.csf-field-datetime').csf_field_datetime();
-        $this.children('.csf-field-fieldset').csf_field_fieldset();
-        $this.children('.csf-field-gallery').csf_field_gallery();
-        $this.children('.csf-field-group').csf_field_group();
-        $this.children('.csf-field-icon').csf_field_icon();
-        $this.children('.csf-field-link').csf_field_link();
-        $this.children('.csf-field-media').csf_field_media();
-        $this.children('.csf-field-map').csf_field_map();
-        $this.children('.csf-field-repeater').csf_field_repeater();
-        $this.children('.csf-field-slider').csf_field_slider();
-        $this.children('.csf-field-sortable').csf_field_sortable();
-        $this.children('.csf-field-sorter').csf_field_sorter();
-        $this.children('.csf-field-spinner').csf_field_spinner();
-        $this.children('.csf-field-switcher').csf_field_switcher();
-        $this.children('.csf-field-tabbed').csf_field_tabbed();
-        $this.children('.csf-field-typography').csf_field_typography();
-        $this.children('.csf-field-upload').csf_field_upload();
-        $this.children('.csf-field-wp_editor').csf_field_wp_editor();
+        $this.children('.streamcast-csf-field-accordion').streamcast_csf_field_accordion();
+        $this.children('.streamcast-csf-field-backup').streamcast_csf_field_backup();
+        $this.children('.streamcast-csf-field-background').streamcast_csf_field_background();
+        $this.children('.streamcast-csf-field-code_editor').streamcast_csf_field_code_editor();
+        $this.children('.streamcast-csf-field-date').streamcast_csf_field_date();
+        $this.children('.streamcast-csf-field-datetime').streamcast_csf_field_datetime();
+        $this.children('.streamcast-csf-field-fieldset').streamcast_csf_field_fieldset();
+        $this.children('.streamcast-csf-field-gallery').streamcast_csf_field_gallery();
+        $this.children('.streamcast-csf-field-group').streamcast_csf_field_group();
+        $this.children('.streamcast-csf-field-icon').streamcast_csf_field_icon();
+        $this.children('.streamcast-csf-field-link').streamcast_csf_field_link();
+        $this.children('.streamcast-csf-field-media').streamcast_csf_field_media();
+        $this.children('.streamcast-csf-field-map').streamcast_csf_field_map();
+        $this.children('.streamcast-csf-field-repeater').streamcast_csf_field_repeater();
+        $this.children('.streamcast-csf-field-slider').streamcast_csf_field_slider();
+        $this.children('.streamcast-csf-field-sortable').streamcast_csf_field_sortable();
+        $this.children('.streamcast-csf-field-sorter').streamcast_csf_field_sorter();
+        $this.children('.streamcast-csf-field-spinner').streamcast_csf_field_spinner();
+        $this.children('.streamcast-csf-field-switcher').streamcast_csf_field_switcher();
+        $this.children('.streamcast-csf-field-tabbed').streamcast_csf_field_tabbed();
+        $this.children('.streamcast-csf-field-typography').streamcast_csf_field_typography();
+        $this.children('.streamcast-csf-field-upload').streamcast_csf_field_upload();
+        $this.children('.streamcast-csf-field-wp_editor').streamcast_csf_field_wp_editor();
 
         // Field colors
-        $this.children('.csf-field-border').find('.csf-color').csf_color();
-        $this.children('.csf-field-background').find('.csf-color').csf_color();
-        $this.children('.csf-field-color').find('.csf-color').csf_color();
-        $this.children('.csf-field-color_group').find('.csf-color').csf_color();
-        $this.children('.csf-field-link_color').find('.csf-color').csf_color();
-        $this.children('.csf-field-typography').find('.csf-color').csf_color();
+        $this.children('.streamcast-csf-field-border').find('.streamcast-csf-color').streamcast_csf_color();
+        $this.children('.streamcast-csf-field-background').find('.streamcast-csf-color').streamcast_csf_color();
+        $this.children('.streamcast-csf-field-color').find('.streamcast-csf-color').streamcast_csf_color();
+        $this.children('.streamcast-csf-field-color_group').find('.streamcast-csf-color').streamcast_csf_color();
+        $this.children('.streamcast-csf-field-link_color').find('.streamcast-csf-color').streamcast_csf_color();
+        $this.children('.streamcast-csf-field-typography').find('.streamcast-csf-color').streamcast_csf_color();
 
         // Field chosenjs
-        $this.children('.csf-field-select').find('.csf-chosen').csf_chosen();
+        $this.children('.streamcast-csf-field-select').find('.streamcast-csf-chosen').streamcast_csf_chosen();
 
         // Field Checkbox
-        $this.children('.csf-field-checkbox').find('.csf-checkbox').csf_checkbox();
-        $this.children('.csf-field-checkbox').find('.csf-checkbox-all').csf_checkbox_all();
+        $this.children('.streamcast-csf-field-checkbox').find('.streamcast-csf-checkbox').streamcast_csf_checkbox();
+        $this.children('.streamcast-csf-field-checkbox').find('.streamcast-csf-checkbox-all').streamcast_csf_checkbox_all();
 
         // Field Siblings
-        $this.children('.csf-field-button_set').find('.csf-siblings').csf_siblings();
-        $this.children('.csf-field-image_select').find('.csf-siblings').csf_siblings();
-        $this.children('.csf-field-palette').find('.csf-siblings').csf_siblings();
+        $this.children('.streamcast-csf-field-button_set').find('.streamcast-csf-siblings').streamcast_csf_siblings();
+        $this.children('.streamcast-csf-field-image_select').find('.streamcast-csf-siblings').streamcast_csf_siblings();
+        $this.children('.streamcast-csf-field-palette').find('.streamcast-csf-siblings').streamcast_csf_siblings();
 
         // Help Tooptip
-        $this.children('.csf-field').find('.csf-help').csf_help();
+        $this.children('.streamcast-csf-field').find('.streamcast-csf-help').streamcast_csf_help();
 
         if ( settings.dependency ) {
-          $this.csf_dependency();
+          $this.streamcast_csf_dependency();
         }
 
         $this.data('inited', true);
 
-        $(document).trigger('csf-reload-script', $this);
+        $(document).trigger('streamcast-csf-reload-script', $this);
 
       }
 
@@ -3491,22 +3491,22 @@
   //
   $(document).ready( function() {
 
-    $('.csf-save').csf_save();
-    $('.csf-options').csf_options();
-    $('.csf-sticky-header').csf_sticky();
-    $('.csf-nav-options').csf_nav_options();
-    $('.csf-nav-metabox').csf_nav_metabox();
-    $('.csf-taxonomy').csf_taxonomy();
-    $('.csf-page-templates').csf_page_templates();
-    $('.csf-post-formats').csf_post_formats();
-    $('.csf-shortcode').csf_shortcode();
-    $('.csf-search').csf_search();
-    $('.csf-confirm').csf_confirm();
-    $('.csf-expand-all').csf_expand_all();
-    $('.csf-onload').csf_reload_script();
-    $('#widgets-editor').csf_widgets();
-    $('#widgets-right').csf_widgets();
-    $('#menu-to-edit').csf_nav_menu();
+    $('.streamcast-csf-save').streamcast_csf_save();
+    $('.streamcast-csf-options').streamcast_csf_options();
+    $('.streamcast-csf-sticky-header').streamcast_csf_sticky();
+    $('.streamcast-csf-nav-options').streamcast_csf_nav_options();
+    $('.streamcast-csf-nav-metabox').streamcast_csf_nav_metabox();
+    $('.streamcast-csf-taxonomy').streamcast_csf_taxonomy();
+    $('.streamcast-csf-page-templates').streamcast_csf_page_templates();
+    $('.streamcast-csf-post-formats').streamcast_csf_post_formats();
+    $('.streamcast-csf-shortcode').streamcast_csf_shortcode();
+    $('.streamcast-csf-search').streamcast_csf_search();
+    $('.streamcast-csf-confirm').streamcast_csf_confirm();
+    $('.streamcast-csf-expand-all').streamcast_csf_expand_all();
+    $('.streamcast-csf-onload').streamcast_csf_reload_script();
+    $('#widgets-editor').streamcast_csf_widgets();
+    $('#widgets-right').streamcast_csf_widgets();
+    $('#menu-to-edit').streamcast_csf_nav_menu();
 
   });
 

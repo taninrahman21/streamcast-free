@@ -1,7 +1,7 @@
 (function ($) {
   $(document).ready(function () {
     // Copy Quick Embed Shortcode
-    $(document).on("click", ".stp_shortcode_copy_btn", function (e) {
+    $(document).on("click", ".streamcast_shortcode_copy_btn", function (e) {
       e.preventDefault();
       const $btn = $(this);
       const text = $btn.data("shortcode") || $btn.data("clipboard-text");

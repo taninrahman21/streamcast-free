@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_select' ) ) {
-  class CSF_Field_select extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_select' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_select extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -28,13 +28,13 @@ if ( ! class_exists( 'CSF_Field_select' ) ) {
 
       $this->value = ( is_array( $this->value ) ) ? $this->value : array_filter( (array) $this->value );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       if ( isset( $this->field['options'] ) ) {
 
         if ( ! empty( $args['ajax'] ) ) {
           $args['settings']['data']['type']  = $args['options'];
-          $args['settings']['data']['nonce'] = wp_create_nonce( 'csf_chosen_ajax_nonce' );
+          $args['settings']['data']['nonce'] = wp_create_nonce( 'streamcast_csf_chosen_ajax_nonce' );
           if ( ! empty( $args['query_args'] ) ) {
             $args['settings']['data']['query_args'] = $args['query_args'];
           }
@@ -43,14 +43,14 @@ if ( ! class_exists( 'CSF_Field_select' ) ) {
         $chosen_rtl       = ( is_rtl() ) ? ' chosen-rtl' : '';
         $multiple_name    = ( $args['multiple'] ) ? '[]' : '';
         $multiple_attr    = ( $args['multiple'] ) ? ' multiple="multiple"' : '';
-        $chosen_sortable  = ( $args['chosen'] && $args['sortable'] ) ? ' csf-chosen-sortable' : '';
-        $chosen_ajax      = ( $args['chosen'] && $args['ajax'] ) ? ' csf-chosen-ajax' : '';
+        $chosen_sortable  = ( $args['chosen'] && $args['sortable'] ) ? ' streamcast-csf-chosen-sortable' : '';
+        $chosen_ajax      = ( $args['chosen'] && $args['ajax'] ) ? ' streamcast-csf-chosen-ajax' : '';
         $placeholder_attr = ( $args['chosen'] && $args['placeholder'] ) ? ' data-placeholder="'. esc_attr( $args['placeholder'] ) .'"' : '';
-        $field_class      = ( $args['chosen'] ) ? ' class="csf-chosen'. esc_attr( $chosen_rtl . $chosen_sortable . $chosen_ajax ) .'"' : '';
+        $field_class      = ( $args['chosen'] ) ? ' class="streamcast-csf-chosen'. esc_attr( $chosen_rtl . $chosen_sortable . $chosen_ajax ) .'"' : '';
         $field_name       = $this->field_name( $multiple_name );
         $field_attr       = $this->field_attributes();
         $maybe_options    = $this->field['options'];
-        $chosen_data_attr = ( $args['chosen'] && ! empty( $args['settings'] ) ) ? ' data-chosen-settings="'. esc_attr( json_encode( $args['settings'] ) ) .'"' : '';
+        $chosen_data_attr = ( $args['chosen'] && ! empty( $args['settings'] ) ) ? ' data-chosen-settings="'. esc_attr( wp_json_encode( $args['settings'] ) ) .'"' : '';
 
         if ( is_string( $maybe_options ) && ! empty( $args['chosen'] ) && ! empty( $args['ajax'] ) ) {
           $options = $this->field_wp_query_data_title( $maybe_options, $this->value );
@@ -64,7 +64,7 @@ if ( ! class_exists( 'CSF_Field_select' ) ) {
 
           if ( ! empty( $args['chosen'] ) && ! empty( $args['multiple'] ) ) {
 
-            echo '<select name="'. $field_name .'" class="csf-hide-select hidden"'. $multiple_attr . $field_attr .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo '<select name="'. $field_name .'" class="streamcast-csf-hide-select hidden"'. $multiple_attr . $field_attr .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             foreach ( $this->value as $option_key ) {
               echo '<option value="'. esc_attr( $option_key ) .'" selected>'. esc_attr( $option_key ) .'</option>';
             }
@@ -116,7 +116,7 @@ if ( ! class_exists( 'CSF_Field_select' ) ) {
 
       }
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_color' ) ) {
-  class CSF_Field_color extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_color' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_color extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -18,9 +18,9 @@ if ( ! class_exists( 'CSF_Field_color' ) ) {
 
       $default_attr = ( ! empty( $this->field['default'] ) ) ? ' data-default-color="'. esc_attr( $this->field['default'] ) .'"' : '';
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-      echo '<input type="text" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'" class="csf-color"'. $default_attr . $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
+      echo '<input type="text" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'" class="streamcast-csf-color"'. $default_attr . $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_radio' ) ) {
-  class CSF_Field_radio extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_radio' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_radio extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -21,9 +21,9 @@ if ( ! class_exists( 'CSF_Field_radio' ) ) {
         'query_args' => array(),
       ) );
 
-      $inline_class = ( $args['inline'] ) ? ' class="csf--inline-list"' : '';
+      $inline_class = ( $args['inline'] ) ? ' class="streamcast-csf--inline-list"' : '';
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       if ( isset( $this->field['options'] ) ) {
 
@@ -46,7 +46,7 @@ if ( ! class_exists( 'CSF_Field_radio' ) ) {
                     echo '<li>';
                     echo '<label>';
                     echo '<input type="radio" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $sub_key ) .'"'. $this->field_attributes() . esc_attr( $checked ) .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo '<span class="csf--text">'. esc_attr( $sub_value ) .'</span>';
+                    echo '<span class="streamcast-csf--text">'. esc_attr( $sub_value ) .'</span>';
                     echo '</label>';
                     echo '</li>';
                   }
@@ -60,7 +60,7 @@ if ( ! class_exists( 'CSF_Field_radio' ) ) {
               echo '<li>';
               echo '<label>';
               echo '<input type="radio" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $option_key ) .'"'. $this->field_attributes() . esc_attr( $checked ) .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-              echo '<span class="csf--text">'. esc_attr( $option_value ) .'</span>';
+              echo '<span class="streamcast-csf--text">'. esc_attr( $option_value ) .'</span>';
               echo '</label>';
               echo '</li>';
 
@@ -80,12 +80,12 @@ if ( ! class_exists( 'CSF_Field_radio' ) ) {
 
         $label = ( isset( $this->field['label'] ) ) ? $this->field['label'] : '';
         echo '<label><input type="radio" name="'. esc_attr( $this->field_name() ) .'" value="1"'. $this->field_attributes() . esc_attr( checked( $this->value, 1, false ) ) .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo ( ! empty( $this->field['label'] ) ) ? '<span class="csf--text">'. esc_attr( $this->field['label'] ) .'</span>' : '';
+        echo ( ! empty( $this->field['label'] ) ) ? '<span class="streamcast-csf--text">'. esc_attr( $this->field['label'] ) .'</span>' : '';
         echo '</label>';
 
       }
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

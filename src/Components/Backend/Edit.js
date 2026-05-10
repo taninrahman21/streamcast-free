@@ -44,12 +44,12 @@ const Edit = (props) => {
   const fetchShoutCastData = async () => {
     try {
       const formData = new FormData();
-      formData.append("action", "stp_fetch_stream");
+      formData.append("action", "streamcast_fetch_stream");
       formData.append("url", urlToFetch);
-      formData.append("nonce", window.myScriptData.nonce);
+      formData.append("nonce", window.streamcastData.nonce);
 
       // Fetch data from the server
-      const response = await fetch(`${window.myScriptData.ajaxUrl}`, {
+      const response = await fetch(`${window.streamcastData.ajaxUrl}`, {
         method: "POST",
         body: formData,
       });
@@ -74,11 +74,11 @@ const Edit = (props) => {
   const fetchIceCastData = async () => {
     try {
       const formData = new FormData();
-      formData.append("action", "stp_fetch_stream");
+      formData.append("action", "streamcast_fetch_stream");
       formData.append("url", urlToFetchIceCast);
-      formData.append("nonce", window.myScriptData.nonce);
+      formData.append("nonce", window.streamcastData.nonce);
 
-      const response = await fetch(`${window.myScriptData.ajaxUrl}`, {
+      const response = await fetch(`${window.streamcastData.ajaxUrl}`, {
         method: "POST",
         body: formData,
       });

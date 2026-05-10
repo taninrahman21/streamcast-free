@@ -205,9 +205,8 @@ const Ultimate = ({ attributes, fetchedStationName }) => {
               fd / 2 + initCircleElHeight || 0
             );
             circleEl.style.height = `${circleElHeight}px`;
-            circleEl.style.transform = `translate(-50%, -50%) rotate(${
-              i - 90
-            }deg)`;
+            circleEl.style.transform = `translate(-50%, -50%) rotate(${i - 90
+              }deg)`;
           }
 
           // At the next animation frame, call ourselves
@@ -384,9 +383,8 @@ const Ultimate = ({ attributes, fetchedStationName }) => {
                   : posterImg?.url
                 : defaultImg
             }
-            alt={`${
-              fetchNameFromUrl ? fetchedStationName : stationName
-            } station poster`}
+            alt={`${fetchNameFromUrl ? fetchedStationName : stationName
+              } station poster`}
           />
           <div className="visualizerCircle" aria-hidden="true"></div>
         </div>
@@ -501,9 +499,8 @@ const Ultimate = ({ attributes, fetchedStationName }) => {
           crossOrigin="anonymous"
           ref={audioRef}
           style={{ height: 0, width: 0, opacity: 0 }}
-          aria-label={`Audio stream for ${
-            fetchNameFromUrl ? fetchedStationName : stationName
-          }`}
+          aria-label={`Audio stream for ${fetchNameFromUrl ? fetchedStationName : stationName
+            }`}
         >
           <source
             src={getFinalStreamURL(

@@ -9,14 +9,14 @@ $prefix_comment = '_prefix_comment';
 //
 // Create a comment metabox
 //
-CSF::createCommentMetabox( $prefix_comment, array(
+STREAMCAST_STREAMCAST_CSF::createCommentMetabox( $prefix_comment, array(
   'title' => 'Custom Comment Options',
 ) );
 
 //
 // Create a section
 //
-CSF::createSection( $prefix_comment, array(
+STREAMCAST_STREAMCAST_CSF::createSection( $prefix_comment, array(
 
   'fields' => array(
 

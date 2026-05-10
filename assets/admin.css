@@ -1,4 +1,4 @@
-.stp_shortcode_box_after_title {
+.streamcast_shortcode_box_after_title {
   display: flex;
   background: #fff;
   padding: 5px 15px;
@@ -9,18 +9,18 @@
   border: 1px solid #ccc;
 }
 
-.stp_shortcode_box_after_title label {
+.streamcast_shortcode_box_after_title label {
   font-weight: 500;
   font-size: 1rem;
 }
 
-.stp_shortcode_box_after_title .shortcode_area {
+.streamcast_shortcode_box_after_title .shortcode_area {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.stp_shortcode_box_after_title .shortcode_area svg {
+.streamcast_shortcode_box_after_title .shortcode_area svg {
   cursor: pointer;
 }
 
@@ -47,7 +47,7 @@
 }
 
 /* Pro Notice Box Styles */
-.stp-pro-notice-box {
+.streamcast-pro-notice-box {
   background: linear-gradient(135deg, #fff9f0 0%, #fff5e6 100%);
   padding: 25px;
   border-radius: 12px;
@@ -57,7 +57,7 @@
   overflow: hidden;
 }
 
-.stp-pro-notice-box::before {
+.streamcast-pro-notice-box::before {
   content: "";
   position: absolute;
   top: 0;
@@ -67,7 +67,7 @@
   background: #fb7a01;
 }
 
-.stp-pro-notice-title {
+.streamcast-pro-notice-title {
   margin-top: 0 !important;
   color: #d66801 !important;
   font-size: 18px !important;
@@ -78,7 +78,7 @@
   margin-bottom: 12px;
 }
 
-.stp-pro-notice-desc {
+.streamcast-pro-notice-desc {
   font-size: 14px;
   color: #8c4400;
   margin-bottom: 20px;
@@ -86,13 +86,13 @@
   margin-top: 0px;
 }
 
-.stp-pro-notice-list {
+.streamcast-pro-notice-list {
   margin: 15px 0 !important;
   padding-left: 0 !important;
   list-style: none !important;
 }
 
-.stp-pro-notice-list li {
+.streamcast-pro-notice-list li {
   position: relative;
   padding-left: 25px;
   margin-bottom: 10px;
@@ -100,7 +100,7 @@
   font-size: 13.5px;
 }
 
-.stp-pro-notice-list li::before {
+.streamcast-pro-notice-list li::before {
   content: "✦";
   position: absolute;
   left: 0;
@@ -108,11 +108,11 @@
   font-weight: bold;
 }
 
-.stp-pro-notice-list li strong {
+.streamcast-pro-notice-list li strong {
   color: #8c4400;
 }
 
-.stp-pro-notice-button {
+.streamcast-pro-notice-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -129,7 +129,7 @@
   cursor: pointer;
 }
 
-.stp-pro-notice-button:hover {
+.streamcast-pro-notice-button:hover {
   background: #d66801;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(251, 122, 1, 0.3);

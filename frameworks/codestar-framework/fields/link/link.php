@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_link' ) ) {
-  class CSF_Field_link extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_link' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_link extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -34,21 +34,21 @@ if ( ! class_exists( 'CSF_Field_link' ) ) {
 
       $maybe_hidden = ( empty( $hidden ) ) ? ' hidden' : '';
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
-      echo '<textarea readonly="readonly" class="csf--link hidden"></textarea>';
+      echo '<textarea readonly="readonly" class="streamcast-csf--link hidden"></textarea>';
 
-      echo '<div class="'. esc_attr( $maybe_hidden ) .'"><div class="csf--result">'. sprintf( '{url:"%s", text:"%s", target:"%s"}', esc_html( $value['url'] ), esc_html( $value['text'] ), esc_html( $value['target'] ) ) .'</div></div>';
+      echo '<div class="'. esc_attr( $maybe_hidden ) .'"><div class="streamcast-csf--result">'. sprintf( '{url:"%s", text:"%s", target:"%s"}', esc_html( $value['url'] ), esc_html( $value['text'] ), esc_html( $value['target'] ) ) .'</div></div>';
 
-      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[url]' ) ) .'" value="'. esc_attr( $value['url'] ) .'"'. $this->field_attributes( array( 'class' => 'csf--url' ) ) .' />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[text]' ) ) .'" value="'. esc_attr( $value['text'] ) .'" class="csf--text" />';
-      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[target]' ) ) .'" value="'. esc_attr( $value['target'] ) .'" class="csf--target" />';
+      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[url]' ) ) .'" value="'. esc_attr( $value['url'] ) .'"'. $this->field_attributes( array( 'class' => 'streamcast-csf--url' ) ) .' />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[text]' ) ) .'" value="'. esc_attr( $value['text'] ) .'" class="streamcast-csf--text" />';
+      echo '<input type="hidden" name="'. esc_attr( $this->field_name( '[target]' ) ) .'" value="'. esc_attr( $value['target'] ) .'" class="streamcast-csf--target" />';
 
-      echo '<a href="#" class="button button-primary csf--add'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['add_title'] ) .'</a> ';
-      echo '<a href="#" class="button csf--edit'. esc_attr( $maybe_hidden ) .'">'. wp_kses_post( $args['edit_title'] ) .'</a> ';
-      echo '<a href="#" class="button csf-warning-primary csf--remove'. esc_attr( $maybe_hidden ) .'">'. wp_kses_post( $args['remove_title'] ) .'</a>';
+      echo '<a href="#" class="button button-primary streamcast-csf--add'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['add_title'] ) .'</a> ';
+      echo '<a href="#" class="button streamcast-csf--edit'. esc_attr( $maybe_hidden ) .'">'. wp_kses_post( $args['edit_title'] ) .'</a> ';
+      echo '<a href="#" class="button streamcast-csf-warning-primary streamcast-csf--remove'. esc_attr( $maybe_hidden ) .'">'. wp_kses_post( $args['remove_title'] ) .'</a>';
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

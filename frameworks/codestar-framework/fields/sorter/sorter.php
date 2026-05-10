@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_sorter' ) ) {
-  class CSF_Field_sorter extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_sorter' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_sorter extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -22,18 +22,18 @@ if ( ! class_exists( 'CSF_Field_sorter' ) ) {
         'disabled_title' => esc_html__( 'Disabled', 'streamcast' ),
       ) );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       $this->value      = ( ! empty( $this->value ) ) ? $this->value : $this->field['default'];
       $enabled_options  = ( ! empty( $this->value['enabled'] ) ) ? $this->value['enabled'] : array();
       $disabled_options = ( ! empty( $this->value['disabled'] ) ) ? $this->value['disabled'] : array();
 
-      echo '<div class="csf-sorter" data-depend-id="'. esc_attr( $this->field['id'] ) .'"></div>';
+      echo '<div class="streamcast-csf-sorter" data-depend-id="'. esc_attr( $this->field['id'] ) .'"></div>';
 
-      echo ( $args['disabled'] ) ? '<div class="csf-modules">' : '';
+      echo ( $args['disabled'] ) ? '<div class="streamcast-csf-modules">' : '';
 
-      echo ( ! empty( $args['enabled_title'] ) ) ? '<div class="csf-sorter-title">'. esc_attr( $args['enabled_title'] ) .'</div>' : '';
-      echo '<ul class="csf-enabled">';
+      echo ( ! empty( $args['enabled_title'] ) ) ? '<div class="streamcast-csf-sorter-title">'. esc_attr( $args['enabled_title'] ) .'</div>' : '';
+      echo '<ul class="streamcast-csf-enabled">';
       if ( ! empty( $enabled_options ) ) {
         foreach ( $enabled_options as $key => $value ) {
           echo '<li><input type="hidden" name="'. esc_attr( $this->field_name( '[enabled]['. $key .']' ) ) .'" value="'. esc_attr( $value ) .'"/><label>'. esc_attr( $value ) .'</label></li>';
@@ -46,9 +46,9 @@ if ( ! class_exists( 'CSF_Field_sorter' ) ) {
 
         echo '</div>';
 
-        echo '<div class="csf-modules">';
-        echo ( ! empty( $args['disabled_title'] ) ) ? '<div class="csf-sorter-title">'. esc_attr( $args['disabled_title'] ) .'</div>' : '';
-        echo '<ul class="csf-disabled">';
+        echo '<div class="streamcast-csf-modules">';
+        echo ( ! empty( $args['disabled_title'] ) ) ? '<div class="streamcast-csf-sorter-title">'. esc_attr( $args['disabled_title'] ) .'</div>' : '';
+        echo '<ul class="streamcast-csf-disabled">';
         if ( ! empty( $disabled_options ) ) {
           foreach ( $disabled_options as $key => $value ) {
           echo '<li><input type="hidden" name="'. esc_attr( $this->field_name( '[disabled]['. $key .']' ) ) .'" value="'. esc_attr( $value ) .'"/><label>'. esc_attr( $value ) .'</label></li>';
@@ -60,7 +60,7 @@ if ( ! class_exists( 'CSF_Field_sorter' ) ) {
       }
 
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

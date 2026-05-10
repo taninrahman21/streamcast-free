@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_palette' ) ) {
-  class CSF_Field_palette extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_palette' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_palette extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -18,18 +18,18 @@ if ( ! class_exists( 'CSF_Field_palette' ) ) {
 
       $palette = ( ! empty( $this->field['options'] ) ) ? $this->field['options'] : array();
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       if ( ! empty( $palette ) ) {
 
-        echo '<div class="csf-siblings csf--palettes">';
+        echo '<div class="streamcast-csf-siblings streamcast-csf--palettes">';
 
         foreach ( $palette as $key => $colors ) {
 
-          $active  = ( $key === $this->value ) ? ' csf--active' : '';
+          $active  = ( $key === $this->value ) ? ' streamcast-csf--active' : '';
           $checked = ( $key === $this->value ) ? ' checked' : '';
 
-          echo '<div class="csf--sibling csf--palette'. esc_attr( $active ) .'">';
+          echo '<div class="streamcast-csf--sibling streamcast-csf--palette'. esc_attr( $active ) .'">';
 
           if ( ! empty( $colors ) ) {
 
@@ -50,7 +50,7 @@ if ( ! class_exists( 'CSF_Field_palette' ) ) {
 
       }
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

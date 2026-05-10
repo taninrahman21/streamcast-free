@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_checkbox' ) ) {
-  class CSF_Field_checkbox extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_checkbox' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_checkbox extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -23,9 +23,9 @@ if ( ! class_exists( 'CSF_Field_checkbox' ) ) {
         'check_all_text' => esc_html__( 'Check/Uncheck All' ),
       ) );
 
-      $inline_class = ( $args['inline'] ) ? ' class="csf--inline-list"' : '';
+      $inline_class = ( $args['inline'] ) ? ' class="streamcast-csf--inline-list"' : '';
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       if ( isset( $this->field['options'] ) ) {
 
@@ -49,7 +49,7 @@ if ( ! class_exists( 'CSF_Field_checkbox' ) ) {
                     echo '<li>';
                     echo '<label>';
                     echo '<input type="checkbox" name="'. esc_attr( $this->field_name( '[]' ) ) .'" value="'. esc_attr( $sub_key ) .'"'. $this->field_attributes() . esc_attr( $checked ) .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo '<span class="csf--text">'. esc_attr( $sub_value ) .'</span>';
+                    echo '<span class="streamcast-csf--text">'. esc_attr( $sub_value ) .'</span>';
                     echo '</label>';
                     echo '</li>';
                   }
@@ -63,7 +63,7 @@ if ( ! class_exists( 'CSF_Field_checkbox' ) ) {
               echo '<li>';
               echo '<label>';
               echo '<input type="checkbox" name="'. esc_attr( $this->field_name( '[]' ) ) .'" value="'. esc_attr( $option_key ) .'"'. $this->field_attributes() . esc_attr( $checked ) .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-              echo '<span class="csf--text">'. esc_attr( $option_value ) .'</span>';
+              echo '<span class="streamcast-csf--text">'. esc_attr( $option_value ) .'</span>';
               echo '</label>';
               echo '</li>';
 
@@ -74,7 +74,7 @@ if ( ! class_exists( 'CSF_Field_checkbox' ) ) {
           echo '</ul>';
 
           if ( $args['check_all'] ) {
-            echo '<div class="csf-checkbox-all">'. esc_html( $args['check_all_text'] ) .'</div>';
+            echo '<div class="streamcast-csf-checkbox-all">'. esc_html( $args['check_all_text'] ) .'</div>';
           }
 
         } else {
@@ -85,15 +85,15 @@ if ( ! class_exists( 'CSF_Field_checkbox' ) ) {
 
       } else {
 
-        echo '<label class="csf-checkbox">';
-        echo '<input type="hidden" name="'. esc_attr( $this->field_name() ) .'" value="'. $this->value .'" class="csf--input"'. $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo '<input type="checkbox" name="_pseudo" class="csf--checkbox"'. esc_attr( checked( $this->value, 1, false ) ) . $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo ( ! empty( $this->field['label'] ) ) ? '<span class="csf--text">'. esc_attr( $this->field['label'] ) .'</span>' : '';
+        echo '<label class="streamcast-csf-checkbox">';
+        echo '<input type="hidden" name="'. esc_attr( $this->field_name() ) .'" value="'. $this->value .'" class="streamcast-csf--input"'. $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo '<input type="checkbox" name="_pseudo" class="streamcast-csf--checkbox"'. esc_attr( checked( $this->value, 1, false ) ) . $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo ( ! empty( $this->field['label'] ) ) ? '<span class="streamcast-csf--text">'. esc_attr( $this->field['label'] ) .'</span>' : '';
         echo '</label>';
 
       }
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

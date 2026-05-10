@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_image_select' ) ) {
-  class CSF_Field_image_select extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_image_select' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_image_select extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -22,15 +22,15 @@ if ( ! class_exists( 'CSF_Field_image_select' ) ) {
         'options'  => array(),
       ) );
 
-      $inline = ( $args['inline'] ) ? ' csf--inline-list' : '';
+      $inline = ( $args['inline'] ) ? ' streamcast-csf--inline-list' : '';
 
       $value = ( is_array( $this->value ) ) ? $this->value : array_filter( (array) $this->value );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       if ( ! empty( $args['options'] ) ) {
 
-        echo '<div class="csf-siblings csf--image-group'. esc_attr( $inline ) .'" data-multiple="'. esc_attr( $args['multiple'] ) .'">';
+        echo '<div class="streamcast-csf-siblings streamcast-csf--image-group'. esc_attr( $inline ) .'" data-multiple="'. esc_attr( $args['multiple'] ) .'">';
 
         $num = 1;
 
@@ -38,10 +38,10 @@ if ( ! class_exists( 'CSF_Field_image_select' ) ) {
 
           $type    = ( $args['multiple'] ) ? 'checkbox' : 'radio';
           $extra   = ( $args['multiple'] ) ? '[]' : '';
-          $active  = ( in_array( $key, $value ) ) ? ' csf--active' : '';
+          $active  = ( in_array( $key, $value ) ) ? ' streamcast-csf--active' : '';
           $checked = ( in_array( $key, $value ) ) ? ' checked' : '';
 
-          echo '<div class="csf--sibling csf--image'. esc_attr( $active ) .'">';
+          echo '<div class="streamcast-csf--sibling streamcast-csf--image'. esc_attr( $active ) .'">';
             echo '<figure>';
               echo '<img src="'. esc_url( $option ) .'" alt="img-'. esc_attr( $num++ ) .'" />';
               echo '<input type="'. esc_attr( $type ) .'" name="'. esc_attr( $this->field_name( $extra ) ) .'" value="'. esc_attr( $key ) .'"'. $this->field_attributes() . esc_attr( $checked ) .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -54,7 +54,7 @@ if ( ! class_exists( 'CSF_Field_image_select' ) ) {
 
       }
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

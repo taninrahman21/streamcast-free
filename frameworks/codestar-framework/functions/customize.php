@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'WP_Customize_Panel_CSF' ) && class_exists( 'WP_Customize_Panel' ) ) {
-  class WP_Customize_Panel_CSF extends WP_Customize_Panel {
+if ( ! class_exists( 'WP_Customize_Panel_STREAMCAST_CSF' ) && class_exists( 'WP_Customize_Panel' ) ) {
+  class WP_Customize_Panel_STREAMCAST_CSF extends WP_Customize_Panel {
     public $type = 'streamcast';
   }
 }
@@ -21,8 +21,8 @@ if ( ! class_exists( 'WP_Customize_Panel_CSF' ) && class_exists( 'WP_Customize_P
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'WP_Customize_Section_CSF' ) && class_exists( 'WP_Customize_Section' ) ) {
-  class WP_Customize_Section_CSF extends WP_Customize_Section {
+if ( ! class_exists( 'WP_Customize_Section_STREAMCAST_CSF' ) && class_exists( 'WP_Customize_Section' ) ) {
+  class WP_Customize_Section_STREAMCAST_CSF extends WP_Customize_Section {
     public $type = 'streamcast';
   }
 }
@@ -35,8 +35,8 @@ if ( ! class_exists( 'WP_Customize_Section_CSF' ) && class_exists( 'WP_Customize
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'WP_Customize_Control_CSF' ) && class_exists( 'WP_Customize_Control' ) ) {
-  class WP_Customize_Control_CSF extends WP_Customize_Control {
+if ( ! class_exists( 'WP_Customize_Control_STREAMCAST_CSF' ) && class_exists( 'WP_Customize_Control' ) ) {
+  class WP_Customize_Control_STREAMCAST_CSF extends WP_Customize_Control {
 
     public $type   = 'streamcast';
     public $field  = '';
@@ -75,8 +75,8 @@ if ( ! class_exists( 'WP_Customize_Control_CSF' ) && class_exists( 'WP_Customize
         $depend .= ' data-value="'. esc_attr( $data_value ) .'"';
         $depend .= ( ! empty( $data_global ) ) ? ' data-depend-global="true"' : '';
 
-        $visible  = ' csf-dependency-control';
-        $visible .= ( ! empty( $depend_visible ) ) ? ' csf-depend-visible' : ' csf-depend-hidden';
+        $visible  = ' streamcast-csf-dependency-control';
+        $visible .= ( ! empty( $depend_visible ) ) ? ' streamcast-csf-depend-visible' : ' streamcast-csf-depend-hidden';
 
       }
 
@@ -91,7 +91,7 @@ if ( ! class_exists( 'WP_Customize_Control_CSF' ) && class_exists( 'WP_Customize
 
     public function render_field_content() {
 
-      $complex = apply_filters( 'csf_customize_complex_fields', array(
+      $complex = apply_filters( 'streamcast_csf_customize_complex_fields', array(
         'accordion',
         'background',
         'border',
@@ -119,7 +119,7 @@ if ( ! class_exists( 'WP_Customize_Control_CSF' ) && class_exists( 'WP_Customize
       $field_id   = ( ! empty( $this->field['id'] ) ) ? $this->field['id'] : '';
       $custom     = ( ! empty( $this->field['customizer'] ) ) ? true : false;
       $is_complex = ( in_array( $this->field['type'], $complex ) ) ? true : false;
-      $class      = ( $is_complex || $custom ) ? ' csf-customize-complex' : '';
+      $class      = ( $is_complex || $custom ) ? ' streamcast-csf-customize-complex' : '';
       $atts       = ( $is_complex || $custom ) ? ' data-unique-id="'. esc_attr( $this->unique ) .'" data-option-id="'. esc_attr( $field_id ) .'"' : '';
 
       if ( ! $is_complex && ! $custom ) {
@@ -130,9 +130,9 @@ if ( ! class_exists( 'WP_Customize_Control_CSF' ) && class_exists( 'WP_Customize
 
       $this->field['dependency'] = array();
 
-      echo '<div class="csf-customize-field'. esc_attr( $class ) .'"'. $atts .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo '<div class="streamcast-csf-customize-field'. esc_attr( $class ) .'"'. $atts .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-      CSF::field( $this->field, $this->value(), $this->unique, 'customize' );
+      STREAMCAST_STREAMCAST_CSF::field( $this->field, $this->value(), $this->unique, 'customize' );
 
       echo '</div>';
 

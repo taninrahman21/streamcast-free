@@ -116,7 +116,7 @@ const Standard = ({ attributes, id, fetchedStationName }) => {
   // Setup Plyr for b_circle
   useEffect(() => {
     if (skin.name === "b_circle" && finalStreamURL && audioRef.current) {
-      const audio = document.querySelector(".stp_custom_circle audio");
+      const audio = document.querySelector(".streamcast_custom_circle audio");
       const player = new window.Plyr(audio, {
         controls: `
           <div class="plyr__controls">
@@ -174,7 +174,7 @@ const Standard = ({ attributes, id, fetchedStationName }) => {
       aria-label="Standard audio player"
     >
       {skin.name === "b_circle" ? (
-        <div className="stp_custom_circle">
+        <div className="streamcast_custom_circle">
           <audio
             ref={audioRef}
             className="b_free"
@@ -187,7 +187,7 @@ const Standard = ({ attributes, id, fetchedStationName }) => {
       ) : (
         <iframe
           ref={iframeRef}
-          src={`${window?.myScriptData?.iframePath}?id=${id}&${skin.name}`}
+          src={`${window?.streamcastData?.iframePath}?id=${id}&${skin.name}`}
           width="100%"
           height={skin.height}
           title={`Radio player for ${

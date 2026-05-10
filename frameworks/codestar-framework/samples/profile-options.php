@@ -8,14 +8,14 @@ $prefix = '_prefix_profile_options';
 //
 // Create profile options
 //
-CSF::createProfileOptions( $prefix, array(
+STREAMCAST_STREAMCAST_CSF::createProfileOptions( $prefix, array(
   'data_type' => 'serialize'
 ) );
 
 //
 // Create a section
 //
-CSF::createSection( $prefix, array(
+STREAMCAST_STREAMCAST_CSF::createSection( $prefix, array(
   'title'  => 'Custom Profile Options',
   'fields' => array(
 

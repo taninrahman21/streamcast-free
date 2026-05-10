@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_spacing' ) ) {
-  class CSF_Field_spacing extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_spacing' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_spacing extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -48,20 +48,20 @@ if ( ! class_exists( 'CSF_Field_spacing' ) ) {
 
       $value   = wp_parse_args( $this->value, $default_values );
       $unit    = ( count( $args['units'] ) === 1 && ! empty( $args['unit'] ) ) ? $args['units'][0] : '';
-      $is_unit = ( ! empty( $unit ) ) ? ' csf--is-unit' : '';
+      $is_unit = ( ! empty( $unit ) ) ? ' streamcast-csf--is-unit' : '';
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
-      echo '<div class="csf--inputs" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
+      echo '<div class="streamcast-csf--inputs" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
 
       if ( ! empty( $args['all'] ) ) {
 
         $placeholder = ( ! empty( $args['all_placeholder'] ) ) ? ' placeholder="'. esc_attr( $args['all_placeholder'] ) .'"' : '';
 
-        echo '<div class="csf--input">';
-        echo ( ! empty( $args['all_icon'] ) ) ? '<span class="csf--label csf--icon">'. wp_kses_post( $args['all_icon'] ) .'</span>' : '';
-        echo '<input type="number" name="'. esc_attr( $this->field_name( '[all]' ) ) .'" value="'. esc_attr( $value['all'] ) .'"'. $placeholder .' class="csf-input-number'. esc_attr( $is_unit ) .'" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo ( $unit ) ? '<span class="csf--label csf--unit">'. esc_attr( $args['units'][0] ) .'</span>' : '';
+        echo '<div class="streamcast-csf--input">';
+        echo ( ! empty( $args['all_icon'] ) ) ? '<span class="streamcast-csf--label streamcast-csf--icon">'. wp_kses_post( $args['all_icon'] ) .'</span>' : '';
+        echo '<input type="number" name="'. esc_attr( $this->field_name( '[all]' ) ) .'" value="'. esc_attr( $value['all'] ) .'"'. $placeholder .' class="streamcast-csf-input-number'. esc_attr( $is_unit ) .'" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo ( $unit ) ? '<span class="streamcast-csf--label streamcast-csf--unit">'. esc_attr( $args['units'][0] ) .'</span>' : '';
         echo '</div>';
 
       } else {
@@ -80,10 +80,10 @@ if ( ! class_exists( 'CSF_Field_spacing' ) ) {
 
           $placeholder = ( ! empty( $args[$property.'_placeholder'] ) ) ? ' placeholder="'. esc_attr( $args[$property.'_placeholder'] ) .'"' : '';
 
-          echo '<div class="csf--input">';
-          echo ( ! empty( $args[$property.'_icon'] ) ) ? '<span class="csf--label csf--icon">'. wp_kses_post( $args[$property.'_icon'] ) .'</span>' : '';
-          echo '<input type="number" name="'. esc_attr( $this->field_name( '['. $property .']' ) ) .'" value="'. esc_attr( $value[$property] ) .'"'. $placeholder .' class="csf-input-number'. esc_attr( $is_unit ) .'" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-          echo ( $unit ) ? '<span class="csf--label csf--unit">'. esc_attr( $args['units'][0] ) .'</span>' : '';
+          echo '<div class="streamcast-csf--input">';
+          echo ( ! empty( $args[$property.'_icon'] ) ) ? '<span class="streamcast-csf--label streamcast-csf--icon">'. wp_kses_post( $args[$property.'_icon'] ) .'</span>' : '';
+          echo '<input type="number" name="'. esc_attr( $this->field_name( '['. $property .']' ) ) .'" value="'. esc_attr( $value[$property] ) .'"'. $placeholder .' class="streamcast-csf-input-number'. esc_attr( $is_unit ) .'" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+          echo ( $unit ) ? '<span class="streamcast-csf--label streamcast-csf--unit">'. esc_attr( $args['units'][0] ) .'</span>' : '';
           echo '</div>';
 
         }
@@ -91,7 +91,7 @@ if ( ! class_exists( 'CSF_Field_spacing' ) ) {
       }
 
       if ( ! empty( $args['unit'] ) && ! empty( $args['show_units'] ) && count( $args['units'] ) > 1 ) {
-        echo '<div class="csf--input">';
+        echo '<div class="streamcast-csf--input">';
         echo '<select name="'. esc_attr( $this->field_name( '[unit]' ) ) .'">';
         foreach ( $args['units'] as $unit ) {
           $selected = ( $value['unit'] === $unit ) ? ' selected' : '';
@@ -103,7 +103,7 @@ if ( ! class_exists( 'CSF_Field_spacing' ) ) {
 
       echo '</div>';
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

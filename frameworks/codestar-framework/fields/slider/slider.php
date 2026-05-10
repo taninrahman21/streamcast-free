@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_slider' ) ) {
-  class CSF_Field_slider extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_slider' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_slider extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -23,19 +23,19 @@ if ( ! class_exists( 'CSF_Field_slider' ) ) {
         'unit' => '',
       ) );
 
-      $is_unit = ( ! empty( $args['unit'] ) ) ? ' csf--is-unit' : '';
+      $is_unit = ( ! empty( $args['unit'] ) ) ? ' streamcast-csf--is-unit' : '';
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
-      echo '<div class="csf--wrap">';
-      echo '<div class="csf-slider-ui"></div>';
-      echo '<div class="csf--input">';
-      echo '<input type="number" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes( array( 'class' => 'csf-input-number'. esc_attr( $is_unit ) ) ) .' data-min="'. esc_attr( $args['min'] ) .'" data-max="'. esc_attr( $args['max'] ) .'" data-step="'. esc_attr( $args['step'] ) .'" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-      echo ( ! empty( $args['unit'] ) ) ? '<span class="csf--unit">'. esc_attr( $args['unit'] ) .'</span>' : '';
+      echo '<div class="streamcast-csf--wrap">';
+      echo '<div class="streamcast-csf-slider-ui"></div>';
+      echo '<div class="streamcast-csf--input">';
+      echo '<input type="number" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes( array( 'class' => 'streamcast-csf-input-number'. esc_attr( $is_unit ) ) ) .' data-min="'. esc_attr( $args['min'] ) .'" data-max="'. esc_attr( $args['max'] ) .'" data-step="'. esc_attr( $args['step'] ) .'" step="any" />'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo ( ! empty( $args['unit'] ) ) ? '<span class="streamcast-csf--unit">'. esc_attr( $args['unit'] ) .'</span>' : '';
       echo '</div>';
       echo '</div>';
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

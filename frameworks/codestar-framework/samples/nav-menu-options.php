@@ -8,14 +8,14 @@ $prefix = '_prefix_menu_options';
 //
 // Create menu options
 //
-CSF::createNavMenuOptions( $prefix, array(
+STREAMCAST_STREAMCAST_CSF::createNavMenuOptions( $prefix, array(
   'data_type' => 'serialize'
 ) );
 
 //
 // Create a section
 //
-CSF::createSection( $prefix, array(
+STREAMCAST_STREAMCAST_CSF::createSection( $prefix, array(
   'fields' => array(
 
     //

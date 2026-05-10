@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_tabbed' ) ) {
-  class CSF_Field_tabbed extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_tabbed' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_tabbed extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -18,25 +18,25 @@ if ( ! class_exists( 'CSF_Field_tabbed' ) ) {
 
       $unallows = array( 'tabbed' );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
-      echo '<div class="csf-tabbed-nav" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
+      echo '<div class="streamcast-csf-tabbed-nav" data-depend-id="'. esc_attr( $this->field['id'] ) .'">';
       foreach ( $this->field['tabs'] as $key => $tab ) {
 
-        $tabbed_icon   = ( ! empty( $tab['icon'] ) ) ? '<i class="csf--icon '. esc_attr( $tab['icon'] ) .'"></i>' : '';
-        $tabbed_active = ( empty( $key ) ) ? 'csf-tabbed-active' : '';
+        $tabbed_icon   = ( ! empty( $tab['icon'] ) ) ? '<i class="streamcast-csf--icon '. esc_attr( $tab['icon'] ) .'"></i>' : '';
+        $tabbed_active = ( empty( $key ) ) ? 'streamcast-csf-tabbed-active' : '';
 
         echo '<a href="#" class="'. esc_attr( $tabbed_active ) .'"">'. wp_kses_post( $tabbed_icon ) . esc_attr( $tab['title'] ) .'</a>';
 
       }
       echo '</div>';
 
-      echo '<div class="csf-tabbed-contents">';
+      echo '<div class="streamcast-csf-tabbed-contents">';
       foreach ( $this->field['tabs'] as $key => $tab ) {
 
         $tabbed_hidden = ( ! empty( $key ) ) ? ' hidden' : '';
 
-        echo '<div class="csf-tabbed-content'. esc_attr( $tabbed_hidden ) .'">';
+        echo '<div class="streamcast-csf-tabbed-content'. esc_attr( $tabbed_hidden ) .'">';
 
         foreach ( $tab['fields'] as $field ) {
 
@@ -47,7 +47,7 @@ if ( ! class_exists( 'CSF_Field_tabbed' ) ) {
           $field_value   = ( isset( $this->value[$field_id] ) ) ? $this->value[$field_id] : $field_default;
           $unique_id     = ( ! empty( $this->unique ) ) ? $this->unique .'['. $this->field['id'] .']' : $this->field['id'];
 
-          CSF::field( $field, $field_value, $unique_id, 'field/tabbed' );
+          STREAMCAST_STREAMCAST_CSF::field( $field, $field_value, $unique_id, 'field/tabbed' );
 
         }
 
@@ -56,7 +56,7 @@ if ( ! class_exists( 'CSF_Field_tabbed' ) ) {
       }
       echo '</div>';
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

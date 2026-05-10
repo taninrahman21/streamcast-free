@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Taxonomy_Options' ) ) {
-  class CSF_Taxonomy_Options extends CSF_Abstract{
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Taxonomy_Options' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Taxonomy_Options extends STREAMCAST_STREAMCAST_CSF_Abstract{
 
     // constans
     public $unique      = '';
@@ -31,8 +31,8 @@ if ( ! class_exists( 'CSF_Taxonomy_Options' ) ) {
     public function __construct( $key, $params ) {
 
       $this->unique     = $key;
-      $this->args       = apply_filters( "csf_{$this->unique}_args", wp_parse_args( $params['args'], $this->args ), $this );
-      $this->sections   = apply_filters( "csf_{$this->unique}_sections", $params['sections'], $this );
+      $this->args       = apply_filters( "streamcast_csf_{$this->unique}_args", wp_parse_args( $params['args'], $this->args ), $this );
+      $this->sections   = apply_filters( "streamcast_csf_{$this->unique}_sections", $params['sections'], $this );
       $this->taxonomies = ( is_array( $this->args['taxonomy'] ) ) ? $this->args['taxonomy'] : array_filter( (array) $this->args['taxonomy'] );
       $this->taxonomy   = ( ! empty( $_REQUEST[ 'taxonomy' ] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST[ 'taxonomy' ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
       $this->pre_fields = $this->pre_fields( $this->sections );
@@ -105,27 +105,27 @@ if ( ! class_exists( 'CSF_Taxonomy_Options' ) ) {
       $term_id   = ( $is_term ) ? $term->term_id : 0;
       $taxonomy  = ( $is_term ) ? $term->taxonomy : $term;
       $classname = ( $is_term ) ? 'edit' : 'add';
-      $errors    = ( ! empty( $term_id ) ) ? get_term_meta( $term_id, '_csf_errors_'. $this->unique, true ) : array();
+      $errors    = ( ! empty( $term_id ) ) ? get_term_meta( $term_id, '_streamcast_csf_errors_'. $this->unique, true ) : array();
       $errors    = ( ! empty( $errors ) ) ? $errors : array();
       $class     = ( $this->args['class'] ) ? ' '. $this->args['class'] : '';
 
       if ( ! empty( $errors ) ) {
-        delete_term_meta( $term_id, '_csf_errors_'. $this->unique );
+        delete_term_meta( $term_id, '_streamcast_csf_errors_'. $this->unique );
       }
 
-      wp_nonce_field( 'csf_taxonomy_nonce', 'csf_taxonomy_nonce'. $this->unique );
+      wp_nonce_field( 'streamcast_csf_taxonomy_nonce', 'streamcast_csf_taxonomy_nonce'. $this->unique );
 
-      echo '<div class="csf csf-taxonomy csf-show-all csf-onload csf-taxonomy-'. esc_attr( $classname ) .'-fields '. esc_attr( $class ) .'">';
+      echo '<div class="streamcast-csf streamcast-csf-taxonomy streamcast-csf-show-all streamcast-csf-onload streamcast-csf-taxonomy-'. esc_attr( $classname ) .'-fields '. esc_attr( $class ) .'">';
 
       foreach ( $this->sections as $section ) {
 
         if ( $taxonomy === $this->taxonomy ) {
 
-          $section_icon  = ( ! empty( $section['icon'] ) ) ? '<i class="csf-section-icon '. esc_attr( $section['icon'] ) .'"></i>' : '';
+          $section_icon  = ( ! empty( $section['icon'] ) ) ? '<i class="streamcast-csf-section-icon '. esc_attr( $section['icon'] ) .'"></i>' : '';
           $section_title = ( ! empty( $section['title'] ) ) ? $section['title'] : '';
 
-          echo ( $section_title || $section_icon ) ? '<div class="csf-section-title"><h3>'. wp_kses_post( $section_icon ) . wp_kses_post( $section_title ) .'</h3></div>' : '';
-          echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
+          echo ( $section_title || $section_icon ) ? '<div class="streamcast-csf-section-title"><h3>'. wp_kses_post( $section_icon ) . wp_kses_post( $section_title ) .'</h3></div>' : '';
+          echo ( ! empty( $section['description'] ) ) ? '<div class="streamcast-csf-field streamcast-csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
 
           if ( ! empty( $section['fields'] ) ) {
             foreach ( $section['fields'] as $field ) {
@@ -138,7 +138,7 @@ if ( ! class_exists( 'CSF_Taxonomy_Options' ) ) {
                 $field['default'] = $this->get_default( $field );
               }
 
-              CSF::field( $field, $this->get_meta_value( $field, $term_id ), $this->unique, 'taxonomy' );
+              STREAMCAST_STREAMCAST_CSF::field( $field, $this->get_meta_value( $field, $term_id ), $this->unique, 'taxonomy' );
 
             }
           }
@@ -156,17 +156,17 @@ if ( ! class_exists( 'CSF_Taxonomy_Options' ) ) {
       $count    = 1;
       $data     = array();
       $errors   = array();
-      $noncekey = 'csf_taxonomy_nonce'. $this->unique;
+      $noncekey = 'streamcast_csf_taxonomy_nonce'. $this->unique;
       $nonce    = ( ! empty( $_POST[ $noncekey ] ) ) ? sanitize_text_field( wp_unslash( $_POST[ $noncekey ] ) ) : '';
       $taxonomy = ( ! empty( $_POST[ 'taxonomy' ] ) ) ? sanitize_text_field( wp_unslash( $_POST[ 'taxonomy' ] ) ) : '';
 
-      if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! wp_verify_nonce( $nonce, 'csf_taxonomy_nonce' ) ) {
+      if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! wp_verify_nonce( $nonce, 'streamcast_csf_taxonomy_nonce' ) ) {
         return $term_id;
       }
 
       // XSS ok.
       // No worries, This "POST" requests is sanitizing in the below foreach.
-      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? wp_unslash( $_POST[ $this->unique ] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? \wp_kses_post_deep( \wp_unslash( $_POST[ $this->unique ] ) ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
       if ( ! empty( $request ) ) {
 
@@ -227,9 +227,9 @@ if ( ! class_exists( 'CSF_Taxonomy_Options' ) ) {
 
       }
 
-      $data = apply_filters( "csf_{$this->unique}_save", $data, $term_id, $this );
+      $data = apply_filters( "streamcast_csf_{$this->unique}_save", $data, $term_id, $this );
 
-      do_action( "csf_{$this->unique}_save_before", $data, $term_id, $this );
+      do_action( "streamcast_csf_{$this->unique}_save_before", $data, $term_id, $this );
 
       if ( empty( $data ) ) {
 
@@ -254,14 +254,14 @@ if ( ! class_exists( 'CSF_Taxonomy_Options' ) ) {
         }
 
         if ( ! empty( $errors ) ) {
-          update_term_meta( $term_id, '_csf_errors_'. $this->unique, $errors );
+          update_term_meta( $term_id, '_streamcast_csf_errors_'. $this->unique, $errors );
         }
 
       }
 
-      do_action( "csf_{$this->unique}_saved", $data, $term_id, $this );
+      do_action( "streamcast_csf_{$this->unique}_saved", $data, $term_id, $this );
 
-      do_action( "csf_{$this->unique}_save_after", $data, $term_id, $this );
+      do_action( "streamcast_csf_{$this->unique}_save_after", $data, $term_id, $this );
 
     }
   }

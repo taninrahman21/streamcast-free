@@ -3,10 +3,10 @@
 <p><strong>Let's quick start it.</strong></p>
 <p>Open your current theme <code>functions.php</code> file and paste this code.</p>
 
-<div class="csf-code-block">
+<div class="streamcast-csf-code-block">
 <pre>
 <span>// Control core classes for avoid errors</span>
-if ( class_exists( 'CSF' ) ) {
+if ( class_exists( 'STREAMCAST_STREAMCAST_CSF' ) ) {
 
   <span>//</span>
   <span>// Set a unique slug-like ID</span>
@@ -14,14 +14,14 @@ if ( class_exists( 'CSF' ) ) {
 
   <span>//</span>
   <span>// Create options</span>
-  CSF::createOptions( $prefix, array(
+  STREAMCAST_STREAMCAST_CSF::createOptions( $prefix, array(
     'menu_title' => 'My Framework',
     'menu_slug'  => 'my-framework',
   ) );
 
   <span>//</span>
   <span>// Create a section</span>
-  CSF::createSection( $prefix, array(
+  STREAMCAST_STREAMCAST_CSF::createSection( $prefix, array(
     'title'  => 'Tab Title 1',
     'fields' => array(
 
@@ -36,7 +36,7 @@ if ( class_exists( 'CSF' ) ) {
     )
   ) );
 
-  CSF::createSection( $prefix, array(
+  STREAMCAST_STREAMCAST_CSF::createSection( $prefix, array(
     'title'  => 'Tab Title 2',
     'fields' => array(
 
@@ -55,7 +55,7 @@ if ( class_exists( 'CSF' ) ) {
 
 <p><strong>How to get option value ?</strong></p>
 
-<div class="csf-code-block">
+<div class="streamcast-csf-code-block">
 <pre>
 $options = get_option( 'my_framework' ); <span>// // unique id of the framework</span>
 

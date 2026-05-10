@@ -57,7 +57,7 @@ const Settings = ({ attributes, setAttributes }) => {
           )}
 
 
-        <AdvertiseCard/>
+        <AdvertiseCard planLink="/wp-admin/edit.php?post_type=streamcast&page=streamcast#/pricing"/>
       </InspectorControls> 
     </>
   );

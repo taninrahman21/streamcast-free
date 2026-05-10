@@ -4,16 +4,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Allow some additional file types for upload.
-function stp_mime_types( $mimes ) {
+function streamcast_mime_types( $mimes ) {
 	// New allowed mime types.
 	$mimes['pls']  = 'audio/x-scpls';
 	$mimes['m3u8'] = 'application/vnd.apple.mpegurl';
 
 	return $mimes;
 }
-add_filter( 'upload_mimes', 'stp_mime_types' );
+add_filter( 'upload_mimes', 'streamcast_mime_types' );
 
-function stp_add_allow_upload_extension_exception( $data, $file, $filename, $mimes, $real_mime = null ) {
+function streamcast_add_allow_upload_extension_exception( $data, $file, $filename, $mimes, $real_mime = null ) {
 	// If file extension is 2 or more.
 	$f_sp        = explode( '.', $filename );
 	$f_exp_count = count( $f_sp );
@@ -41,8 +41,8 @@ function stp_add_allow_upload_extension_exception( $data, $file, $filename, $mim
 // It's different arguments between WordPress 5.1 and previous versions.
 global $wp_version;
 if ( version_compare( $wp_version, '5.1' ) >= 0 ) {
-	add_filter( 'wp_check_filetype_and_ext', 'stp_add_allow_upload_extension_exception', 10, 5 );
+	add_filter( 'wp_check_filetype_and_ext', 'streamcast_add_allow_upload_extension_exception', 10, 5 );
 } else {
-	add_filter( 'wp_check_filetype_and_ext', 'stp_add_allow_upload_extension_exception', 10, 4 );
+	add_filter( 'wp_check_filetype_and_ext', 'streamcast_add_allow_upload_extension_exception', 10, 4 );
 }
 

@@ -4,7 +4,7 @@ Tags: live stream, icecast, shoutcast, radio player, audio player
 Donate link: https://www.buymeacoffee.com/abuhayat
 Requires at least: 6.2
 Tested up to: 6.9
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -243,45 +243,39 @@ This plugin connects to the following external services to provide enhanced func
    - Used for: Fetching player skins and sending anonymous usage statistics
    - Data sent: Player configuration and anonymous listener data (legacy player reports)
    - Loaded on: Pages where the radio player block or shortcode is displayed
-   - Terms: https://www.muses.org/terms | Privacy Policy: https://www.muses.org/privacy
+   - Terms: https://www.muses.org/terms-and-conditions | Privacy Policy: https://www.muses.org/privacy-policy
 
-2. **Muses Legacy Player API** (www.muses.org/ws/legacyPlayer)
-   - Used for: Reporting player status for compatibility with older Muses systems
-   - Data sent: Encrypted JSON with player settings and version info
-   - Loaded on: Pages where the radio player is active
-   - Terms: https://www.muses.org/terms | Privacy Policy: https://www.muses.org/privacy
-
-3. **Plyr Video Player Assets** (Local)
+2. **Plyr Video Player Assets** (Local)
    - Used for: Localized SVG icons and blank video assets for the Plyr player
    - Data sent: None (Assets are bundled locally)
    - Loaded on: Pages using the shortcode or block
    - Terms: https://plyr.io/ | Privacy Policy: https://plyr.io/
 
-4. **YouTube Data API** (googleapis.com)
+3. **YouTube Data API** (googleapis.com)
    - Used for: Fetching video/stream metadata (title) by video ID
    - Data sent: YouTube video ID and API key
    - Loaded on: Pages where a YouTube stream source is configured
    - Terms: https://policies.google.com/terms | Privacy: https://policies.google.com/privacy
 
-5. **Google IMA SDK** (imasdk.googleapis.com)
+4. **Google IMA SDK** (imasdk.googleapis.com)
    - Used for: Loading video ad support (VAST/VMAP ads)
    - Data sent: Standard ad request data
    - Loaded on: Pages
    - Terms: https://policies.google.com/terms | Privacy: https://policies.google.com/privacy
 
-6. **Vimeo API** (vimeo.com)
+5. **Vimeo API** (vimeo.com)
    - Used for: Fetching Vimeo video metadata
    - Data sent: Vimeo video ID
    - Loaded on: Pages where a Vimeo stream source is configured
    - Terms: https://vimeo.com/terms | Privacy: https://vimeo.com/privacy
 
-7. **AniView Ad Server** (go.aniview.com)
+6. **AniView Ad Server** (go.aniview.com)
    - Used for: Serving VAST video ads
    - Data sent: Standard VAST ad request parameters
    - Loaded on: Pages where AniView ads are enabled
    - Terms: https://www.aniview.com/terms-of-service/ | Privacy Policy: https://www.aniview.com/privacy-policy/
 
-8. **bPlugins Templates** (templates.bplugins.com)
+7. **bPlugins Templates** (templates.bplugins.com)
    - Used for: Loading default radio station artwork and player skins
    - Data sent: Asset request (no personal data)
    - Loaded on: Admin dashboard and player initialization
@@ -308,7 +302,14 @@ This plugin connects to the following external services to provide enhanced func
 
 == Changelog ==
 
-= 2.4.0 - 2 May 2026 =
+= 2.4.1 - 10 May 2026 =
+* Compliance: Renamed all global prefixes and namespaces from `STP` to `StreamCast` and `csf` to `streamcast_csf`.
+* Security: Implemented robust output escaping and input sanitization across the entire codebase and framework.
+* Security: Replaced all `json_encode` calls with `wp_json_encode` for safer data handling.
+* Security: Sanitized all nonces and JSON-decoded data to prevent XSS and other vulnerabilities.
+* Maintenance: Renamed generic JavaScript variables and structural cleanup to meet WordPress.org standards.
+
+= 2.4.0 - 6 May 2026 =
 * Compliance: Removed all trialware/feature-gating logic to ensure full functionality for all users.
 * Compliance: Localized third-party assets (WebFontLoader, FontAwesome, Plyr, Muses) to eliminate remote CDN dependencies.
 * Privacy: Removed unconditional Google Analytics tracking from the player script.

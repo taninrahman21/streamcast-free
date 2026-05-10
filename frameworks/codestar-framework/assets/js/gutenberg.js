@@ -10,9 +10,9 @@
  */
 ( function( blocks, blockEditor, element, components ) {
 
-  if ( !window.csf_gutenberg_blocks ) { return; }
+  if ( !window.streamcast_csf_gutenberg_blocks ) { return; }
 
-  Object.values(window.csf_gutenberg_blocks).forEach( function( block ) {
+  Object.values(window.streamcast_csf_gutenberg_blocks).forEach( function( block ) {
 
     var registerBlockType = blocks.registerBlockType;
     var PlainText         = blockEditor.PlainText;
@@ -39,14 +39,14 @@
       },
       edit: function (props) {
         return (
-          createElement('div', {className: 'csf-shortcode-block'},
+          createElement('div', {className: 'streamcast-csf-shortcode-block'},
 
             createElement(Button, {
               'data-modal-id': block.modal_id,
               'data-gutenberg-id': block.name,
-              className: 'is-secondary csf-shortcode-button',
+              className: 'is-secondary streamcast-csf-shortcode-button',
               onClick: function () {
-                window.csf_gutenberg_props = props;
+                window.streamcast_csf_gutenberg_props = props;
               },
             }, block.button_title ),
 

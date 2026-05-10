@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_upload' ) ) {
-  class CSF_Field_upload extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_upload' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_upload extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -25,7 +25,7 @@ if ( ! class_exists( 'CSF_Field_upload' ) ) {
         'remove_title'   => esc_html__( 'Remove', 'streamcast' ),
       ) );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       $library = ( is_array( $args['library'] ) ) ? $args['library'] : array_filter( (array) $args['library'] );
       $library = ( ! empty( $library ) ) ? implode(',', $library ) : '';
@@ -40,21 +40,21 @@ if ( ! class_exists( 'CSF_Field_upload' ) ) {
         $preview_style  = ( ! empty( $preview_width ) || ! empty( $preview_height ) ) ? ' style="'. esc_attr( $preview_width . $preview_height ) .'"': '';
         $preview_hidden = ( empty( $preview_src ) ) ? ' hidden' : '';
 
-        echo '<div class="csf--preview'. esc_attr( $preview_hidden ) .'">';
-        echo '<div class="csf-image-preview"'. $preview_style .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo '<i class="csf--remove fas fa-times"></i><span><img src="'. esc_url( $preview_src ) .'" class="csf--src" /></span>';
+        echo '<div class="streamcast-csf--preview'. esc_attr( $preview_hidden ) .'">';
+        echo '<div class="streamcast-csf-image-preview"'. $preview_style .'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo '<i class="streamcast-csf--remove fas fa-times"></i><span><img src="'. esc_url( $preview_src ) .'" class="streamcast-csf--src" /></span>';
         echo '</div>';
         echo '</div>';
 
       }
 
-      echo '<div class="csf--wrap">';
+      echo '<div class="streamcast-csf--wrap">';
       echo '<input type="text" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-      echo '<a href="#" class="button button-primary csf--button" data-library="'. esc_attr( $library ) .'">'. wp_kses_post( $args['button_title'] ) .'</a>';
-      echo '<a href="#" class="button button-secondary csf-warning-primary csf--remove'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['remove_title'] ) .'</a>';
+      echo '<a href="#" class="button button-primary streamcast-csf--button" data-library="'. esc_attr( $library ) .'">'. wp_kses_post( $args['button_title'] ) .'</a>';
+      echo '<a href="#" class="button button-secondary streamcast-csf-warning-primary streamcast-csf--remove'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['remove_title'] ) .'</a>';
       echo '</div>';
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
   }

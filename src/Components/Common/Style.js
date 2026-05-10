@@ -42,7 +42,7 @@ const Style = ({ attributes, id }) => {
   const minimalContainer = `${mainPlayer} .minimalContainer`;
   const advancedPlayer = `${mainPlayer} .advanced-player`;
   const ultimatePlayer = `${mainPlayer} .ultimate-container`;
-  const bCirclePlayer = `${mainPlayer} .stp_custom_circle`;
+  const bCirclePlayer = `${mainPlayer} .streamcast_custom_circle`;
   const echoStreamPlayer = `${mainPlayer} .echoStream`;
   const woodenPlayer = `${mainPlayer} .woodenPlayer`;
   const woodenContentBox = `${mainPlayer} .woodenContainer .contentBox`;

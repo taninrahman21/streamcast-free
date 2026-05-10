@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_number' ) ) {
-  class CSF_Field_number extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_number' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_number extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -23,12 +23,12 @@ if ( ! class_exists( 'CSF_Field_number' ) ) {
         'unit' => '',
       ) );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-      echo '<div class="csf--wrap">';
+      echo wp_kses_post( $this->field_before() );
+      echo '<div class="streamcast-csf--wrap">';
       echo '<input type="number" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .' min="'. esc_attr( $args['min'] ) .'" max="'. esc_attr( $args['max'] ) .'" step="'. esc_attr( $args['step'] ) .'"/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-      echo ( ! empty( $args['unit'] ) ) ? '<span class="csf--unit">'. esc_attr( $args['unit'] ) .'</span>' : '';
+      echo ( ! empty( $args['unit'] ) ) ? '<span class="streamcast-csf--unit">'. esc_attr( $args['unit'] ) .'</span>' : '';
       echo '</div>';
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

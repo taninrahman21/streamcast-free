@@ -2547,8 +2547,8 @@
         disableContextMenu: !0,
         loadSprite: !0,
         iconPrefix: "plyr",
-        iconUrl: (typeof myScriptData !== 'undefined' && myScriptData.plyrSvg) ? myScriptData.plyrSvg : '',
-        blankVideo: (typeof myScriptData !== 'undefined' && myScriptData.plyrBlankVideo) ? myScriptData.plyrBlankVideo : '',
+        iconUrl: (typeof streamcastData !== 'undefined' && streamcastData.plyrSvg) ? streamcastData.plyrSvg : '',
+        blankVideo: (typeof streamcastData !== 'undefined' && streamcastData.plyrBlankVideo) ? streamcastData.plyrBlankVideo : '',
         quality: {
           default: 576,
           options: [4320, 2880, 2160, 1440, 1080, 720, 576, 480, 360, 240],

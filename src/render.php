@@ -13,10 +13,10 @@ $height         = $attributes['radioPlayer']['skin']['height'];
 $autoPlay       = $attributes['radioPlayer']['autoPlay'];
 $volume         = $attributes['radioPlayer']['initialVolume'];
 $playerPosition = $attributes['radioPlayer']['playerPosition'];
-$nonce          = wp_create_nonce( 'stp_fetch_nonce' );
+$nonce          = wp_create_nonce( 'streamcast_fetch_nonce' );
 
-if ( ! function_exists( 'stp_get_player_position_styles' ) ) {
-	function stp_get_player_position_styles( $id, $playerPosition ) {
+if ( ! function_exists( 'streamcast_get_player_position_styles' ) ) {
+	function streamcast_get_player_position_styles( $id, $playerPosition ) {
 		$styles = '';
 		if ( $playerPosition === 'center' ) {
 			$styles = 'margin: auto; display: block;';
@@ -30,7 +30,7 @@ if ( ! function_exists( 'stp_get_player_position_styles' ) ) {
 	}
 }
 
-$dynamicPlayerStyles = stp_get_player_position_styles( $id, $playerPosition );
+$dynamicPlayerStyles = streamcast_get_player_position_styles( $id, $playerPosition );
 
 if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 	$stationName      = $attributes['radioPlayer']['stationName'];
@@ -66,7 +66,7 @@ if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 				try {
 					const fetchUrl = <?php echo wp_json_encode( esc_url( $streamUrl ) . '/currentsong?sid=1' ); ?>;
 					const formData = new FormData();
-					formData.append('action', 'stp_fetch_stream');
+					formData.append('action', 'streamcast_fetch_stream');
 					formData.append("url", fetchUrl);
 					formData.append("nonce", <?php echo wp_json_encode( $nonce ); ?>);
 
@@ -90,7 +90,7 @@ if ( $skin !== 'b_circle' && $playerType === 'standard' ) {
 				try {
 					const fetchUrl = <?php echo wp_json_encode( esc_url( $streamUrl ) . '/status-json.xsl' ); ?>;
 					const formData = new FormData();
-					formData.append('action', 'stp_fetch_stream');
+					formData.append('action', 'streamcast_fetch_stream');
 					formData.append("url", fetchUrl);
 					formData.append("nonce", <?php echo wp_json_encode( $nonce ); ?>);
 

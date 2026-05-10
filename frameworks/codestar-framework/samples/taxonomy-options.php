@@ -8,14 +8,14 @@ $prefix = '_prefix_taxonomy_options';
 //
 // Create taxonomy options
 //
-CSF::createTaxonomyOptions( $prefix, array(
+STREAMCAST_STREAMCAST_CSF::createTaxonomyOptions( $prefix, array(
   'taxonomy' => 'category',
 ) );
 
 //
 // Create a section
 //
-CSF::createSection( $prefix, array(
+STREAMCAST_STREAMCAST_CSF::createSection( $prefix, array(
   'fields' => array(
 
     //

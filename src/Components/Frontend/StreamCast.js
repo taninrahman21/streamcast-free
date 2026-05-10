@@ -40,12 +40,12 @@ const StreamCast = ({ attributes, id }) => {
   const fetchShoutCastData = async () => {
     try {
       const formData = new FormData();
-      formData.append("action", "stp_fetch_stream");
+      formData.append("action", "streamcast_fetch_stream");
       formData.append("url", urlToFetch);
-      formData.append("nonce", window.myScriptData.nonce);
+      formData.append("nonce", window.streamcastData.nonce);
 
       // Fetch data from the server
-      const response = await fetch(`${window.myScriptData.ajaxUrl}`, {
+      const response = await fetch(`${window.streamcastData.ajaxUrl}`, {
         method: "POST",
         body: formData,
       });
@@ -71,11 +71,11 @@ const StreamCast = ({ attributes, id }) => {
   const fetchIceCastData = async () => {
     try {
       const formData = new FormData();
-      formData.append("action", "stp_fetch_stream");
+      formData.append("action", "streamcast_fetch_stream");
       formData.append("url", urlToFetchIceCast);
-      formData.append("nonce", window.myScriptData.nonce);
+      formData.append("nonce", window.streamcastData.nonce);
 
-      const response = await fetch(`${window.myScriptData.ajaxUrl}`, {
+      const response = await fetch(`${window.streamcastData.ajaxUrl}`, {
         method: "POST",
         body: formData,
       });
@@ -147,7 +147,9 @@ const StreamCast = ({ attributes, id }) => {
 
   useEffect(() => {
     if (fetchNameFromUrl) {
-      getStreamTitle(playerType, streamProvider);
+      getStreamTitle(playerType, streamProvider).then((title) => {
+        if (title) setFetchedStationName(title);
+      });
     }
   }, [playerType, streamProvider, streamPort, fetchNameFromUrl]);
 
@@ -186,18 +188,21 @@ const StreamCast = ({ attributes, id }) => {
         {playerType === "echoStream" && (
           <EchoStream
             attributes={attributes}
+            id={id}
             fetchedStationName={fetchedStationName}
           />
         )}
         {playerType === "auroraPlay" && (
           <AuroraPlay
             attributes={attributes}
+            id={id}
             fetchedStationName={fetchedStationName}
           />
         )}
         {playerType === "wooden" && (
           <Wooden
             attributes={attributes}
+            id={id}
             fetchedStationName={fetchedStationName}
           />
         )}

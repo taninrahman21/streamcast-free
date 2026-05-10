@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_background' ) ) {
-  class CSF_Field_background extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_background' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_background extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -59,19 +59,19 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
 
       $this->value = wp_parse_args( $this->value, $default_value );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
-      echo '<div class="csf--background-colors">';
+      echo '<div class="streamcast-csf--background-colors">';
 
       //
       // Background Color
       if ( ! empty( $args['background_color'] ) ) {
 
-        echo '<div class="csf--color">';
+        echo '<div class="streamcast-csf--color">';
 
-        echo ( ! empty( $args['background_gradient'] ) ) ? '<div class="csf--title">'. esc_html__( 'From', 'streamcast' ) .'</div>' : '';
+        echo ( ! empty( $args['background_gradient'] ) ) ? '<div class="streamcast-csf--title">'. esc_html__( 'From', 'streamcast' ) .'</div>' : '';
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'      => 'background-color',
           'type'    => 'color',
           'default' => $default_value['background-color'],
@@ -85,11 +85,11 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Gradient Color
       if ( ! empty( $args['background_gradient_color'] ) && ! empty( $args['background_gradient'] ) ) {
 
-        echo '<div class="csf--color">';
+        echo '<div class="streamcast-csf--color">';
 
-        echo ( ! empty( $args['background_gradient'] ) ) ? '<div class="csf--title">'. esc_html__( 'To', 'streamcast' ) .'</div>' : '';
+        echo ( ! empty( $args['background_gradient'] ) ) ? '<div class="streamcast-csf--title">'. esc_html__( 'To', 'streamcast' ) .'</div>' : '';
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'      => 'background-gradient-color',
           'type'    => 'color',
           'default' => $default_value['background-gradient-color'],
@@ -103,11 +103,11 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Gradient Direction
       if ( ! empty( $args['background_gradient_direction'] ) && ! empty( $args['background_gradient'] ) ) {
 
-        echo '<div class="csf--color">';
+        echo '<div class="streamcast-csf--color">';
 
-        echo ( ! empty( $args['background_gradient'] ) ) ? '<div class="csf---title">'. esc_html__( 'Direction', 'streamcast' ) .'</div>' : '';
+        echo ( ! empty( $args['background_gradient'] ) ) ? '<div class="streamcast-csf---title">'. esc_html__( 'Direction', 'streamcast' ) .'</div>' : '';
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'          => 'background-gradient-direction',
           'type'        => 'select',
           'options'     => array(
@@ -129,12 +129,12 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Image
       if ( ! empty( $args['background_image'] ) ) {
 
-        echo '<div class="csf--background-image">';
+        echo '<div class="streamcast-csf--background-image">';
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'          => 'background-image',
           'type'        => 'media',
-          'class'       => 'csf-assign-field-background',
+          'class'       => 'streamcast-csf-assign-field-background',
           'library'     => $args['background_image_library'],
           'preview'     => $args['background_image_preview'],
           'placeholder' => $args['background_image_placeholder'],
@@ -145,16 +145,16 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
 
       }
 
-      $auto_class   = ( ! empty( $args['background_auto_attributes'] ) ) ? ' csf--auto-attributes' : '';
-      $hidden_class = ( ! empty( $args['background_auto_attributes'] ) && empty( $this->value['background-image']['url'] ) ) ? ' csf--attributes-hidden' : '';
+      $auto_class   = ( ! empty( $args['background_auto_attributes'] ) ) ? ' streamcast-csf--auto-attributes' : '';
+      $hidden_class = ( ! empty( $args['background_auto_attributes'] ) && empty( $this->value['background-image']['url'] ) ) ? ' streamcast-csf--attributes-hidden' : '';
 
-      echo '<div class="csf--background-attributes'. esc_attr( $auto_class . $hidden_class ) .'">';
+      echo '<div class="streamcast-csf--background-attributes'. esc_attr( $auto_class . $hidden_class ) .'">';
 
       //
       // Background Position
       if ( ! empty( $args['background_position'] ) ) {
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'              => 'background-position',
           'type'            => 'select',
           'options'         => array(
@@ -177,7 +177,7 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Repeat
       if ( ! empty( $args['background_repeat'] ) ) {
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'          => 'background-repeat',
           'type'        => 'select',
           'options'     => array(
@@ -195,7 +195,7 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Attachment
       if ( ! empty( $args['background_attachment'] ) ) {
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'       => 'background-attachment',
           'type'     => 'select',
           'options'  => array(
@@ -211,7 +211,7 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Size
       if ( ! empty( $args['background_size'] ) ) {
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'        => 'background-size',
           'type'      => 'select',
           'options'   => array(
@@ -228,7 +228,7 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Origin
       if ( ! empty( $args['background_origin'] ) ) {
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'            => 'background-origin',
           'type'          => 'select',
           'options'       => array(
@@ -245,7 +245,7 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Clip
       if ( ! empty( $args['background_clip'] ) ) {
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'            => 'background-clip',
           'type'          => 'select',
           'options'       => array(
@@ -262,7 +262,7 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
       // Background Blend Mode
       if ( ! empty( $args['background_blend_mode'] ) ) {
 
-        CSF::field( array(
+        STREAMCAST_STREAMCAST_CSF::field( array(
           'id'            => 'background-blend-mode',
           'type'          => 'select',
           'options'       => array(
@@ -284,7 +284,7 @@ if ( ! class_exists( 'CSF_Field_background' ) ) {
 
       echo '</div>';
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

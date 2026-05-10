@@ -2773,7 +2773,7 @@
 
       _this.options.data['term'] = value;
 
-      _this.chosenXhr = window.wp.ajax.post('csf-chosen', _this.options.data).done( function( response ) {
+      _this.chosenXhr = window.wp.ajax.post('streamcast-csf-chosen', _this.options.data).done( function( response ) {
         _this.show_results( response );
       }).fail( function( response ) {
         _this.container.find('.no-results').text(response.error);
@@ -2820,7 +2820,7 @@
 
     if( this.is_multiple ) {
 
-      var $hidden_select = this.element.parent().find('.csf-hide-select');
+      var $hidden_select = this.element.parent().find('.streamcast-csf-hide-select');
       var $hidden_value  = $hidden_select.val() || [];
 
       this.element.CSFChosenOrder($hidden_value, true);
@@ -2971,25 +2971,25 @@
 
   $.fn.extend({
     CSFChosenOrder: function(order, force) {
-      return _CSFChosenOrder.CSFChosenOrder(this, order, force);
+      return _STREAMCAST_CSFChosenOrder.CSFChosenOrder(this, order, force);
     }
   });
 
-  this._CSFChosenOrder = (function(_super) {
-    __extends(_CSFChosenOrder, _super);
+  this._STREAMCAST_CSFChosenOrder = (function(_super) {
+    __extends(_STREAMCAST_CSFChosenOrder, _super);
 
-    function _CSFChosenOrder() {
-      _ref = _CSFChosenOrder.__super__.constructor.apply(this, arguments);
+    function _STREAMCAST_CSFChosenOrder() {
+      _ref = _STREAMCAST_CSFChosenOrder.__super__.constructor.apply(this, arguments);
       return _ref;
     }
 
-    _CSFChosenOrder.relAttributeName = 'data-option-array-index';
+    _STREAMCAST_CSFChosenOrder.relAttributeName = 'data-option-array-index';
 
-    _CSFChosenOrder.isjQueryObject = function(obj) {
+    _STREAMCAST_CSFChosenOrder.isjQueryObject = function(obj) {
       return (typeof jQuery !== "undefined" && jQuery !== null) && obj instanceof jQuery;
     };
 
-    _CSFChosenOrder.getDOMElement = function(element) {
+    _STREAMCAST_CSFChosenOrder.getDOMElement = function(element) {
       if (this.isjQueryObject(element)) {
         return element.get(0);
       } else {
@@ -2997,7 +2997,7 @@
       }
     };
 
-    _CSFChosenOrder.searchChosenUIContainer = function(element) {
+    _STREAMCAST_CSFChosenOrder.searchChosenUIContainer = function(element) {
       if ($(element).data("chosen") != null) {
         return $(element).data("chosen").container[0];
       } else {
@@ -3005,11 +3005,11 @@
       }
     };
 
-    _CSFChosenOrder.triggerEvent = function(target, event_name) {
+    _STREAMCAST_CSFChosenOrder.triggerEvent = function(target, event_name) {
       return $(target).trigger(event_name);
     };
 
-    return _CSFChosenOrder;
+    return _STREAMCAST_CSFChosenOrder;
 
   })(CSFAbstractChosenOrder);
 
@@ -4549,7 +4549,7 @@
       if( result ) {
 
         $(controls).each(function() {
-          $(this).removeClass('csf-depend-on');
+          $(this).removeClass('streamcast-csf-depend-on');
         });
 
         $(this.rules).each(function() {
@@ -4559,7 +4559,7 @@
       } else {
 
         $(controls).each(function() {
-          $(this).addClass('csf-depend-on');
+          $(this).addClass('streamcast-csf-depend-on');
         });
 
         $(this.rules).each(function() {
@@ -4589,7 +4589,7 @@
     }
   });
 
-  $.csf_deps = {
+  $.streamcast_csf_deps = {
 
     createRuleset: function() {
       return new Ruleset();
@@ -4755,8 +4755,8 @@
   //
 
   if (typeof $.fn !== "undefined") {
-    $.fn.serializeObjectCSF = FormSerializer.serializeObject;
-    $.fn.serializeJSONCSF   = FormSerializer.serializeJSON;
+    $.fn.serializeObjectSTREAMCAST_STREAMCAST_STREAMCAST_CSF = FormSerializer.serializeObject;
+    $.fn.serializeJSONSTREAMCAST_STREAMCAST_CSF   = FormSerializer.serializeJSON;
   }
 
   exports.FormSerializer = FormSerializer;

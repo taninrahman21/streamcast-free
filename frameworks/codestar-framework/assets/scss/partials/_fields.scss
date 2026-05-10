@@ -1,11 +1,11 @@
 /**
  * 03. Fields
  */
-.csf-field{
+.streamcast-csf-field{
   position: relative;
   padding: 30px;
 
-  + .csf-field{
+  + .streamcast-csf-field{
     border-top: 1px solid #eee;
   }
 
@@ -31,7 +31,7 @@
     margin-top: 0;
   }
 
-  .csf-title{
+  .streamcast-csf-title{
     position: relative;
     width: 20%;
     float: left;
@@ -42,17 +42,17 @@
     }
   }
 
-  .csf-fieldset{
+  .streamcast-csf-fieldset{
     float: right;
     width: calc(80% - 20px);
   }
 }
 
-.csf-pseudo-field{
+.streamcast-csf-pseudo-field{
   padding: 0 5px 0 0 !important;
   display: inline-block;
 
-  + .csf-pseudo-field{
+  + .streamcast-csf-pseudo-field{
     border: 0;
   }
 
@@ -64,9 +64,9 @@
 /**
  * 03. 02. Field: accordion
  */
-.csf-field-accordion{
+.streamcast-csf-field-accordion{
 
-  .csf-accordion-item{
+  .streamcast-csf-accordion-item{
     position: relative;
     margin-bottom: 5px;
 
@@ -79,7 +79,7 @@
     }
   }
 
-  .csf-accordion-title{
+  .streamcast-csf-accordion-title{
     display: block;
     cursor: pointer;
     position: relative;
@@ -100,19 +100,19 @@
       border-color: #999;
     }
 
-    .csf--icon{
+    .streamcast-csf--icon{
       width: 20px;
       text-align: center;
       margin-right: 2px;
     }
   }
 
-  .csf-accordion-icon{
+  .streamcast-csf-accordion-icon{
     width: 16px;
     text-align: center;
   }
 
-  .csf-accordion-content{
+  .streamcast-csf-accordion-content{
     display: none;
     padding: 0;
     border: 1px solid #ccd0d4;
@@ -120,12 +120,12 @@
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 
-    > .csf-field{
+    > .streamcast-csf-field{
       padding: 15px;
     }
   }
 
-  .csf-accordion-open{
+  .streamcast-csf-accordion-open{
     display: block;
   }
 }
@@ -133,26 +133,26 @@
 /**
  * 03. 03. Field: background
  */
-.csf-field-background{
+.streamcast-csf-field-background{
 
-  .csf-field{
+  .streamcast-csf-field{
     border: 0 !important;
     padding: 0;
     margin-bottom: 6px;
     margin-right: 6px;
   }
 
-  .csf--title{
+  .streamcast-csf--title{
     color: #777;
     font-size: 12px;
   }
 
-  .csf--background-colors{
+  .streamcast-csf--background-colors{
     display: flex;
     flex-wrap: wrap;
   }
 
-  .csf--background-attributes{
+  .streamcast-csf--background-attributes{
     display: flex;
     flex-wrap: wrap;
 
@@ -161,12 +161,12 @@
       margin: 0;
     }
 
-    .csf-field{
+    .streamcast-csf-field{
       flex: 1;
     }
   }
 
-  .csf--attributes-hidden{
+  .streamcast-csf--attributes-hidden{
     display: none;
   }
 }
@@ -174,7 +174,7 @@
 /**
  * 03. 04. Field: backup
  */
-.csf-field-backup{
+.streamcast-csf-field-backup{
 
   textarea{
     width: 100%;
@@ -197,17 +197,17 @@
 /**
  * 03. 05. Field: border, spacing, dimensions
  */
-.csf-field-border,
-.csf-field-spacing,
-.csf-field-dimensions{
+.streamcast-csf-field-border,
+.streamcast-csf-field-spacing,
+.streamcast-csf-field-dimensions{
 
-  .csf--inputs{
+  .streamcast-csf--inputs{
     float: left;
     display: flex;
     flex-wrap: wrap;
   }
 
-  .csf--input{
+  .streamcast-csf--input{
     display: flex;
     padding-right: 6px;
     padding-bottom: 4px;
@@ -227,11 +227,11 @@
     }
   }
 
-  .csf--color{
+  .streamcast-csf--color{
     float: left;
   }
 
-  .csf--label{
+  .streamcast-csf--label{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -246,22 +246,22 @@
     background-color: #f5f5f5;
   }
 
-  .csf--icon{
+  .streamcast-csf--icon{
     border-right: 0;
     border-radius: 4px 0 0 4px;
   }
 
-  .csf--icon + input{
+  .streamcast-csf--icon + input{
     border-top-left-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
   }
 
-  .csf--unit{
+  .streamcast-csf--unit{
     border-left: 0;
     border-radius: 0 4px 4px 0;
   }
 
-  .csf--is-unit{
+  .streamcast-csf--is-unit{
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
   }
@@ -270,13 +270,13 @@
 /**
  * 03. 06. Field: button_set
  */
-.csf-field-button_set{
+.streamcast-csf-field-button_set{
 
-  .csf--buttons{
+  .streamcast-csf--buttons{
     display: inline-block;
   }
 
-  .csf--button{
+  .streamcast-csf--button{
     position: relative;
     z-index: 1;
     float: left;
@@ -307,8 +307,8 @@
     }
   }
 
-  .csf--active:hover,
-  .csf--active{
+  .streamcast-csf--active:hover,
+  .streamcast-csf--active{
     z-index: 2;
     color: #fff;
     border-color: #006799;
@@ -323,8 +323,8 @@
 /**
  * 03. 07. Field: checkbox, radio
  */
-.csf-field-checkbox,
-.csf-field-radio{
+.streamcast-csf-field-checkbox,
+.streamcast-csf-field-radio{
 
   ul{
     margin: 0;
@@ -354,21 +354,21 @@
     margin: 0 1px;
   }
 
-  .csf--inline-list li{
+  .streamcast-csf--inline-list li{
     display: inline-block;
     margin-right: 15px;
   }
 
-  .csf--text{
+  .streamcast-csf--text{
     margin-left: 5px;
     vertical-align: middle;
   }
 
-  .csf-checker{
+  .streamcast-csf-checker{
     cursor: pointer;
   }
 
-  .csf-checkbox-all{
+  .streamcast-csf-checkbox-all{
     user-select: none;
     cursor: pointer;
     margin-top: 5px;
@@ -380,7 +380,7 @@
 /**
  * 03. 08. Field: code_editor
  */
-.csf-field-code_editor{
+.streamcast-csf-field-code_editor{
 
   .CodeMirror{
     width: 100%;
@@ -400,7 +400,7 @@
 /**
  * 03. 09. Field: color
  */
-.csf-field-color{
+.streamcast-csf-field-color{
 
   > input{
     opacity: 0.75;
@@ -419,15 +419,15 @@
 /**
  * 03. 10. Field: color_group
  */
-.csf-field-color_group{
+.streamcast-csf-field-color_group{
 
-  .csf--left{
+  .streamcast-csf--left{
     float: left;
     margin-right: 10px;
     margin-bottom: 5px;
   }
 
-  .csf--title{
+  .streamcast-csf--title{
     color: #999;
     margin-bottom: 5px;
   }
@@ -436,19 +436,19 @@
 /**
  * 03. 11. Field: fieldset
  */
-.csf-field-fieldset{
+.streamcast-csf-field-fieldset{
 
-  .csf-fieldset-content{
+  .streamcast-csf-fieldset-content{
     border: 1px solid #ccd0d4;
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 
-    > .csf-field{
+    > .streamcast-csf-field{
       padding: 15px;
     }
   }
 
-  .csf-field-subheading{
+  .streamcast-csf-field-subheading{
     font-size: 13px;
   }
 }
@@ -456,18 +456,18 @@
 /**
  * 03. 12. Field: date
  */
-.csf-field-date{
+.streamcast-csf-field-date{
 
   input{
     margin: 0;
   }
 
-  .csf--to{
+  .streamcast-csf--to{
     margin-left: 7px;
   }
 }
 
-.csf-datepicker-wrapper{
+.streamcast-csf-datepicker-wrapper{
   margin-top: 5px;
   width: auto;
   background-color: #fff;
@@ -622,18 +622,18 @@
 /**
  * 03. 13. Field: datetime
  */
-.csf-field-datetime{
+.streamcast-csf-field-datetime{
 
   input{
     margin: 0;
   }
 
-  .csf--to{
+  .streamcast-csf--to{
     margin-left: 7px;
   }
 }
 
-.csf-flatpickr{
+.streamcast-csf-flatpickr{
 
   select,
   input{
@@ -652,7 +652,7 @@
 /**
  * 03. 14. Field: gallery
  */
-.csf-field-gallery{
+.streamcast-csf-field-gallery{
 
   ul{
     margin: 0;
@@ -686,17 +686,17 @@
 /**
  * 03. 15. Field: group
  */
-.csf-field-group{
+.streamcast-csf-field-group{
 
-  .csf-cloneable-hidden{
+  .streamcast-csf-cloneable-hidden{
     display: none !important;
   }
 
-  .csf-cloneable-wrapper{
+  .streamcast-csf-cloneable-wrapper{
     position: relative;
   }
 
-  .csf-cloneable-item{
+  .streamcast-csf-cloneable-item{
     display: none;
     position: relative;
     margin-bottom: 5px;
@@ -706,21 +706,21 @@
     }
   }
 
-  .ui-accordion .csf-cloneable-item{
+  .ui-accordion .streamcast-csf-cloneable-item{
     display: block;
   }
 
-  .csf-cloneable-content{
+  .streamcast-csf-cloneable-content{
     border: 1px solid #ccd0d4;
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0,0,0,0.04);
 
-    > .csf-field{
+    > .streamcast-csf-field{
       padding: 15px;
     }
   }
 
-  .csf-cloneable-title{
+  .streamcast-csf-cloneable-title{
     display: block;
     cursor: pointer;
     position: relative;
@@ -742,7 +742,7 @@
     }
   }
 
-  .csf-cloneable-helper{
+  .streamcast-csf-cloneable-helper{
     position: absolute;
     top: 12px;
     right: 10px;
@@ -762,17 +762,17 @@
     }
   }
 
-  .csf-cloneable-content{
+  .streamcast-csf-cloneable-content{
     padding: 0;
     border-top: 0;
   }
 
-  .csf-cloneable-title-prefix,
-  .csf-cloneable-title-number{
+  .streamcast-csf-cloneable-title-prefix,
+  .streamcast-csf-cloneable-title-number{
     margin-right: 5px;
   }
 
-  .csf-cloneable-alert{
+  .streamcast-csf-cloneable-alert{
     display: none;
     margin-bottom: 5px;
     padding: 10px 20px;
@@ -787,7 +787,7 @@
     background-color: #fffae4;
   }
 
-  .csf-cloneable-header-icon{
+  .streamcast-csf-cloneable-header-icon{
     display: inline-block;
     text-align: center;
     font-size: 14px;
@@ -796,7 +796,7 @@
     vertical-align: text-top;
   }
 
-  .csf-cloneable-placeholder{
+  .streamcast-csf-cloneable-placeholder{
     background-color: #ddd;
     margin-top: 4px;
     width: 100px;
@@ -812,18 +812,18 @@
 /**
  * 03. 16. Field: icon
  */
-.csf-field-icon{
+.streamcast-csf-field-icon{
 
-  .csf-icon-select{
+  .streamcast-csf-icon-select{
     display: flex;
     grid-gap: 5px;
   }
 
-  .csf-icon-preview:not(.hidden){
+  .streamcast-csf-icon-preview:not(.hidden){
     display: flex;
   }
 
-  .csf-icon-preview{
+  .streamcast-csf-icon-preview{
 
     i{
       display: flex;
@@ -845,14 +845,14 @@
 /**
  * 03. 17. Field: image_select
  */
-.csf-field-image_select{
+.streamcast-csf-field-image_select{
 
-  .csf--image{
+  .streamcast-csf--image{
     display: inline-block;
     margin: 0 5px 5px 0;
   }
 
-  .csf--inline-list .csf--image{
+  .streamcast-csf--inline-list .streamcast-csf--image{
     display: block;
   }
 
@@ -887,7 +887,7 @@
     }
   }
 
-  .csf--active figure{
+  .streamcast-csf--active figure{
     border-color: #222;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
 
@@ -910,15 +910,15 @@
 /**
  * 03. 18. Field: link_color
  */
-.csf-field-link_color{
+.streamcast-csf-field-link_color{
 
-  .csf--left{
+  .streamcast-csf--left{
     float: left;
     margin-right: 10px;
     margin-bottom: 5px;
   }
 
-  .csf--title{
+  .streamcast-csf--title{
     color: #777;
     margin-bottom: 5px;
   }
@@ -927,7 +927,7 @@
 /**
  * 03. 19. Field: map
  */
-.csf-field-map{
+.streamcast-csf-field-map{
 
   input{
     width: 100%;
@@ -937,11 +937,11 @@
     background-position-x: calc(100% - 5px);
   }
 
-  .csf--map-search + .csf--map-osm-wrap{
+  .streamcast-csf--map-search + .streamcast-csf--map-osm-wrap{
     margin-top: 10px;
   }
 
-  .csf--map-osm-wrap{
+  .streamcast-csf--map-osm-wrap{
     position: relative;
     padding: 5px;
     border: 1px solid #eee;
@@ -949,19 +949,19 @@
     box-shadow: 0 1px 1px rgba(0,0,0,.04);
   }
 
-  .csf--map-osm{
+  .streamcast-csf--map-osm{
     position: relative;
     z-index: 1;
     min-height: 250px;
   }
 
-  .csf--map-inputs{
+  .streamcast-csf--map-inputs{
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
   }
 
-  .csf--map-input{
+  .streamcast-csf--map-input{
     flex: 1;
 
     &:last-child{
@@ -977,7 +977,7 @@
   }
 }
 
-.csf-map-ui-autocomplate{
+.streamcast-csf-map-ui-autocomplate{
   z-index: 999999;
   border-radius: 4px;
   overflow: hidden;
@@ -987,9 +987,9 @@
 /**
  * 03. 20. Field: media
  */
-.csf-field-media{
+.streamcast-csf-field-media{
 
-  .csf--placeholder{
+  .streamcast-csf--placeholder{
     display: flex;
     align-items: flex-start;
 
@@ -1007,7 +1007,7 @@
     margin-left: 0;
   }
 
-  .csf--preview{
+  .streamcast-csf--preview{
     position: relative;
   }
 }
@@ -1015,9 +1015,9 @@
 /**
  * 03. 21. Field: palette
  */
-.csf-field-palette{
+.streamcast-csf-field-palette{
 
-  .csf--palette{
+  .streamcast-csf--palette{
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -1057,7 +1057,7 @@
     }
   }
 
-  .csf--active{
+  .streamcast-csf--active{
     border-color: #222;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
 
@@ -1074,19 +1074,19 @@
 /**
  * 03. 22. Field: repeater
  */
-.csf-field-repeater{
+.streamcast-csf-field-repeater{
 
-  .csf-field-text input{
+  .streamcast-csf-field-text input{
     width: 100%;
   }
 
-  .csf-repeater-hidden{
+  .streamcast-csf-repeater-hidden{
     display: none !important;
   }
 
-  .csf-repeater-wrapper{
+  .streamcast-csf-repeater-wrapper{
 
-    .csf-repeater-item{
+    .streamcast-csf-repeater-item{
       display: table;
       width: 100%;
       margin-bottom: 5px;
@@ -1098,18 +1098,18 @@
     }
   }
 
-  .csf-repeater-content{
+  .streamcast-csf-repeater-content{
     width: 100%;
     display: table-cell;
     vertical-align: middle;
     background-color: #fff;
 
-    > .csf-field{
+    > .streamcast-csf-field{
       padding: 15px;
     }
   }
 
-  .csf-repeater-helper{
+  .streamcast-csf-repeater-helper{
     width: 100%;
     display: table-cell;
     vertical-align: middle;
@@ -1131,11 +1131,11 @@
     }
   }
 
-  .csf-repeater-helper-inner{
+  .streamcast-csf-repeater-helper-inner{
     width: 75px;
   }
 
-  .csf-repeater-alert{
+  .streamcast-csf-repeater-alert{
     display: none;
     margin-bottom: 5px;
     padding: 10px 20px;
@@ -1158,8 +1158,8 @@
     background-color: #eee !important;
     opacity: 0.5;
 
-    .csf-repeater-helper,
-    .csf-repeater-content{
+    .streamcast-csf-repeater-helper,
+    .streamcast-csf-repeater-content{
       display: none;
     }
   }
@@ -1168,13 +1168,13 @@
 /**
  * 03. 23. Field: select
  */
-.csf-field-select{
+.streamcast-csf-field-select{
 
-  .csf-fieldset{
+  .streamcast-csf-fieldset{
     min-height: 30px;
   }
 
-  .csf-chosen{
+  .streamcast-csf-chosen{
     display: none;
   }
 
@@ -1183,7 +1183,7 @@
     margin: 0;
   }
 
-  .csf-hide-select{
+  .streamcast-csf-hide-select{
     display: none !important;
   }
 }
@@ -1191,18 +1191,18 @@
 /**
  * 03. 24. Field: slider
  */
-.csf-field-slider{
+.streamcast-csf-field-slider{
 
-  .csf--wrap{
+  .streamcast-csf--wrap{
     display: flex;
     align-items: center;
   }
 
-  .csf--input{
+  .streamcast-csf--input{
     display: flex;
   }
 
-  .csf--unit{
+  .streamcast-csf--unit{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -1217,7 +1217,7 @@
     background-color: #f5f5f5;
   }
 
-  .csf-slider-ui{
+  .streamcast-csf-slider-ui{
     margin-right: 15px;
   }
 
@@ -1229,7 +1229,7 @@
     text-align: center;
   }
 
-  .csf--is-unit{
+  .streamcast-csf--is-unit{
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
   }
@@ -1271,9 +1271,9 @@
 /**
  * 03. 25. Field: sortable
  */
-.csf-field-sortable{
+.streamcast-csf-field-sortable{
 
-  .csf-field-text{
+  .streamcast-csf-field-text{
 
     input{
       width: 100%;
@@ -1281,9 +1281,9 @@
     }
   }
 
-  .csf-sortable{
+  .streamcast-csf-sortable{
 
-    .csf-sortable-item{
+    .streamcast-csf-sortable-item{
       display: table;
       width: 100%;
       margin-bottom: 5px;
@@ -1295,18 +1295,18 @@
     }
   }
 
-  .csf-sortable-content{
+  .streamcast-csf-sortable-content{
     width: 100%;
     display: table-cell;
     vertical-align: middle;
     background-color: #fff;
 
-    > .csf-field{
+    > .streamcast-csf-field{
       padding: 15px;
     }
   }
 
-  .csf-sortable-helper{
+  .streamcast-csf-sortable-helper{
     width: 100%;
     display: table-cell;
     vertical-align: middle;
@@ -1342,8 +1342,8 @@
     background-color: #eee !important;
     opacity: 0.5;
 
-    .csf-sortable-helper,
-    .csf-sortable-content{
+    .streamcast-csf-sortable-helper,
+    .streamcast-csf-sortable-content{
       display: none;
     }
   }
@@ -1352,7 +1352,7 @@
 /**
  * 03. 26. Field: sorter
  */
-.csf-field-sorter{
+.streamcast-csf-field-sorter{
 
   .ui-sortable-placeholder{
     height: 20px;
@@ -1360,7 +1360,7 @@
     background-color: #fffae4;
   }
 
-  .csf-modules{
+  .streamcast-csf-modules{
     float: left;
     width: 50%;
     box-sizing: border-box;
@@ -1374,14 +1374,14 @@
     }
   }
 
-  .csf-disabled,
-  .csf-enabled{
+  .streamcast-csf-disabled,
+  .streamcast-csf-enabled{
     padding: 5px 15px;
     border: 1px dashed #ddd;
     background-color: #fff;
   }
 
-  .csf-disabled{
+  .streamcast-csf-disabled{
     li{
       opacity: 0.5;
       transition: opacity .15s;
@@ -1392,7 +1392,7 @@
     }
   }
 
-  .csf-sorter-title{
+  .streamcast-csf-sorter-title{
     font-size: 13px;
     font-weight: 600;
     padding: 10px;
@@ -1429,9 +1429,9 @@
 /**
  * 03. 27. Field: spinner
  */
-.csf-field-spinner{
+.streamcast-csf-field-spinner{
 
-  .csf--spin{
+  .streamcast-csf--spin{
     display: flex;
   }
 
@@ -1499,7 +1499,7 @@
       }
     }
 
-    .csf--unit{
+    .streamcast-csf--unit{
       border-left: 0;
       user-select: none;
     }
@@ -1531,7 +1531,7 @@
     order: 2;
   }
 
-  .csf--unit{
+  .streamcast-csf--unit{
     order: 3;
   }
 
@@ -1543,9 +1543,9 @@
 /**
  * 03. 28. Field: switcher
  */
-.csf-field-switcher{
+.streamcast-csf-field-switcher{
 
-  .csf--switcher{
+  .streamcast-csf--switcher{
     float: left;
     cursor: pointer;
     position: relative;
@@ -1560,7 +1560,7 @@
     -webkit-user-select: none;
   }
 
-  .csf--ball{
+  .streamcast-csf--ball{
     position: absolute;
     top: 4px;
     left: 4px;
@@ -1572,8 +1572,8 @@
     box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
   }
 
-  .csf--on,
-  .csf--off{
+  .streamcast-csf--on,
+  .streamcast-csf--off{
     position: absolute;
     top: 0;
     left: 0;
@@ -1590,30 +1590,30 @@
     transition: all .1s;
   }
 
-  .csf--off{
+  .streamcast-csf--off{
     padding-right: 0;
     padding-left: 28px;
     opacity: 1;
   }
 
-  .csf--active{
+  .streamcast-csf--active{
     background: #4fb845;
 
-    .csf--on{
+    .streamcast-csf--on{
       opacity: 1;
     }
 
-    .csf--off{
+    .streamcast-csf--off{
       opacity: 0;
     }
 
-    .csf--ball{
+    .streamcast-csf--ball{
       left: 100%;
       margin-left: -28px;
     }
   }
 
-  .csf--label{
+  .streamcast-csf--label{
     float: left;
     margin-top: 4px;
     margin-left: 8px;
@@ -1625,21 +1625,21 @@
 /**
  * 03. 29. Field: tabbed
  */
-.csf-field-tabbed{
+.streamcast-csf-field-tabbed{
 
-  .csf-tabbed-content{
+  .streamcast-csf-tabbed-content{
     border: 1px solid #ccd0d4;
     background-color: #fff;
     box-shadow: 0 1px 1px rgba(0,0,0,.04);
 
-    > .csf-field{
+    > .streamcast-csf-field{
       padding: 15px;
     }
   }
 
-  .csf-tabbed-nav{
+  .streamcast-csf-tabbed-nav{
 
-    .csf--icon{
+    .streamcast-csf--icon{
       padding-right: 5px;
     }
 
@@ -1661,7 +1661,7 @@
         background-color: #f9f9f9;
       }
 
-      &.csf-tabbed-active{
+      &.streamcast-csf-tabbed-active{
         background-color: #fff;
         border-bottom-color: #fff;
       }
@@ -1677,7 +1677,7 @@
 /**
  * 03. 30. Field: text
  */
-.csf-field-text{
+.streamcast-csf-field-text{
 
   input{
     width: 50%;
@@ -1689,7 +1689,7 @@
 /**
  * 03. 31. Field: textarea
  */
-.csf-field-textarea{
+.streamcast-csf-field-textarea{
 
   textarea{
     width: 100%;
@@ -1697,7 +1697,7 @@
     min-height: 125px;
   }
 
-  .csf-shortcode-button{
+  .streamcast-csf-shortcode-button{
     margin-bottom: 10px;
     margin-right: 5px;
   }
@@ -1706,7 +1706,7 @@
 /**
  * 03. 32. Field: typography
  */
-.csf-field-typography{
+.streamcast-csf-field-typography{
 
   textarea,
   select{
@@ -1715,7 +1715,7 @@
     max-width: 100%;
   }
 
-  .csf--title{
+  .streamcast-csf--title{
     color: #777;
     margin: 0 0 2px 0;
     font-size: 12px;
@@ -1725,28 +1725,28 @@
     }
   }
 
-  .csf--blocks{
+  .streamcast-csf--blocks{
     display: flex;
     flex-wrap: wrap;
   }
 
-  .csf--block{
+  .streamcast-csf--block{
     flex: 1;
     max-width: 100%;
     padding-right: 6px;
     padding-bottom: 6px;
   }
 
-  .csf--input{
+  .streamcast-csf--input{
     margin: 0;
     min-width: 100%;
   }
 
-  .csf--input-wrap{
+  .streamcast-csf--input-wrap{
     position: relative;
   }
 
-  .csf--unit{
+  .streamcast-csf--unit{
     position: absolute;
     z-index: 1;
     right: 4px;
@@ -1764,7 +1764,7 @@
     flex-direction: column;
   }
 
-  .csf--preview{
+  .streamcast-csf--preview{
     font-size: 16px;
     line-height: 20px;
     padding: 20px;
@@ -1777,7 +1777,7 @@
     transition: background-color .2s, border-color .2s;
   }
 
-  .csf--block-preview{
+  .streamcast-csf--block-preview{
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -1785,19 +1785,19 @@
     max-width: 100%;
   }
 
-  .csf--black-background{
+  .streamcast-csf--black-background{
     border-color: #000;
     background-color: #000;
   }
 
-  .csf--toggle{
+  .streamcast-csf--toggle{
     position: absolute;
     top: 5px;
     right: 10px;
     color: #999;
   }
 
-  .csf--block-extra-styles{
+  .streamcast-csf--block-extra-styles{
     margin-top: 5px;
   }
 }
@@ -1805,14 +1805,14 @@
 /**
  * 03. 33. Field: upload
  */
-.csf-field-upload{
+.streamcast-csf-field-upload{
 
   input{
     width: 100%;
     margin: 0;
   }
 
-  .csf--wrap{
+  .streamcast-csf--wrap{
     display: flex;
     align-items: flex-start;
   }
@@ -1821,7 +1821,7 @@
     margin-left: 5px;
   }
 
-  .csf--preview{
+  .streamcast-csf--preview{
     position: relative;
   }
 }
@@ -1829,9 +1829,9 @@
 /**
  * 03. 34. Field: wp_editor
  */
-.csf-field-wp_editor{
+.streamcast-csf-field-wp_editor{
 
-  .csf-wp-editor{
+  .streamcast-csf-wp-editor{
     float: left;
     width: 100%;
   }
@@ -1858,11 +1858,11 @@
     z-index: 1;
   }
 
-  .csf-no-tinymce{
+  .streamcast-csf-no-tinymce{
     border: 1px solid #e5e5e5;
   }
 
-  .csf-no-quicktags{
+  .streamcast-csf-no-quicktags{
 
     .wp-media-buttons{
       float: none;
@@ -1886,7 +1886,7 @@
 /**
  * 03. 35. Field: heading
  */
-.csf-field-heading{
+.streamcast-csf-field-heading{
   font-size: 1.5em;
   font-weight: bold;
   color: #23282d;
@@ -1896,7 +1896,7 @@
 /**
  * 03. 36. Field: subheading
  */
-.csf-field-subheading{
+.streamcast-csf-field-subheading{
   font-size: 14px;
   font-weight: bold;
   padding-top: 17px;
@@ -1908,47 +1908,47 @@
 /**
  * 03. 37. Field: submessage
  */
-.csf-field-submessage{
+.streamcast-csf-field-submessage{
   padding: 0 !important;
   border: 0 !important;
 
-  + .csf-field{
+  + .streamcast-csf-field{
     border-top: 0 !important;
   }
 }
 
-.csf-submessage{
+.streamcast-csf-submessage{
   font-size: 12px;
   padding: 17px 30px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
 }
 
-.csf-submessage-success{
+.streamcast-csf-submessage-success{
   color: #3c763d;
   border-color: #d6e9c6;
   background-color: #dff0d8;
 }
 
-.csf-submessage-info{
+.streamcast-csf-submessage-info{
   color: #31708f;
   border-color: #bce8f1;
   background-color: #d9edf7;
 }
 
-.csf-submessage-warning{
+.streamcast-csf-submessage-warning{
   color: #8a6d3b;
   border-color: #faebcc;
   background-color: #fcf8e3;
 }
 
-.csf-submessage-danger{
+.streamcast-csf-submessage-danger{
   color: #a94442;
   border-color: #ebccd1;
   background-color: #f2dede;
 }
 
-.csf-submessage-normal{
+.streamcast-csf-submessage-normal{
   color: #23282d;
   border-color: #eee;
   background-color: #f7f7f7;
@@ -1957,11 +1957,11 @@
 /**
  * 03. 38. Field: notice
  */
-.csf-field-notice{
+.streamcast-csf-field-notice{
   background-color: #f7f7f7;
 }
 
-.csf-notice{
+.streamcast-csf-notice{
   padding: 12px;
   background-color: #fff;
   border-left-style: solid;
@@ -1969,43 +1969,43 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-.csf-notice-success{
+.streamcast-csf-notice-success{
   border-color: #46b450;
 }
 
-.csf-notice-info{
+.streamcast-csf-notice-info{
   border-color: #339fd4;
 }
 
-.csf-notice-warning{
+.streamcast-csf-notice-warning{
   border-color: #ffbc00;
 }
 
-.csf-notice-danger{
+.streamcast-csf-notice-danger{
   border-color: #dc3232;
 }
 
-.csf-notice-normal{
+.streamcast-csf-notice-normal{
   border-color: #222;
 }
 
 /**
  * 03. 39. Field: number
  */
-.csf-field-number{
+.streamcast-csf-field-number{
 
   input{
     width: 100%;
     margin: 0;
   }
 
-  .csf--wrap{
+  .streamcast-csf--wrap{
     position: relative;
     float: left;
     width: 100px;
   }
 
-  .csf--unit{
+  .streamcast-csf--unit{
     position: absolute;
     z-index: 1;
     right: 4px;
@@ -2027,9 +2027,9 @@
 /**
  * 03. 40. Field: link
  */
-.csf-field-link{
+.streamcast-csf-field-link{
 
-  .csf--result{
+  .streamcast-csf--result{
     display: inline-block;
     font-size: 12px;
     line-height: 16px;
@@ -2042,13 +2042,13 @@
     world-break: break-word;
   }
 
-  .csf--wrap{
+  .streamcast-csf--wrap{
     position: relative;
     float: left;
     width: 100px;
   }
 
-  .csf--unit{
+  .streamcast-csf--unit{
     position: absolute;
     z-index: 1;
     right: 4px;
@@ -2070,7 +2070,7 @@
 /**
  * 03. 41. others
  */
-.csf-help{
+.streamcast-csf-help{
   cursor: help;
   position: absolute;
   top: 0;
@@ -2079,16 +2079,16 @@
   font-size: 13px;
   color: #aaa;
 
-  .csf-help-text{
+  .streamcast-csf-help-text{
     display: none;
   }
 }
 
-.csf--preview{
+.streamcast-csf--preview{
   max-width: 100%;
 }
 
-.csf-image-preview{
+.streamcast-csf-image-preview{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2148,14 +2148,14 @@
   }
 }
 
-.csf-field-custom{
+.streamcast-csf-field-custom{
 
-  .csf-field{
+  .streamcast-csf-field{
     padding: 0;
   }
 }
 
-.csf-field{
+.streamcast-csf-field{
 
   .chosen-container-single .chosen-single{
     height: 28px;
@@ -2266,7 +2266,7 @@
     }
   }
 
-  .csf--transparent-wrap{
+  .streamcast-csf--transparent-wrap{
     display: none;
     position: relative;
     top: -1px;
@@ -2277,11 +2277,11 @@
     background-color: #fff;
   }
 
-  .wp-picker-active .csf--transparent-wrap{
+  .wp-picker-active .streamcast-csf--transparent-wrap{
     display: block;
   }
 
-  .csf--transparent-slider{
+  .streamcast-csf--transparent-slider{
     position: absolute;
     width: 190px;
     margin-left: 2px;
@@ -2317,7 +2317,7 @@
     }
   }
 
-  .csf--transparent-offset{
+  .streamcast-csf--transparent-offset{
     height: 18px;
     width: 200px;
     background: url(../images/checkerboard.png) repeat-y center left scroll #fff;
@@ -2325,7 +2325,7 @@
     box-shadow: inset 0 0 5px rgba(0,0,0,0.4);
   }
 
-  .csf--transparent-text{
+  .streamcast-csf--transparent-text{
     position: absolute;
     top: 12px;
     right: 10px;
@@ -2336,7 +2336,7 @@
     color: #999;
   }
 
-  .csf--transparent-button{
+  .streamcast-csf--transparent-button{
     cursor: pointer;
     user-select: none;
     margin-top: 10px;
@@ -2352,7 +2352,7 @@
     transition: background-color .2s, border-color .2s, color .2s;
   }
 
-  .csf--transparent-active{
+  .streamcast-csf--transparent-active{
 
     .wp-color-result{
       background-image: url(../images/checkerboard.png);
@@ -2361,7 +2361,7 @@
       background-color: transparent !important;
     }
 
-    .csf--transparent-button{
+    .streamcast-csf--transparent-button{
       color: #fff;
       border-color: #3ea032;
       background-color: #4fb845;

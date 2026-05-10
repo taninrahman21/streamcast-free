@@ -7,9 +7,9 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Abstract' ) ) {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Abstract' ) ) {
 #[AllowDynamicProperties]
-abstract class CSF_Abstract {
+abstract class STREAMCAST_STREAMCAST_CSF_Abstract {
 
   public $abstract   = '';
   public $output_css = '';
@@ -19,7 +19,7 @@ abstract class CSF_Abstract {
     // Collect output css and typography
     if ( ! empty( $this->args['output_css'] ) || ! empty( $this->args['enqueue_webfont'] ) ) {
       add_action( 'wp_enqueue_scripts', array( $this, 'collect_output_css_and_typography' ), 10 );
-      CSF::$css = apply_filters( "csf_{$this->unique}_output_css", CSF::$css, $this );
+      STREAMCAST_STREAMCAST_CSF::$css = apply_filters( "streamcast_csf_{$this->unique}_output_css", STREAMCAST_STREAMCAST_CSF::$css, $this );
     }
 
   }
@@ -38,7 +38,7 @@ abstract class CSF_Abstract {
         $field_type   = ( ! empty( $field['type'] ) ) ? $field['type'] : '';
         $field_output = ( ! empty( $field['output'] ) ) ? $field['output'] : '';
         $field_check  = ( $field_type === 'typography' || $field_output ) ? true : false;
-        $field_class  = 'CSF_Field_' . $field_type;
+        $field_class  = 'STREAMCAST_STREAMCAST_CSF_Field_' . $field_type;
 
         if ( $field_type && $field_id ) {
 
@@ -112,7 +112,7 @@ abstract class CSF_Abstract {
 
               // output css
               if ( $field_output && $this->args['output_css'] ) {
-                CSF::$css .= $instance->output();
+                STREAMCAST_STREAMCAST_CSF::$css .= $instance->output();
               }
 
               unset( $instance );

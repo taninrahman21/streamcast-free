@@ -36,7 +36,18 @@ export const dashboardInfo = (info) => {
     licenseActiveNonce,
     changelogs: [
       {
-        version: "2.4.0 - 2 May 2026",
+        version: "2.4.1 - 10 May 2026",
+        type: "update",
+        list: [
+          "Compliance: Renamed all global prefixes and namespaces from 'STP' to 'StreamCast' and 'csf' to 'streamcast_csf'.",
+          "Security: Implemented robust output escaping and input sanitization across the entire codebase and framework.",
+          "Security: Replaced all 'json_encode' calls with 'wp_json_encode' for safer data handling.",
+          "Security: Sanitized all nonces and JSON-decoded data to prevent XSS and other vulnerabilities.",
+          "Maintenance: Renamed generic JavaScript variables and structural cleanup to meet WordPress.org standards.",
+        ],
+      },
+      {
+        version: "2.4.0 - 6 May 2026",
         type: "update",
         list: [
           "Compliance: Removed all trialware/ feature - gating logic to ensure full functionality for all users.",

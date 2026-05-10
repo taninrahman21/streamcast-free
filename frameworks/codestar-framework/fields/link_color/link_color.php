@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_link_color' ) ) {
-  class CSF_Field_link_color extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_link_color' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_link_color extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -42,7 +42,7 @@ if ( ! class_exists( 'CSF_Field_link_color' ) ) {
 
       $value = wp_parse_args( $this->value, $default_values );
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       foreach ( $color_props as $color_prop_key => $color_prop_value ) {
 
@@ -50,16 +50,16 @@ if ( ! class_exists( 'CSF_Field_link_color' ) ) {
 
           $default_attr = ( ! empty( $this->field['default'][$color_prop_key] ) ) ? ' data-default-color="'. esc_attr( $this->field['default'][$color_prop_key] ) .'"' : '';
 
-          echo '<div class="csf--left csf-field-color">';
-          echo '<div class="csf--title">'. esc_attr( $color_prop_value ) .'</div>';
-          echo '<input type="text" name="'. esc_attr( $this->field_name( '['. $color_prop_key .']' ) ) .'" value="'. esc_attr( $value[$color_prop_key] ) .'" class="csf-color"'. $default_attr . $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+          echo '<div class="streamcast-csf--left streamcast-csf-field-color">';
+          echo '<div class="streamcast-csf--title">'. esc_attr( $color_prop_value ) .'</div>';
+          echo '<input type="text" name="'. esc_attr( $this->field_name( '['. $color_prop_key .']' ) ) .'" value="'. esc_attr( $value[$color_prop_key] ) .'" class="streamcast-csf-color"'. $default_attr . $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
           echo '</div>';
 
         }
 
       }
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 

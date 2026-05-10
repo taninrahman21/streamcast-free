@@ -14,7 +14,7 @@ function bundle() {
       "mimes/**/*",
       "public/**/*",
       "vendor/**/*",
-      "class-stp-block.php",
+      "class-streamcast-block.php",
       "iframe.html",
       "readme.txt",
       "streamcast.php",

@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Profile_Options' ) ) {
-  class CSF_Profile_Options extends CSF_Abstract{
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Profile_Options' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Profile_Options extends STREAMCAST_STREAMCAST_CSF_Abstract{
 
     // constans
     public $unique     = '';
@@ -25,8 +25,8 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
     public function __construct( $key, $params ) {
 
       $this->unique     = $key;
-      $this->args       = apply_filters( "csf_{$this->unique}_args", wp_parse_args( $params['args'], $this->args ), $this );
-      $this->sections   = apply_filters( "csf_{$this->unique}_sections", $params['sections'], $this );
+      $this->args       = apply_filters( "streamcast_csf_{$this->unique}_args", wp_parse_args( $params['args'], $this->args ), $this );
+      $this->sections   = apply_filters( "streamcast_csf_{$this->unique}_sections", $params['sections'], $this );
       $this->pre_fields = $this->pre_fields( $this->sections );
 
       add_action( 'admin_init', array( $this, 'add_profile_options' ) );
@@ -88,25 +88,25 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
 
       $is_profile = ( is_object( $profileuser ) && isset( $profileuser->ID ) ) ? true : false;
       $profile_id = ( $is_profile ) ? $profileuser->ID : 0;
-      $errors     = ( ! empty( $profile_id ) ) ? get_user_meta( $profile_id, '_csf_errors_'. $this->unique, true ) : array();
+      $errors     = ( ! empty( $profile_id ) ) ? get_user_meta( $profile_id, '_streamcast_csf_errors_'. $this->unique, true ) : array();
       $errors     = ( ! empty( $errors ) ) ? $errors : array();
       $class      = ( $this->args['class'] ) ? ''. $this->args['class'] : '';
 
       if ( ! empty( $errors ) ) {
-        delete_user_meta( $profile_id, '_csf_errors_'. $this->unique );
+        delete_user_meta( $profile_id, '_streamcast_csf_errors_'. $this->unique );
       }
 
-      echo '<div class="csf csf-profile-options csf-onload'. esc_attr( $class ) .'">';
+      echo '<div class="streamcast-csf streamcast-csf-profile-options streamcast-csf-onload'. esc_attr( $class ) .'">';
 
-      wp_nonce_field( 'csf_profile_nonce', 'csf_profile_nonce'. $this->unique );
+      wp_nonce_field( 'streamcast_csf_profile_nonce', 'streamcast_csf_profile_nonce'. $this->unique );
 
       foreach ( $this->sections as $section ) {
 
-        $section_icon  = ( ! empty( $section['icon'] ) ) ? '<i class="csf-section-icon '. esc_attr( $section['icon'] ) .'"></i>' : '';
+        $section_icon  = ( ! empty( $section['icon'] ) ) ? '<i class="streamcast-csf-section-icon '. esc_attr( $section['icon'] ) .'"></i>' : '';
         $section_title = ( ! empty( $section['title'] ) ) ? $section['title'] : '';
 
         echo ( $section_title || $section_icon ) ? '<h2>'. wp_kses_post( $section_icon ) . wp_kses_post( $section_title ) .'</h2>' : '';
-        echo ( ! empty( $section['description'] ) ) ? '<div class="csf-field csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
+        echo ( ! empty( $section['description'] ) ) ? '<div class="streamcast-csf-field streamcast-csf-section-description">'. wp_kses_post( $section['description'] ) .'</div>' : '';
 
         if ( ! empty( $section['fields'] ) ) {
 
@@ -120,7 +120,7 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
               $field['default'] = $this->get_default( $field );
             }
 
-            CSF::field( $field, $this->get_meta_value( $profile_id, $field ), $this->unique, 'profile' );
+            STREAMCAST_STREAMCAST_CSF::field( $field, $this->get_meta_value( $profile_id, $field ), $this->unique, 'profile' );
 
           }
 
@@ -138,16 +138,16 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
       $count    = 1;
       $data     = array();
       $errors   = array();
-      $noncekey = 'csf_profile_nonce'. $this->unique;
+      $noncekey = 'streamcast_csf_profile_nonce'. $this->unique;
       $nonce    = ( ! empty( $_POST[ $noncekey ] ) ) ? sanitize_text_field( wp_unslash( $_POST[ $noncekey ] ) ) : '';
 
-      if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! wp_verify_nonce( $nonce, 'csf_profile_nonce' ) ) {
+      if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! wp_verify_nonce( $nonce, 'streamcast_csf_profile_nonce' ) ) {
         return $user_id;
       }
 
       // XSS ok.
       // No worries, This "POST" requests is sanitizing in the below foreach.
-      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? wp_unslash( $_POST[ $this->unique ] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+      $request = ( ! empty( $_POST[ $this->unique ] ) ) ? \wp_kses_post_deep( \wp_unslash( $_POST[ $this->unique ] ) ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
       if ( ! empty( $request ) ) {
 
@@ -208,9 +208,9 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
 
       }
 
-      $data = apply_filters( "csf_{$this->unique}_save", $data, $user_id, $this );
+      $data = apply_filters( "streamcast_csf_{$this->unique}_save", $data, $user_id, $this );
 
-      do_action( "csf_{$this->unique}_save_before", $data, $user_id, $this );
+      do_action( "streamcast_csf_{$this->unique}_save_before", $data, $user_id, $this );
 
       if ( empty( $data ) ) {
 
@@ -235,14 +235,14 @@ if ( ! class_exists( 'CSF_Profile_Options' ) ) {
         }
 
         if ( ! empty( $errors ) ) {
-          update_user_meta( $user_id, '_csf_errors_'. $this->unique, $errors );
+          update_user_meta( $user_id, '_streamcast_csf_errors_'. $this->unique, $errors );
         }
 
       }
 
-      do_action( "csf_{$this->unique}_saved", $data, $user_id, $this );
+      do_action( "streamcast_csf_{$this->unique}_saved", $data, $user_id, $this );
 
-      do_action( "csf_{$this->unique}_save_after", $data, $user_id, $this );
+      do_action( "streamcast_csf_{$this->unique}_save_after", $data, $user_id, $this );
 
     }
   }

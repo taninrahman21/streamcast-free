@@ -7,8 +7,8 @@
  * @version 1.0.0
  *
  */
-if ( ! class_exists( 'CSF_Field_gallery' ) ) {
-  class CSF_Field_gallery extends CSF_Fields {
+if ( ! class_exists( 'STREAMCAST_STREAMCAST_CSF_Field_gallery' ) ) {
+  class STREAMCAST_STREAMCAST_CSF_Field_gallery extends STREAMCAST_STREAMCAST_CSF_Fields {
 
     public function __construct( $field, $value = '', $unique = '', $where = '', $parent = '' ) {
       parent::__construct( $field, $value, $unique, $where, $parent );
@@ -24,7 +24,7 @@ if ( ! class_exists( 'CSF_Field_gallery' ) ) {
 
       $hidden = ( empty( $this->value ) ) ? ' hidden' : '';
 
-      echo $this->field_before(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_before() );
 
       echo '<ul>';
       if ( ! empty( $this->value ) ) {
@@ -39,12 +39,12 @@ if ( ! class_exists( 'CSF_Field_gallery' ) ) {
       }
       echo '</ul>';
 
-      echo '<a href="#" class="button button-primary csf-button">'. wp_kses_post( $args['add_title'] ) .'</a>';
-      echo '<a href="#" class="button csf-edit-gallery'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['edit_title'] ) .'</a>';
-      echo '<a href="#" class="button csf-warning-primary csf-clear-gallery'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['clear_title'] ) .'</a>';
+      echo '<a href="#" class="button button-primary streamcast-csf-button">'. wp_kses_post( $args['add_title'] ) .'</a>';
+      echo '<a href="#" class="button streamcast-csf-edit-gallery'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['edit_title'] ) .'</a>';
+      echo '<a href="#" class="button streamcast-csf-warning-primary streamcast-csf-clear-gallery'. esc_attr( $hidden ) .'">'. wp_kses_post( $args['clear_title'] ) .'</a>';
       echo '<input type="hidden" name="'. esc_attr( $this->field_name() ) .'" value="'. esc_attr( $this->value ) .'"'. $this->field_attributes() .'/>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-      echo $this->field_after(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+      echo wp_kses_post( $this->field_after() );
 
     }
 
